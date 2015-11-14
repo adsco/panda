@@ -1,0 +1,38 @@
+Dart\AppBundle\Entity\Meal:
+    type: entity
+    table: meals
+    id:
+        id:
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Meal name"
+        description:
+            type: text
+            nullable: true
+            options:
+                comment: "Meal description"
+        price:
+            type: integer
+            nullable: false
+            options:
+                comment: "Meal price"
+        weight:
+            type: integer
+            nullable: false
+            options:
+                comment: "Meal weight"
+        creation_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "Meal creation date/time"
+        modification_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "Meal last modification date/time"
