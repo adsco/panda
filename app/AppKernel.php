@@ -17,7 +17,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Dart\AppBundle\AppBundle(),
-            new Dart\AdminBundle\AdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
         );
 
