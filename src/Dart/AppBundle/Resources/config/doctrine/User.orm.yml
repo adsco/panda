@@ -5,3 +5,16 @@ Dart\AppBundle\Entity\User:
         id:
             type: integer
             generator: { strategy: AUTO }
+    fields:
+        creation_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "User creation date/time"
+        modification_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "User info update date/time"
+    lifecycleCallbacks:
+        prePersist: [setCreationDate, setModificationDate]

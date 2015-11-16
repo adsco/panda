@@ -4,6 +4,16 @@ parameters:
 #    parameter_name: value
 
 services:
+    admin.user:
+        class: Dart\AppBundle\Admin\UserAdmin
+        arguments: [~, Dart\AppBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Users }
+    admin.meal:
+        class: Dart\AppBundle\Admin\MealAdmin
+        arguments: [~, Dart\AppBundle\Entity\Meal, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Meals }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

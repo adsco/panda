@@ -3,6 +3,7 @@ Dart\AppBundle\Entity\Meal:
     table: meals
     id:
         id:
+            type: integer
             generator: { strategy: AUTO }
     fields:
         name:
@@ -36,3 +37,5 @@ Dart\AppBundle\Entity\Meal:
             nullable: false
             options:
                 comment: "Meal last modification date/time"
+    lifecycleCallbacks:
+        prePersist: [setCreationDate, setModificationDate]
