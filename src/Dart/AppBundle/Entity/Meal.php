@@ -2,6 +2,8 @@
 
 namespace Dart\AppBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Meal
  */
@@ -42,6 +44,7 @@ class Meal
      */
     private $modification_date;
 
+    private $file;
 
     /**
      * Get id
@@ -249,5 +252,81 @@ class Meal
     public function getCuisine()
     {
         return $this->cuisine;
+    }
+    /**
+     * @var string
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Meal
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+    }
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    /**
+     * Upload image
+     */
+    public function imageUpload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+        
+        $file = $this->getFile();
+        $filename = sha1(uniqid(mt_rand(), true)) . '.' . $file->guessExtension();
+        
+        $file->move($this->getSourceUploadDir(), $filename);
+        
+        $this->setImage($filename);
+    }
+    
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../../../../web/';
+    }
+    
+    protected function getUploadDir()
+    {
+        return $this->getUploadRootDir() . 'uploads/images';
+    }
+    
+    protected function getThumbnailUploadDir()
+    {
+        return $this->getUploadDir() . '/thumbs';
+    }
+    
+    protected function getSourceUploadDir()
+    {
+        return $this->getUploadDir() . '/sources';
     }
 }

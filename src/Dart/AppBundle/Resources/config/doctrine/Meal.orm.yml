@@ -32,6 +32,12 @@ Dart\AppBundle\Entity\Meal:
             nullable: false
             options:
                 comment: "Meal weight"
+        image:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Meal image"
         creation_date:
             type: datetime
             nullable: false
@@ -50,4 +56,5 @@ Dart\AppBundle\Entity\Meal:
                 name: cuisine_id
                 referencedColumnName: id
     lifecycleCallbacks:
-        prePersist: [setCreationDate, setModificationDate]
+        prePersist: [setCreationDate, setModificationDate, imageUpload]
+        preUpdate: [imageUpload]

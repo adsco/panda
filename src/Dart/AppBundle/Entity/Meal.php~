@@ -192,4 +192,128 @@ class Meal
     {
         return $this->modification_date;
     }
+    /**
+     * @var integer
+     */
+    private $cuisine_id;
+
+    /**
+     * @var \Dart\AppBundle\Entity\Cuisine
+     */
+    private $cuisine;
+
+
+    /**
+     * Set cuisineId
+     *
+     * @param integer $cuisineId
+     *
+     * @return Meal
+     */
+    public function setCuisineId($cuisineId)
+    {
+        $this->cuisine_id = $cuisineId;
+
+        return $this;
+    }
+
+    /**
+     * Get cuisineId
+     *
+     * @return integer
+     */
+    public function getCuisineId()
+    {
+        return $this->cuisine_id;
+    }
+
+    /**
+     * Set cuisine
+     *
+     * @param \Dart\AppBundle\Entity\Cuisine $cuisine
+     *
+     * @return Meal
+     */
+    public function setCuisine(\Dart\AppBundle\Entity\Cuisine $cuisine = null)
+    {
+        $this->cuisine = $cuisine;
+
+        return $this;
+    }
+
+    /**
+     * Get cuisine
+     *
+     * @return \Dart\AppBundle\Entity\Cuisine
+     */
+    public function getCuisine()
+    {
+        return $this->cuisine;
+    }
+    /**
+     * @var string
+     */
+    private $image;
+
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Meal
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    /**
+     * Upload image
+     */
+    public function imageUpload()
+    {
+        if (null === $this->image) {
+            return;
+        }
+        
+        $image = $this->getImage();
+        
+        $image->move(
+            $this->getSourceUploadDir(),
+            sha1(uniqid(mt_rand(), true)) . $image->guessExtension()
+        );
+    }
+    
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../web/';
+    }
+    
+    protected function getUploadDir()
+    {
+        return $this->getUploadRootDir() . 'uploads/images';
+    }
+    
+    protected function getThumbnailUploadDir()
+    {
+        return $this->getUploadDir() . '/thumbs';
+    }
+    
+    protected function getSourceUploadDir()
+    {
+        return $this->getUploadDir() . '/sources';
+    }
 }

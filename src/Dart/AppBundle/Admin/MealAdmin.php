@@ -24,6 +24,10 @@ class MealAdmin extends Admin
         $formMapper
             ->tab('Basic data')
                 ->with('Textual data')
+                    ->add('file', 'file', array(
+                        'required' => true,
+                        'label' => 'Image'
+                    ))
                     ->add('cuisine', 'sonata_type_model', array(
                         'class' => 'Dart\AppBundle\Entity\Cuisine',
                         'property' => 'name',
