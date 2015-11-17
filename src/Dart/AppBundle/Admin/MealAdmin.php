@@ -24,16 +24,29 @@ class MealAdmin extends Admin
         $formMapper
             ->tab('Basic data')
                 ->with('Textual data')
-                    ->add('name', 'text')
-                    ->add('description', 'textarea')
+                    ->add('cuisine', 'sonata_type_model', array(
+                        'class' => 'Dart\AppBundle\Entity\Cuisine',
+                        'property' => 'name',
+                        'label' => 'Cuisine'
+                    ))
+                    ->add('name', 'text', array(
+                        'label' => 'Meal name'
+                    ))
+                    ->add('description', 'textarea', array(
+                        'label' => 'Meal description'
+                    ))
                 ->end()
             ->end();
         
         $formMapper
             ->tab('General data')
                 ->with('Numerical data')
-                    ->add('price', 'integer')
-                    ->add('weight', 'integer')
+                    ->add('price', 'integer', array(
+                        'label' => 'Meal price'
+                    ))
+                    ->add('weight', 'integer', array(
+                        'label' => 'Meal weight'
+                    ))
                 ->end()
             ->end();
     }
