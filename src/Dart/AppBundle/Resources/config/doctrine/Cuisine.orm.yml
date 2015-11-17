@@ -1,0 +1,17 @@
+Dart\AppBundle\Entity\Cuisine:
+    type: entity
+    table: cuisines
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 256
+            options:
+                comment: "Cuisine name"
+    oneToMany:
+        meals:
+            targetEntity: Meal
+            mappedBy: cuisine

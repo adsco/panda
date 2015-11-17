@@ -192,4 +192,62 @@ class Meal
     {
         return $this->modification_date;
     }
+    /**
+     * @var integer
+     */
+    private $cuisine_id;
+
+    /**
+     * @var \Dart\AppBundle\Entity\Cuisine
+     */
+    private $cuisine;
+
+
+    /**
+     * Set cuisineId
+     *
+     * @param integer $cuisineId
+     *
+     * @return Meal
+     */
+    public function setCuisineId($cuisineId)
+    {
+        $this->cuisine_id = $cuisineId;
+
+        return $this;
+    }
+
+    /**
+     * Get cuisineId
+     *
+     * @return integer
+     */
+    public function getCuisineId()
+    {
+        return $this->cuisine_id;
+    }
+
+    /**
+     * Set cuisine
+     *
+     * @param \Dart\AppBundle\Entity\Cuisine $cuisine
+     *
+     * @return Meal
+     */
+    public function setCuisine(\Dart\AppBundle\Entity\Cuisine $cuisine = null)
+    {
+        $this->cuisine = $cuisine;
+
+        return $this;
+    }
+
+    /**
+     * Get cuisine
+     *
+     * @return \Dart\AppBundle\Entity\Cuisine
+     */
+    public function getCuisine()
+    {
+        return $this->cuisine;
+    }
 }
