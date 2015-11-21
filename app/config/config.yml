@@ -95,8 +95,8 @@ liip_imagine:
     resolvers:
         default:
             web_path: 
-                web_root: %kernel.root_dir%/../web/uploads/images
-                cache_prefix: uploads/images/media/cache
+                web_root: %kernel.root_dir%/../web
+                cache_prefix: uploads/images/cache
     filter_sets:
         cache: ~
         thumb_small:

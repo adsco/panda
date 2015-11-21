@@ -3,10 +3,10 @@ Meals available
 <ul>
 {% for meal in meals %}
     <li>
-        <img src="{{ asset(('uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}" />
-        <b>{{ asset(('uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}</b>
+        <img src="{{ asset(('/uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}" />
+        <b>{{ asset(('/uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}</b>
         <br/>
-        <b>{{ asset(('uploads/images/sources/' ~ meal.image)) }}</b>
+        <b>{{ asset(('/uploads/images/sources/' ~ meal.image)) }}</b>
     </li>
 {% endfor %}
 </ul>
