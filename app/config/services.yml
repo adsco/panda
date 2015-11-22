@@ -14,6 +14,8 @@ services:
         arguments: [~, Dart\AppBundle\Entity\Meal, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Meals }
+        calls:
+            - [ setTemplate, [edit, AppBundle:SonataAdmin:Meal/edit.html.twig]]
     admin.cuisine:
         class: Dart\AppBundle\Admin\CuisineAdmin
         arguments: [~, Dart\AppBundle\Entity\Cuisine, ~]
