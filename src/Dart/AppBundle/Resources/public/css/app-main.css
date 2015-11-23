@@ -1,0 +1,26 @@
+.site-header {
+    height: 50px;
+    background-color: #1a1a1a;
+    line-height: 50px;
+    color: #999;
+}
+
+.navbar-fixed-margin {
+    margin-top: 50px;
+}
+
+.site-body {
+    padding-top: 50px;
+}
+
+.nav.navbar-nav > li > a {
+    color: #FFF !important;
+}
+
+.footer {
+    border-top: 1px solid #e5e5e5;
+}
+
+.footer-body {
+    text-align: center;
+}

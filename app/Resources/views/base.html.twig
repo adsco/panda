@@ -2,12 +2,64 @@
 <html>
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            {% stylesheets '@AppBundle/Resources/public/css/bootstrap.min.css'
+                '@AppBundle/Resources/public/css/app-main.css' %}
+                <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container-fluid">
+            <div class="row site-header">
+                <div class="container">
+                    ads
+                </div>
+            </div>
+            <div class="row">
+                <nav class="navbar navbar-inverse navbar-fixed-top navbar-fixed-margin">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="#" class="navbar-brand">BRAND</a>
+                        </div>
+                        <div>
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" class="active">PAGES</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                                        CUISINES
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">CHINESE</a></li>
+                                        <li><a href="#">JAPAN</a></li>
+                                        <li><a href="#">WOK</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="container site-body">
+                {% block body %}{% endblock %}
+            </div>
+            <div class="row footer">
+                <div class="container">
+                    <div class="footer-body">
+                        footer
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            {% javascripts '@AppBundle/Resources/public/js/jquery-1.11.3.min.js'
+                '@AppBundle/Resources/public/js/bootstrap.min.js' %}
+                <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% endblock %}
     </body>
 </html>
