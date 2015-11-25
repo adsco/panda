@@ -21,6 +21,11 @@ services:
         arguments: [~, Dart\AppBundle\Entity\Cuisine, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Cuisines }
+    admin.category:
+        class: Dart\AppBundle\Admin\CategoryAdmin
+        arguments: [~, Dart\AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

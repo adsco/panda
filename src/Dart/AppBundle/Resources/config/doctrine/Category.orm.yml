@@ -34,3 +34,6 @@ Dart\AppBundle\Entity\Category:
         meals:
             targetEntity: Meal
             mappedBy: category
+    lifecycleCallbacks:
+        prePersist: [prePersist, preUpdate]
+        preUpdate: [preUpdate]
