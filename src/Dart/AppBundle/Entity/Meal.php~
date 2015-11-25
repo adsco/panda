@@ -2,6 +2,8 @@
 
 namespace Dart\AppBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 /**
  * Meal
  */
@@ -42,6 +44,7 @@ class Meal
      */
     private $modification_date;
 
+    private $file;
 
     /**
      * Get id
@@ -280,26 +283,36 @@ class Meal
         return $this->image;
     }
     
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+    }
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
     /**
      * Upload image
      */
     public function imageUpload()
     {
-        if (null === $this->image) {
+        if (null === $this->file) {
             return;
         }
         
-        $image = $this->getImage();
+        $file = $this->getFile();
+        $filename = sha1(uniqid(mt_rand(), true)) . '.' . $file->guessExtension();
         
-        $image->move(
-            $this->getSourceUploadDir(),
-            sha1(uniqid(mt_rand(), true)) . $image->guessExtension()
-        );
+        $file->move($this->getSourceUploadDir(), $filename);
+        
+        $this->setImage($filename);
     }
     
     protected function getUploadRootDir()
     {
-        return __DIR__ . '/../web/';
+        return __DIR__ . '/../../../../web/';
     }
     
     protected function getUploadDir()

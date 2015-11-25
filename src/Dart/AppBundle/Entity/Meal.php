@@ -329,4 +329,62 @@ class Meal
     {
         return $this->getUploadDir() . '/sources';
     }
+    /**
+     * @var integer
+     */
+    private $category_id;
+
+    /**
+     * @var \Dart\AppBundle\Entity\Category
+     */
+    private $category;
+
+
+    /**
+     * Set categoryId
+     *
+     * @param integer $categoryId
+     *
+     * @return Meal
+     */
+    public function setCategoryId($categoryId)
+    {
+        $this->category_id = $categoryId;
+
+        return $this;
+    }
+
+    /**
+     * Get categoryId
+     *
+     * @return integer
+     */
+    public function getCategoryId()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Dart\AppBundle\Entity\Category $category
+     *
+     * @return Meal
+     */
+    public function setCategory(\Dart\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Dart\AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

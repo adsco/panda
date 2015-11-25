@@ -6,7 +6,7 @@ Dart\AppBundle\Entity\Meal:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        cuisine_id:
+        category_id:
             type: integer
             nullable: false
             options:
@@ -49,11 +49,11 @@ Dart\AppBundle\Entity\Meal:
             options:
                 comment: "Meal last modification date/time"
     manyToOne:
-        cuisine:
-            targetEntity: Cuisine
+        category:
+            targetEntity: Category
             inversedBy: meals
             joinColumn:
-                name: cuisine_id
+                name: category_id
                 referencedColumnName: id
     lifecycleCallbacks:
         prePersist: [setCreationDate, setModificationDate, imageUpload]

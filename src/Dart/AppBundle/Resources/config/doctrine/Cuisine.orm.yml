@@ -12,6 +12,6 @@ Dart\AppBundle\Entity\Cuisine:
             options:
                 comment: "Cuisine name"
     oneToMany:
-        meals:
-            targetEntity: Meal
+        categories:
+            targetEntity: Category
             mappedBy: cuisine

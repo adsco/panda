@@ -1,0 +1,36 @@
+Dart\AppBundle\Entity\Category:
+    type: entity
+    table: categories
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        cuisine_id:
+            type: integer
+            options:
+                description: "Cuisine owner of category"
+        name:
+            type: string
+            length: 256
+            options:
+                description: "Name of category"
+        creation_date:
+            type: datetime
+            options:
+                description: "Creation datetime"
+        update_date:
+            type: datetime
+            options:
+                description: "Last update datetime"
+    manyToOne:
+        cuisine:
+            targetEntity: Cuisine
+            inversedBy: categories
+            joinColumn:
+                name: cuisine_id
+                referencedColumnName: id
+    oneToMany:
+        meals:
+            targetEntity: Meal
+            mappedBy: category
