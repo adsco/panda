@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Dart\AppBundle\Entity\Meal;
+use \Doctrine\ORM\EntityRepository;
 
 /**
  * Admin class for Meal entity
@@ -21,6 +22,16 @@ class MealAdmin extends Admin
      * {@inheritDoc}
      */
     protected function configureFormFields(FormMapper $formMapper) {
+        $em = $this->modelManager->getEntityManager('Dart\AppBundle\Entity\Cuisine');
+        $qb = $em
+            ->createQueryBuilder('c')
+            ->select('c,cc')
+            ->from('AppBundle:Cuisine', 'c')
+            ->leftJoin('c.categories', 'cc')
+            ->getQuery();
+        
+        $categories = $this->transformCuisine($qb->getArrayResult());
+        
         $formMapper
             ->tab('Basic data')
                 ->with('Textual data')
@@ -28,10 +39,9 @@ class MealAdmin extends Admin
                         'required' => true,
                         'label' => 'Image'
                     ))
-                    ->add('cuisine', 'sonata_type_model', array(
-                        'class' => 'Dart\AppBundle\Entity\Cuisine',
-                        'property' => 'name',
-                        'label' => 'Cuisine'
+                    ->add('category_id', 'choice', array(
+                        'choices' => $categories,
+                        'label' => 'Category'
                     ))
                     ->add('name', 'text', array(
                         'label' => 'Meal name'
@@ -53,6 +63,33 @@ class MealAdmin extends Admin
                     ))
                 ->end()
             ->end();
+    }
+    
+    public function prePersist($object) {
+        $em = $this->modelManager->getEntityManager('Dart\AppBundle\Entity\Category');
+        $category = $em->getRepository('AppBundle:Category')->findOneBy(array('id' => $object->getCategoryId()));
+        if (!$category) {
+            throw new \Exception($object->getCategoryId());
+        }
+        
+        $object->setCategory($category);
+    }
+    
+    private function transformCuisine($cuisines)
+    {
+        $result = array();
+        
+        foreach ($cuisines as $cuisine) {
+            if (!key_exists($cuisine['name'], $result)) {
+                $result[$cuisine['name']] = array();
+            }
+            
+            foreach ($cuisine['categories'] as $category) {
+                $result[$cuisine['name']][$category['id']] = $category['name'];
+            }
+        }
+        
+        return $result;
     }
     
     /**
