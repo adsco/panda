@@ -1,5 +1,9 @@
 {% extends '::base.html.twig' %}
 
+{% block cart %}
+    CART
+{% endblock %}
+
 {% block body %}
 Meals available
 
@@ -7,9 +11,8 @@ Meals available
 {% for meal in meals %}
     <li>
         <img src="{{ asset(('/uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}" />
-        <b>{{ asset(('/uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}</b>
-        <br/>
-        <b>{{ asset(('/uploads/images/sources/' ~ meal.image)) }}</b>
+        <span>{{ meal.price }} р.</span>
+        <span>{{ meal.weight }} г.</span>
     </li>
 {% endfor %}
 </ul>
