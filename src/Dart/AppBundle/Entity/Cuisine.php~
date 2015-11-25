@@ -97,4 +97,43 @@ class Cuisine
     {
         return $this->meals;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+
+    /**
+     * Add category
+     *
+     * @param \Dart\AppBundle\Entity\Category $category
+     *
+     * @return Cuisine
+     */
+    public function addCategory(\Dart\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Dart\AppBundle\Entity\Category $category
+     */
+    public function removeCategory(\Dart\AppBundle\Entity\Category $category)
+    {
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 }
