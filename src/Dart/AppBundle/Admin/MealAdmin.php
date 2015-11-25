@@ -21,16 +21,9 @@ class MealAdmin extends Admin
     /**
      * {@inheritDoc}
      */
-    protected function configureFormFields(FormMapper $formMapper) {
-        $em = $this->modelManager->getEntityManager('Dart\AppBundle\Entity\Cuisine');
-        $qb = $em
-            ->createQueryBuilder('c')
-            ->select('c,cc')
-            ->from('AppBundle:Cuisine', 'c')
-            ->leftJoin('c.categories', 'cc')
-            ->getQuery();
-        
-        $categories = $this->transformCuisine($qb->getArrayResult());
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $categories = $this->transformCuisine($this->getCuisines());
         
         $formMapper
             ->tab('Basic data')
@@ -65,7 +58,8 @@ class MealAdmin extends Admin
             ->end();
     }
     
-    public function prePersist($object) {
+    public function prePersist($object)
+    {
         $em = $this->modelManager->getEntityManager('Dart\AppBundle\Entity\Category');
         $category = $em->getRepository('AppBundle:Category')->findOneBy(array('id' => $object->getCategoryId()));
         if (!$category) {
@@ -73,6 +67,19 @@ class MealAdmin extends Admin
         }
         
         $object->setCategory($category);
+    }
+    
+    private function getCuisines()
+    {
+        $em = $this->modelManager->getEntityManager('Dart\AppBundle\Entity\Cuisine');
+        $qb = $em
+            ->createQueryBuilder('c')
+            ->select('c,cc')
+            ->from('AppBundle:Cuisine', 'c')
+            ->leftJoin('c.categories', 'cc')
+            ->getQuery();
+        
+        return $qb->getArrayResult();
     }
     
     private function transformCuisine($cuisines)
@@ -95,7 +102,8 @@ class MealAdmin extends Admin
     /**
      * {@inheritDoc}
      */
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper) {
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
         $datagridMapper->add('name');
         $datagridMapper->add('price');
         $datagridMapper->add('weight');
@@ -104,7 +112,8 @@ class MealAdmin extends Admin
     /**
      * {@inheritDoc}
      */
-    protected function configureListFields(ListMapper $listMapper) {
+    protected function configureListFields(ListMapper $listMapper)
+    {
         $listMapper->addIdentifier('name');
         $listMapper->addIdentifier('price');
         $listMapper->addIdentifier('weight');
