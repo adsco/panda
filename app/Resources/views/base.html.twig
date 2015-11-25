@@ -40,11 +40,8 @@
                                         CUISINES
                                         <span class="caret"></span>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">CHINESE</a></li>
-                                        <li><a href="#">JAPAN</a></li>
-                                        <li><a href="#">WOK</a></li>
-                                    </ul>
+                                    
+                                    {% render(controller('AppBundle:Navigation:CuisineNavigation', {'short': true})) %}
                                 </li>
                             </ul>
                         </div>

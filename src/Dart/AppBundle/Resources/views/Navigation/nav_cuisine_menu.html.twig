@@ -1,0 +1,19 @@
+{% block cuisine_menu %}
+    <div>
+    MENU
+    <ul>
+    {% for cuisine in cuisines %}
+        <li>
+            <div> <a href="{{ path('app_cuisine', {'id': cuisine.id}) }}">{{ cuisine.name }}</a></div>
+            <div>
+                <ul>
+                {% for category in cuisine.categories %}
+                    <li> <a href="{{ path('app_category', {'id': category.id}) }}">{{ category.name }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

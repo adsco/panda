@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    cuisine selected: {{ cuisine.name }}
+    {% for category in cuisine.categories %}
+        category name: {{ category.name }}
+        {% for meal in category.meals %}
+            meal: {{ meal.name }}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

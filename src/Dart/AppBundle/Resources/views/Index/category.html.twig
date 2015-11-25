@@ -1,0 +1,8 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    category selected: {{ category.name }}
+    {% for meal in category.meals %}
+        meal: {{ meal.name }}
+    {% endfor %}
+{% endblock %}

@@ -7,6 +7,8 @@
 {% block body %}
 Meals available
 
+{% render(controller('AppBundle:Navigation:CuisineNavigation')) %}
+
 <ul>
 {% for meal in meals %}
     <li>
