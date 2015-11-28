@@ -3,11 +3,12 @@
 namespace Dart\AppBundle\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Dart\AppBundle\Component\ProductInterface;
 
 /**
  * Meal
  */
-class Meal
+class Meal implements ProductInterface
 {
     /**
      * @var string
@@ -52,6 +53,11 @@ class Meal
      * @return string
      */
     public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function getIdentifier()
     {
         return $this->id;
     }

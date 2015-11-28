@@ -230,4 +230,3 @@ class Category
         $this->setUpdateDate(new \DateTime());
     }
 }
-

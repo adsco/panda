@@ -2,6 +2,8 @@
 
 namespace Dart\AppBundle\Component;
 
+use Dart\AppBundle\Component\ProductInterface;
+
 /**
  * Cart item base
  *
@@ -9,6 +11,68 @@ namespace Dart\AppBundle\Component;
  * @subpackage Component
  * @author Valerii Ten <eternitywisher@gmail.com>
  */
-class CartItemBase {
+class CartItemBase
+{
+    /**
+     * @var ProductInterface
+     */
+    private $product;
     
+    /**
+     * @var integer
+     */
+    private $count;
+    
+    /**
+     * Constructor
+     */
+    public function __construct(ProductInterface $product) {
+        $this->product = $product;
+        
+        $this->count = 1;
+    }
+    
+    /**
+     * Unique product identifier
+     * 
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->product->getIdentifier();
+    }
+    
+    /**
+     * Retrieve product itself
+     * 
+     * @return ProductInterface
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+    
+    /**
+     * Set product count
+     * 
+     * @param integer $count - product count to set
+     */
+    public function setCount($count)
+    {
+        if (!is_int($count) || $count < 1) {
+            throw new \Exception('Invalid count, must be positive, greater then zero integer value');
+        }
+        
+        $this->count = $count;
+    }
+    
+    /**
+     * Get current product count
+     * 
+     * @return type
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
 }

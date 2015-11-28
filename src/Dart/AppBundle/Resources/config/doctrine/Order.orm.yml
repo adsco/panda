@@ -1,0 +1,60 @@
+Dart\AppBundle\Entity\Order:
+    type: entity
+    table: orders
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        user_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "User who made order"
+        delivery_address_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "Delivery address"
+        price:
+            type: integer
+            nullable: false
+            options:
+                comment: "Total order price, without delivery price"
+        delivery_price:
+            type: integer
+            nullable: false
+            options:
+                comment: "Delivery price"
+        change:
+            type: integer
+            nullable: true
+            options:
+                comment: "Change to prepared for this amount"
+        creation_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "Order creation datetime"
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: orders
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    oneToOne:
+        delivery_address:
+            targetEntity: DeliveryAddress
+            inversedBy: order
+            joinColumn:
+                name: delivery_address_id
+                referencedColumnName: id
+    oneToMany:
+        order_items:
+            targetEntity: OrderItem
+            mappedBy: order
+    lifecycleCallbacks:
+        prePersist: [prePersist]
+            
+        

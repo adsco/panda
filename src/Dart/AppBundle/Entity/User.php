@@ -83,4 +83,43 @@ class User extends BaseUser
     {
         return $this->modification_date;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
+
+
+    /**
+     * Add order
+     *
+     * @param \Dart\AppBundle\Entity\Order $order
+     *
+     * @return User
+     */
+    public function addOrder(\Dart\AppBundle\Entity\Order $order)
+    {
+        $this->orders[] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Remove order
+     *
+     * @param \Dart\AppBundle\Entity\Order $order
+     */
+    public function removeOrder(\Dart\AppBundle\Entity\Order $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
 }

@@ -16,5 +16,9 @@ Dart\AppBundle\Entity\User:
             nullable: false
             options:
                 comment: "User info update date/time"
+    oneToMany:
+        orders:
+            targetEntity: Order
+            mappedBy: user
     lifecycleCallbacks:
         prePersist: [setCreationDate, setModificationDate]

@@ -1,0 +1,9 @@
+Cart content:
+<ul>
+{% for item in items %}
+    {% set product = item.getProduct %}
+    <li>
+        {{ product.name }} | {{ product.price }} | {{ item.count }}
+    </li>
+{% endfor %}
+</ul>

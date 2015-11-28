@@ -1,0 +1,30 @@
+Dart\AppBundle\Entity\OrderItem:
+    type: entity
+    table: order_items
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        order_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "id of order this item attached to"
+        name:
+            type: string
+            nullable: false
+            options:
+                comment: "Name of ordered item"
+        price:
+            type: integer
+            nullable: false
+            options:
+                comment: "Price of ordered item"
+    manyToOne:
+        order:
+            targetEntity: Order
+            inversedBy: order_items
+            joinColumn:
+                name: order_id
+                referencedColumnName: id

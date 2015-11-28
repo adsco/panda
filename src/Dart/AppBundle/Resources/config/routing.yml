@@ -5,7 +5,36 @@ app_homepage:
 app_cuisine:
     path:     /cuisine/{id}/{page}
     defaults: { _controller: AppBundle:Index:cuisine, page: 1 }
+    requirements:
+        id: \d+
+        page: \d+
     
 app_category:
     path:     /category/{id}/{page}
     defaults: { _controller: AppBundle:Index:category, page: 1 }
+    requirements:
+        id: \d+
+        page: \d+
+    
+#cart routes
+cart_add:
+    path:     /cart/add/{id}
+    defaults: { _controller: AppBundle:Cart:add }
+    requirements:
+        id: \d+
+
+cart_remove:
+    path:     /cart/remove/{id}
+    defaults: { _controller: AppBundle:Cart:remove }
+    requirements:
+        id: \d+
+
+cart_remove_all:
+    path:     /cart/remove-all/{id}
+    defaults: { _controller: AppBundle:Cart:removeAll }
+    requirements:
+        id: \d+
+        
+cart_show:
+    path:     /cart/show
+    defaults: { _controller: AppBundle:Cart:show }

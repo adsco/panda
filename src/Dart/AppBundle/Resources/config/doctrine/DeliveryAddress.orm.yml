@@ -1,0 +1,46 @@
+Dart\AppBundle\Entity\DeliveryAddress:
+    type: entity
+    table: delivery_addresses
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        street:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Delivery street"
+        building:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Delivery building"
+        porch:
+            type: integer
+            nullable: true
+            options:
+                comment: "Delivery porch"
+        apartment:
+            type: integer
+            nullable: true
+            options:
+                comment: "Delivery apartment"
+        intercome_code:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Intercome code"
+        note:
+            type: text
+            nullable: true
+            options:
+                comment: "Additional notes, like street some special markers etc."
+    oneToOne:
+        order:
+            targetEntity: Order
+            mappedBy: delivery_address
+            
