@@ -122,4 +122,33 @@ class User extends BaseUser
     {
         return $this->orders;
     }
+    /**
+     * @var \Dart\AppBundle\Entity\UserProfile
+     */
+    private $profile;
+
+
+    /**
+     * Set profile
+     *
+     * @param \Dart\AppBundle\Entity\UserProfile $profile
+     *
+     * @return User
+     */
+    public function setProfile(\Dart\AppBundle\Entity\UserProfile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Dart\AppBundle\Entity\UserProfile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 }

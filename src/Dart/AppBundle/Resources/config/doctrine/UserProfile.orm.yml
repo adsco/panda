@@ -1,0 +1,36 @@
+Dart\AppBundle\Entity\UserProfile:
+    type: entity
+    table: user_profiles
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        user_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "Id of user, profile owner"
+        name:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Name of user who made an order"
+        phone:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Phone number of user who made an order"
+    oneToOne:
+        user:
+            targetEntity: User
+            inversedBy: profile
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    oneToMany:
+        orders:
+            targetEntity: Order
+            mappedBy: profile

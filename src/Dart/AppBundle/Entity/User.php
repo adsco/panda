@@ -45,7 +45,7 @@ class User extends BaseUser
      */
     public function setCreationDate($creationDate)
     {
-        $this->creation_date = $creationDate ?: new \DateTime();
+        $this->creation_date = $creationDate;
 
         return $this;
     }
@@ -69,7 +69,7 @@ class User extends BaseUser
      */
     public function setModificationDate($modificationDate)
     {
-        $this->modification_date = $modificationDate ?: new DateTime();
+        $this->modification_date = $modificationDate;
 
         return $this;
     }
@@ -121,5 +121,40 @@ class User extends BaseUser
     public function getOrders()
     {
         return $this->orders;
+    }
+    /**
+     * @var \Dart\AppBundle\Entity\UserProfile
+     */
+    private $profile;
+
+
+    /**
+     * Set profile
+     *
+     * @param \Dart\AppBundle\Entity\UserProfile $profile
+     *
+     * @return User
+     */
+    public function setProfile(\Dart\AppBundle\Entity\UserProfile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Dart\AppBundle\Entity\UserProfile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+    
+    public function prePersist()
+    {
+        $this->setCreationDate(new \DateTime());
+        $this->setModificationDate(new \DateTime());
     }
 }

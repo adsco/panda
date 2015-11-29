@@ -15,7 +15,7 @@ class Order
     /**
      * @var integer
      */
-    private $user_id;
+    private $profile_id;
 
     /**
      * @var integer
@@ -53,9 +53,9 @@ class Order
     private $order_items;
 
     /**
-     * @var \Dart\AppBundle\Entity\User
+     * @var \Dart\AppBundle\Entity\UserProfile
      */
-    private $user;
+    private $profile;
 
     /**
      * Constructor
@@ -76,27 +76,27 @@ class Order
     }
 
     /**
-     * Set userId
+     * Set profileId
      *
-     * @param integer $userId
+     * @param integer $profileId
      *
      * @return Order
      */
-    public function setUserId($userId)
+    public function setProfileId($profileId)
     {
-        $this->user_id = $userId;
+        $this->profile_id = $profileId;
 
         return $this;
     }
 
     /**
-     * Get userId
+     * Get profileId
      *
      * @return integer
      */
-    public function getUserId()
+    public function getProfileId()
     {
-        return $this->user_id;
+        return $this->profile_id;
     }
 
     /**
@@ -278,31 +278,34 @@ class Order
     }
 
     /**
-     * Set user
+     * Set profile
      *
-     * @param \Dart\AppBundle\Entity\User $user
+     * @param \Dart\AppBundle\Entity\UserProfile $profile
      *
      * @return Order
      */
-    public function setUser(\Dart\AppBundle\Entity\User $user = null)
+    public function setProfile(\Dart\AppBundle\Entity\UserProfile $profile = null)
     {
-        $this->user = $user;
+        $this->profile = $profile;
 
         return $this;
     }
 
     /**
-     * Get user
+     * Get profile
      *
-     * @return \Dart\AppBundle\Entity\User
+     * @return \Dart\AppBundle\Entity\UserProfile
      */
-    public function getUser()
+    public function getProfile()
     {
-        return $this->user;
+        return $this->profile;
     }
-    
+    /**
+     * @ORM\PrePersist
+     */
     public function prePersist()
     {
         $this->setCreationDate(new \DateTime());
     }
 }
+
