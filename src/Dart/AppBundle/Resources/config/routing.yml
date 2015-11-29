@@ -38,3 +38,12 @@ cart_remove_all:
 cart_show:
     path:     /cart/show
     defaults: { _controller: AppBundle:Cart:show }
+
+#order routes
+order_show:
+    path:    /order/show
+    defaults: { _controller: AppBundle:Order:show }
+
+order_submit:
+    path:    /order/submit
+    defaults: { _controller: AppBundle:Order:submit }

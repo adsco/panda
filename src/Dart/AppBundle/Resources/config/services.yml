@@ -8,4 +8,6 @@ services:
     cart.item:
         class: Dart\AppBundle\Service\ItemService
         arguments: []
-        
+    order:
+        class: Dart\AppBundle\Service\OrderService
+        arguments: []

@@ -1,0 +1,8 @@
+Order details:
+<ul>
+{% for item in order.getOrderItems %}
+    <li>{{ item.name }}: {{ item.price }}</li>
+{% endfor %}
+</ul>
+
+total price: {{ order.price }}
