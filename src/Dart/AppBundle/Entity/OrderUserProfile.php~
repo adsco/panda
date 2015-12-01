@@ -3,9 +3,9 @@
 namespace Dart\AppBundle\Entity;
 
 /**
- * OrderItem
+ * OrderUserProfile
  */
-class OrderItem
+class OrderUserProfile
 {
     /**
      * @var integer
@@ -23,9 +23,9 @@ class OrderItem
     private $name;
 
     /**
-     * @var integer
+     * @var string
      */
-    private $price;
+    private $phone;
 
     /**
      * @var \Dart\AppBundle\Entity\Order
@@ -48,7 +48,7 @@ class OrderItem
      *
      * @param integer $orderId
      *
-     * @return OrderItem
+     * @return OrderUserProfile
      */
     public function setOrderId($orderId)
     {
@@ -72,7 +72,7 @@ class OrderItem
      *
      * @param string $name
      *
-     * @return OrderItem
+     * @return OrderUserProfile
      */
     public function setName($name)
     {
@@ -92,27 +92,27 @@ class OrderItem
     }
 
     /**
-     * Set price
+     * Set phone
      *
-     * @param integer $price
+     * @param string $phone
      *
-     * @return OrderItem
+     * @return OrderUserProfile
      */
-    public function setPrice($price)
+    public function setPhone($phone)
     {
-        $this->price = $price;
+        $this->phone = $phone;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get phone
      *
-     * @return integer
+     * @return string
      */
-    public function getPrice()
+    public function getPhone()
     {
-        return $this->price;
+        return $this->phone;
     }
 
     /**
@@ -120,7 +120,7 @@ class OrderItem
      *
      * @param \Dart\AppBundle\Entity\Order $order
      *
-     * @return OrderItem
+     * @return OrderUserProfile
      */
     public function setOrder(\Dart\AppBundle\Entity\Order $order = null)
     {
@@ -138,33 +138,5 @@ class OrderItem
     {
         return $this->order;
     }
-    /**
-     * @var integer
-     */
-    private $count;
-
-
-    /**
-     * Set count
-     *
-     * @param integer $count
-     *
-     * @return OrderItem
-     */
-    public function setCount($count)
-    {
-        $this->count = $count;
-
-        return $this;
-    }
-
-    /**
-     * Get count
-     *
-     * @return integer
-     */
-    public function getCount()
-    {
-        return $this->count;
-    }
 }
+

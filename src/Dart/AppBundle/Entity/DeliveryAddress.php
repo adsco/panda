@@ -225,4 +225,33 @@ class DeliveryAddress
     {
         return $this->order;
     }
+    /**
+     * @var integer
+     */
+    private $order_id;
+
+
+    /**
+     * Set orderId
+     *
+     * @param integer $orderId
+     *
+     * @return DeliveryAddress
+     */
+    public function setOrderId($orderId)
+    {
+        $this->order_id = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * Get orderId
+     *
+     * @return integer
+     */
+    public function getOrderId()
+    {
+        return $this->order_id;
+    }
 }

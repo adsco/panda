@@ -6,6 +6,11 @@ Dart\AppBundle\Entity\DeliveryAddress:
             type: integer
             generator: { strategy: AUTO }
     fields:
+        order_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "Id of order this delivery address attached to"
         street:
             type: string
             length: 256
@@ -42,5 +47,8 @@ Dart\AppBundle\Entity\DeliveryAddress:
     oneToOne:
         order:
             targetEntity: Order
-            mappedBy: delivery_address
+            inversedBy: delivery_address
+            joinColumn:
+                name: order_id
+                referencedColumnName: id
             

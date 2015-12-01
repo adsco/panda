@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Dart\AppBundle\Entity\UserProfile;
 use Dart\AppBundle\Entity\DeliveryAddress;
 use Dart\AppBundle\Entity\Order;
+use Dart\AppBundle\Form\Type\DeliveryAddressType;
+use Dart\AppBundle\Form\Type\UserProfileType;
 
 /**
  * Order controller
@@ -28,7 +30,8 @@ class OrderController extends Controller
         $order = $orderService->createOrder($cartService->getCart());
         
         return $this->render('AppBundle:Order:show.html.twig', array(
-           'order' => $order
+           'order' => $order,
+            'form' => $this->createOrderForm()->createView()
         ));
     }
     
@@ -42,8 +45,6 @@ class OrderController extends Controller
         $orderService = $this->container->get('order');
         
         $order = $orderService->createOrder($cartService->getCart());
-        $order->setProfile($this->getDemoProfile());
-        $order->setDeliveryAddress($this->getDemoDeliveryAddress());
         $order->setChange(0);
         
         //TODO: order saving must be moved to order service
@@ -53,30 +54,20 @@ class OrderController extends Controller
         return new Response('ok', 200);
     }
     
-    private function getDemoProfile()
+    /**
+     * TODO: to be removed
+     * 
+     * @return type
+     */
+    private function createOrderForm()
     {
-        $em = $this->getDoctrine()->getManager();
-        $profile = new UserProfile();
+        $order = new Order();
         
-        $users = $em->getRepository('AppBundle:User')->findAll();
+        $form = $this->createFormBuilder($order)
+            ->add('delivery_address', new DeliveryAddressType())
+            ->add('user_profile', new UserProfileType())
+            ->getForm();
         
-        $profile->setUser($users[0]);
-        $profile->setName('Demo');
-        $profile->setPhone('fake phone');
-        
-        return $profile;
-    }
-    
-    private function getDemoDeliveryAddress()
-    {
-        $deliveryAddress = new DeliveryAddress();
-        
-        $deliveryAddress->setApartment(1);
-        $deliveryAddress->setBuilding(2);
-        $deliveryAddress->setIntercomeCode(3);
-        $deliveryAddress->setPorch(4);
-        $deliveryAddress->setStreet(5);
-        
-        return $deliveryAddress;
+        return $form;
     }
 }

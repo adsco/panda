@@ -6,16 +6,6 @@ Dart\AppBundle\Entity\Order:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        profile_id:
-            type: integer
-            nullable: false
-            options:
-                comment: "User who made order"
-        delivery_address_id:
-            type: integer
-            nullable: false
-            options:
-                comment: "Delivery address"
         price:
             type: integer
             nullable: false
@@ -37,21 +27,14 @@ Dart\AppBundle\Entity\Order:
             nullable: false
             options:
                 comment: "Order creation datetime"
-    manyToOne:
-        profile:
-            targetEntity: UserProfile
-            inversedBy: orders
-            joinColumn:
-                name: profile_id
-                referencedColumnName: id
-            cascade: ["persist"]
     oneToOne:
+        user_profile:
+            targetEntity: OrderUserProfile
+            mappedBy: order
+            cascade: ["persist"]
         delivery_address:
             targetEntity: DeliveryAddress
-            inversedBy: order
-            joinColumn:
-                name: delivery_address_id
-                referencedColumnName: id
+            mappedBy: order
             cascade: ["persist"]
     oneToMany:
         order_items:

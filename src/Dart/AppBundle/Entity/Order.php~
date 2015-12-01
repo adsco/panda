@@ -307,5 +307,33 @@ class Order
     {
         $this->setCreationDate(new \DateTime());
     }
-}
+    /**
+     * @var \Dart\AppBundle\Entity\OrderUserProfile
+     */
+    private $user_profile;
 
+
+    /**
+     * Set userProfile
+     *
+     * @param \Dart\AppBundle\Entity\OrderUserProfile $userProfile
+     *
+     * @return Order
+     */
+    public function setUserProfile(\Dart\AppBundle\Entity\OrderUserProfile $userProfile = null)
+    {
+        $this->user_profile = $userProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get userProfile
+     *
+     * @return \Dart\AppBundle\Entity\OrderUserProfile
+     */
+    public function getUserProfile()
+    {
+        return $this->user_profile;
+    }
+}
