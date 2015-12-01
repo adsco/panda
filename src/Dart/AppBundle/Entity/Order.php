@@ -308,4 +308,3 @@ class Order
         $this->setCreationDate(new \DateTime());
     }
 }
-

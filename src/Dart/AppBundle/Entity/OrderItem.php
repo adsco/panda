@@ -138,4 +138,33 @@ class OrderItem
     {
         return $this->order;
     }
+    /**
+     * @var integer
+     */
+    private $count;
+
+
+    /**
+     * Set count
+     *
+     * @param integer $count
+     *
+     * @return OrderItem
+     */
+    public function setCount($count)
+    {
+        $this->count = $count;
+
+        return $this;
+    }
+
+    /**
+     * Get count
+     *
+     * @return integer
+     */
+    public function getCount()
+    {
+        return $this->count;
+    }
 }

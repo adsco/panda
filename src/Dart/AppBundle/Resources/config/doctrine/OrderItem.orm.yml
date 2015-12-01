@@ -21,6 +21,11 @@ Dart\AppBundle\Entity\OrderItem:
             nullable: false
             options:
                 comment: "Price of ordered item"
+        count:
+            type: integer
+            nullable: false
+            options:
+                comment: "Count of product units ordered"
     manyToOne:
         order:
             targetEntity: Order

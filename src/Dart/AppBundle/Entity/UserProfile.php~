@@ -138,5 +138,50 @@ class UserProfile
     {
         return $this->user;
     }
-}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orders;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->orders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add order
+     *
+     * @param \Dart\AppBundle\Entity\Order $order
+     *
+     * @return UserProfile
+     */
+    public function addOrder(\Dart\AppBundle\Entity\Order $order)
+    {
+        $this->orders[] = $order;
+
+        return $this;
+    }
+
+    /**
+     * Remove order
+     *
+     * @param \Dart\AppBundle\Entity\Order $order
+     */
+    public function removeOrder(\Dart\AppBundle\Entity\Order $order)
+    {
+        $this->orders->removeElement($order);
+    }
+
+    /**
+     * Get orders
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+}
