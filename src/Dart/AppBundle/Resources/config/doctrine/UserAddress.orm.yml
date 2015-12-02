@@ -1,0 +1,69 @@
+Dart\AppBundle\Entity\UserAddress:
+    type: entity
+    table: user_addresses
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        user_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "Address owner"
+        title:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "Address title"
+        street:
+            type: string
+            length: 256
+            nullable: false
+            options:
+                comment: "User address"
+        building:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Building number"
+        porch:
+            type: integer
+            nullable: true
+            options:
+                comment: "Porch number"
+        apartment:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Apartment number"
+        intercome_code:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Intercome code"
+        creation_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "Address creation date"
+        modification_date:
+            type: datetime
+            nullable: false
+            options:
+                comment: "Address last update date"
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: addresses
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [prePersist]
+        preUpdate: [preUpdate]
+                

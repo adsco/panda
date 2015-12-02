@@ -157,4 +157,43 @@ class User extends BaseUser
         $this->setCreationDate(new \DateTime());
         $this->setModificationDate(new \DateTime());
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $addresses;
+
+
+    /**
+     * Add address
+     *
+     * @param \Dart\AppBundle\Entity\UserAddress $address
+     *
+     * @return User
+     */
+    public function addAddress(\Dart\AppBundle\Entity\UserAddress $address)
+    {
+        $this->addresses[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \Dart\AppBundle\Entity\UserAddress $address
+     */
+    public function removeAddress(\Dart\AppBundle\Entity\UserAddress $address)
+    {
+        $this->addresses->removeElement($address);
+    }
+
+    /**
+     * Get addresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
 }

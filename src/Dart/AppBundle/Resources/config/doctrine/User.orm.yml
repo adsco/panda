@@ -20,5 +20,9 @@ Dart\AppBundle\Entity\User:
         profile:
             targetEntity: UserProfile
             mappedBy: user
+    oneToMany:
+        addresses:
+            targetEntity: UserAddress
+            mappedBy: user
     lifecycleCallbacks:
         prePersist: [prePersist]

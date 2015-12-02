@@ -1,7 +1,7 @@
 Order details:
 <ul>
 {% for item in order.getOrderItems %}
-    <li>{{ item.name }}: {{ item.price }}</li>
+    <li>{{ item.name }} x {{ item.count }}: {{ item.price * item.count }}</li>
 {% endfor %}
 </ul>
 
