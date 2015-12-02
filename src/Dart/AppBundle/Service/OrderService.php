@@ -3,6 +3,7 @@
 namespace Dart\AppBundle\Service;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Doctrine\ORM\EntityManager;
 use Dart\AppBundle\Component\Cart;
 use Dart\AppBundle\Component\CartItemBase;
 use Dart\AppBundle\Component\ProductInterface;
@@ -21,11 +22,18 @@ use Dart\AppBundle\Entity\OrderItem;
 class OrderService
 {
     /**
-     * Constructor
+     * @var \Doctrine\ORM\EntityManager
      */
-    public function __construct()
+    private $em;
+    
+    /**
+     * Constructor
+     * 
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
     {
-        
+        $this->em = $entityManager;
     }
     
     /**
@@ -39,15 +47,26 @@ class OrderService
     {
         $items = $cart->getItems();
         $order = new Order();
+        $totalPrice = $this->getTotalPrice($cart);
         
-        $order->setPrice($this->getTotalPrice($cart));
-        $order->setDeliveryPrice(0);
+        $order->setPrice($totalPrice);
         
         foreach ($items as $item) {
             $order->addOrderItem($this->createOrderItem($order, $item));
         }
         
         return $order;
+    }
+    
+    /**
+     * Simple order saving operation
+     * 
+     * @param Order $order
+     */
+    public function saveOrder(Order $order)
+    {
+        $this->em->persist($order);
+        $this->em->flush();
     }
     
     /**
@@ -62,7 +81,7 @@ class OrderService
         $totalPrice = 0;
         
         foreach ($items as $item) {
-            $totalPrice += $item->getProduct()->getPrice();
+            $totalPrice += $item->getProduct()->getPrice() * $item->getCount();
         }
         
         return $totalPrice;
@@ -79,9 +98,10 @@ class OrderService
         $orderItem = new OrderItem();
         $product = $cartItem->getProduct();
         
+        $orderItem->setOrder($order);
         $orderItem->setName($product->getName());
         $orderItem->setPrice($product->getPrice());
-        $orderItem->setOrder($order);
+        $orderItem->setCount($cartItem->getCount());
         
         return $orderItem;
     }
