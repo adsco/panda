@@ -26,7 +26,7 @@ Dart\AppBundle\Entity\OrderUserProfile:
     oneToOne:
         order:
             targetEntity: Order
-            inversedBy: user_profile
+            inversedBy: order_user_profile
             joinColumn:
                 name: order_id
                 referencedColumnName: id

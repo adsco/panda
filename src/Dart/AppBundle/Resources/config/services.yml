@@ -10,4 +10,4 @@ services:
         arguments: []
     order:
         class: Dart\AppBundle\Service\OrderService
-        arguments: [@doctrine.orm.entity_manager]
+        arguments: [@doctrine.orm.entity_manager, @cart]

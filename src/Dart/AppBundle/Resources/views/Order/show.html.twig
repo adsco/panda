@@ -1,12 +1,19 @@
-Order details:
-<ul>
-{% for item in order.getOrderItems %}
-    <li>{{ item.name }} x {{ item.count }}: {{ item.price * item.count }}</li>
-{% endfor %}
-</ul>
+{% extends "::base.html.twig" %}
 
-total price: {{ order.price }}
+{% block body %}
+    Order details:
+    <ul>
+    {% for item in order.getOrderItems %}
+        <li>{{ item.name }} x {{ item.count }}: {{ item.price * item.count }}</li>
+    {% endfor %}
+    </ul>
 
-<div>
-    {{ form_widget(form) }}
-</div>
+    total price: {{ order.price }}
+
+    <div>
+        <form action="{{ path('order_submit') }}" method="post">
+            {{ form_widget(form) }}
+            <input type="submit" value="Submit order" />
+        </form>
+    </div>
+{% endblock %}

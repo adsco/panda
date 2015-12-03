@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
  * @subpackage Form\Type
  * @author Valerii Ten <eternitywisher@gmail.com>
  */
-class UserProfileType extends AbstractType
+class OrderUserProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
@@ -25,7 +25,7 @@ class UserProfileType extends AbstractType
     
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'Dart\AppBundle\Entity\UserProfile'
+            'data_class' => 'Dart\AppBundle\Entity\OrderUserProfile'
         ));
     }
     

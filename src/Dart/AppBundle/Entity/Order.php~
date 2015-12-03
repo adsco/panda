@@ -276,32 +276,9 @@ class Order
     {
         return $this->order_items;
     }
-
+    
     /**
-     * Set profile
-     *
-     * @param \Dart\AppBundle\Entity\UserProfile $profile
-     *
-     * @return Order
-     */
-    public function setProfile(\Dart\AppBundle\Entity\UserProfile $profile = null)
-    {
-        $this->profile = $profile;
-
-        return $this;
-    }
-
-    /**
-     * Get profile
-     *
-     * @return \Dart\AppBundle\Entity\UserProfile
-     */
-    public function getProfile()
-    {
-        return $this->profile;
-    }
-    /**
-     * @ORM\PrePersist
+     * prePersist lifecycleCallback
      */
     public function prePersist()
     {

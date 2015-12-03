@@ -276,64 +276,42 @@ class Order
     {
         return $this->order_items;
     }
-
+    
     /**
-     * Set profile
-     *
-     * @param \Dart\AppBundle\Entity\UserProfile $profile
-     *
-     * @return Order
-     */
-    public function setProfile(\Dart\AppBundle\Entity\UserProfile $profile = null)
-    {
-        $this->profile = $profile;
-
-        return $this;
-    }
-
-    /**
-     * Get profile
-     *
-     * @return \Dart\AppBundle\Entity\UserProfile
-     */
-    public function getProfile()
-    {
-        return $this->profile;
-    }
-    /**
-     * @ORM\PrePersist
+     * prePersist lifecycleCallback
      */
     public function prePersist()
     {
         $this->setCreationDate(new \DateTime());
     }
+    
     /**
      * @var \Dart\AppBundle\Entity\OrderUserProfile
      */
-    private $user_profile;
+    private $order_user_profile;
 
 
     /**
-     * Set userProfile
+     * Set orderUserProfile
      *
-     * @param \Dart\AppBundle\Entity\OrderUserProfile $userProfile
+     * @param \Dart\AppBundle\Entity\OrderUserProfile $orderUserProfile
      *
      * @return Order
      */
-    public function setUserProfile(\Dart\AppBundle\Entity\OrderUserProfile $userProfile = null)
+    public function setOrderUserProfile(\Dart\AppBundle\Entity\OrderUserProfile $orderUserProfile = null)
     {
-        $this->user_profile = $userProfile;
+        $this->order_user_profile = $orderUserProfile;
 
         return $this;
     }
 
     /**
-     * Get userProfile
+     * Get orderUserProfile
      *
      * @return \Dart\AppBundle\Entity\OrderUserProfile
      */
-    public function getUserProfile()
+    public function getOrderUserProfile()
     {
-        return $this->user_profile;
+        return $this->order_user_profile;
     }
 }

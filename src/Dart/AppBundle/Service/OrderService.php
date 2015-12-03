@@ -2,15 +2,16 @@
 
 namespace Dart\AppBundle\Service;
 
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Form\Form;
 use Doctrine\ORM\EntityManager;
 use Dart\AppBundle\Component\Cart;
 use Dart\AppBundle\Component\CartItemBase;
 use Dart\AppBundle\Component\ProductInterface;
-use Dart\AppBundle\Entity\User;
+use Dart\AppBundle\Entity\OrderUserProfile;
 use Dart\AppBundle\Entity\DeliveryAddress;
 use Dart\AppBundle\Entity\Order;
 use Dart\AppBundle\Entity\OrderItem;
+use Dart\AppBundle\Service\CartService;
 
 /**
  * Order service
@@ -27,13 +28,29 @@ class OrderService
     private $em;
     
     /**
+     * @var \Dart\AppBundle\Service\CartService
+     */
+    private $cartService;
+    
+    /**
      * Constructor
      * 
      * @param \Doctrine\ORM\EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, CartService $cartService)
     {
         $this->em = $entityManager;
+        $this->cartService = $cartService;
+    }
+    
+    /**
+     * Get order
+     * 
+     * @return \Dart\AppBundle\Entity\Order
+     */
+    public function getOrder()
+    {
+        return $this->createOrder();
     }
     
     /**
@@ -43,13 +60,16 @@ class OrderService
      * @param \Dart\AppBundle\Entity\DeliveryAddress $address
      * @return \Dart\AppBundle\Entity\Order
      */
-    public function createOrder(Cart $cart)
+    private function createOrder()
     {
+        $cart = $this->cartService->getCart();
         $items = $cart->getItems();
         $order = new Order();
         $totalPrice = $this->getTotalPrice($cart);
         
         $order->setPrice($totalPrice);
+        //TODO: delivery price service needed, for delivery price calculation
+        $order->setDeliveryPrice(0);
         
         foreach ($items as $item) {
             $order->addOrderItem($this->createOrderItem($order, $item));
@@ -61,10 +81,23 @@ class OrderService
     /**
      * Simple order saving operation
      * 
-     * @param Order $order
+     * @param \Symfony\Component\Form\Form $form
      */
-    public function saveOrder(Order $order)
+    public function save(Form $form)
     {
+        $order = $this->getOrder();
+        $data = $form->getData();
+        $deliveryAddress = $data->getDeliveryAddress();
+        $orderUserProfile = $data->getOrderUserProfile();
+        
+        //set up relations to order entity
+        $deliveryAddress->setOrder($order);
+        $orderUserProfile->setOrder($order);
+        
+        $order->setDeliveryAddress($deliveryAddress);
+        $order->setOrderUserProfile($orderUserProfile);
+        $order->setChange($data->getChange());
+        
         $this->em->persist($order);
         $this->em->flush();
     }

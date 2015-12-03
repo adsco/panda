@@ -4,9 +4,11 @@ namespace Dart\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Dart\AppBundle\Form\Type\DeliveryAddressType;
-use Dart\AppBundle\Form\Type\UserProfileType;
+use Dart\AppBundle\Form\Type\OrderUserProfileType;
+
 
 /**
  * Order form
@@ -23,8 +25,15 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('delivery_address', new DeliveryAddressType())
-            ->add('user_profile', new UserProfileType())
+            ->add('change', new TextType(), array(
+                'label' => 'change'
+            ))
+            ->add('delivery_address', new DeliveryAddressType(), array(
+                'by_reference' => false
+            ))
+            ->add('order_user_profile', new OrderUserProfileType(), array(
+                'by_reference' => false
+            ))
         ;
     }
     

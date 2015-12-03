@@ -28,7 +28,7 @@ Dart\AppBundle\Entity\Order:
             options:
                 comment: "Order creation datetime"
     oneToOne:
-        user_profile:
+        order_user_profile:
             targetEntity: OrderUserProfile
             mappedBy: order
             cascade: ["persist"]

@@ -4,6 +4,7 @@ namespace Dart\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Dart\AppBundle\Entity\UserProfile;
 use Dart\AppBundle\Entity\DeliveryAddress;
 use Dart\AppBundle\Entity\Order;
@@ -25,30 +26,27 @@ class OrderController extends Controller
      */
     public function showAction()
     {
-        $cartService = $this->container->get('cart');
-        $orderService = $this->container->get('order');
-        
-        $order = $orderService->createOrder($cartService->getCart());
+        $order = $this->get('order')->getOrder();
+        $form = $this->createForm(new OrderType(), new Order())->createView();
         
         return $this->render('AppBundle:Order:show.html.twig', array(
            'order' => $order,
-           'form' => $this->createForm(new OrderType(), new Order())->createView()
+           'form' => $form
         ));
     }
     
     /**
      * Submit order to restaurant
      */
-    public function submitAction()
+    public function submitAction(Request $request)
     {
-        $cartService = $this->container->get('cart');
-        $orderService = $this->container->get('order');
+        $form = $this->createForm(new OrderType(), new Order());
         
-        $order = $orderService->createOrder($cartService->getCart());
+        $form->handleRequest($request);
         
-        $order->setChange(0);
-        
-        $orderService->saveOrder($order);
+        if ($form->isValid()) {
+            $this->get('order')->save($form);
+        }
         
         return new Response('ok', 200);
     }
