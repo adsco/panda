@@ -329,4 +329,3 @@ class UserAddress
         $this->setModificationDate(new \DateTime());
     }
 }
-

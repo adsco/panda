@@ -24,5 +24,17 @@ Dart\AppBundle\Entity\User:
         addresses:
             targetEntity: UserAddress
             mappedBy: user
+    manyToMany:
+        groups:
+            targetEntity: Group
+            joinTable:
+                name: fos_user_group
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+                
     lifecycleCallbacks:
         prePersist: [prePersist]
