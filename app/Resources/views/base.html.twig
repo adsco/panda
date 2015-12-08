@@ -6,7 +6,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets '@AppBundle/Resources/public/css/bootstrap.min.css'
-                '@AppBundle/Resources/public/css/app-main.css' %}
+                '@AppBundle/Resources/public/css/app-main.css'
+                '@AppBundle/Resources/public/css/main.css' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -14,39 +15,15 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row site-header">
-                <div class="container">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a href="#">twitter</a></li>
-                        <li><a href="#">youtube</a></li>
-                        <li><a href="#">odnoklassniki</a></li>
-                    </ul>
-                    <div class="pull-right">
-                        {% block cart %}{% endblock %}
-                    </div>
-                </div>
+            <div class="row">
+                {% block header %}
+                    {% include 'AppBundle:Header:header.html.twig' %}
+                {% endblock %}
             </div>
             <div class="row">
-                <nav class="navbar navbar-inverse navbar-fixed-top navbar-fixed-margin">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <a href="#" class="navbar-brand">BRAND</a>
-                        </div>
-                        <div>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#" class="active">PAGES</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                                        CUISINES
-                                        <span class="caret"></span>
-                                    </a>
-                                    
-                                    {% render(controller('AppBundle:Navigation:CuisineNavigation', {'short': true})) %}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
+                {% block neck %}
+                    {% include 'AppBundle:Neck:neck.html.twig' %}
+                {% endblock %}
             </div>
             <div class="row">
                 <div class="site-body">
@@ -55,12 +32,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row footer">
-                <div class="container">
-                    <div class="footer-body">
-                        footer
-                    </div>
-                </div>
+            <div class="row">
+                {% block footer %}{% endblock %}
             </div>
         </div>
         {% block javascripts %}

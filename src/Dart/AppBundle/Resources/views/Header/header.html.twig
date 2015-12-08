@@ -1,0 +1,11 @@
+{% block header %}
+    <div class="row site-header">
+        <div class="container">
+            {% include 'AppBundle:Header:social_media.html.twig' %}
+            
+            <div class="pull-right">
+                {% include 'AppBundle:Header:header_right.html.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
