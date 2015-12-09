@@ -5,36 +5,27 @@
 {% endblock %}
 
 {% block body %}
+    {% include 'AppBundle:Misc:teaser.html.twig' %}
+    <h4>
+        <span>featured products</span>
+    </h4>
     <div class="row body">
-        <div class="col-lg-4">
-            <a href="#" class="teaser">
-                {% image '@AppBundle/Resources/public/images/teaser-chinese.png' %}
-                    <img src="{{ asset_url }}" class="" alt="chinese food" />
-                {% endimage %}
-                <div class="caption">
-                     Chinese
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-4">
-            <a href="#" class="teaser">
-                {% image '@AppBundle/Resources/public/images/teaser-japan.png' %}
-                    <img src="{{ asset_url }}" class="" alt="japan food" />
-                {% endimage %}
-                <div class="caption">
-                    Japan
-                </div>
-            </a>
-        </div>
-        <div class="col-lg-4">
-            <a href="#" class="teaser">
-                {% image '@AppBundle/Resources/public/images/teaser-korean.png' %}
-                    <img src="{{ asset_url }}" class="teaser" alt="korean food" />
-                {% endimage %}
-                <div class="caption">
-                    Korean
-                </div>
-            </a>
-        </div>
+        <ul class="row product-list">
+            <li class="col-md-3">
+                {% include 'AppBundle::product_block.html.twig' %}
+            </li>
+            <li class="col-md-3">
+                {% include 'AppBundle::product_block.html.twig' %}
+            </li>
+            <li class="col-md-3">
+                {% include 'AppBundle::product_block.html.twig' %}
+            </li>
+            <li class="col-md-3">
+                {% include 'AppBundle::product_block.html.twig' %}
+            </li>
+            <li class="col-md-3">
+                {% include 'AppBundle::product_block.html.twig' %}
+            </li>
+        </ul>
     </div>
 {% endblock %}

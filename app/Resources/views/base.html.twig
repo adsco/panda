@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            {% stylesheets '@AppBundle/Resources/public/css/bootstrap.min.css'
-                '@AppBundle/Resources/public/css/app-main.css'
-                '@AppBundle/Resources/public/css/main.css' %}
+            {% stylesheets 'bundles/app/css/bootstrap.min.css'
+                'bundles/app/css/app-main.css'
+                'bundles/app/css/main.css' filter="cssrewrite" %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -17,23 +17,18 @@
         <div class="container-fluid">
             <div class="row">
                 {% block header %}
-                    {% include 'AppBundle:Header:header.html.twig' %}
+                    {% include 'AppBundle::header.html.twig' %}
                 {% endblock %}
             </div>
-            <div class="row">
-                {% block neck %}
-                    {% include 'AppBundle:Neck:neck.html.twig' %}
-                {% endblock %}
-            </div>
-            <div class="row">
-                <div class="site-body">
-                    <div class="container">
-                        {% block body %}{% endblock %}
-                    </div>
+            <div class="row body-wrapper">
+                <div class="container body-content">
+                    {% block body %}{% endblock %}
                 </div>
             </div>
             <div class="row">
-                {% block footer %}{% endblock %}
+                {% block footer %}
+                    {% include 'AppBundle::footer.html.twig' %}
+                {% endblock %}
             </div>
         </div>
         {% block javascripts %}

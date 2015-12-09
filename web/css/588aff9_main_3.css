@@ -31,7 +31,7 @@ a:focus {
 }
 
 #header-strip-bottom {
-    background: url(../images/bg_menu.jpg);
+    background: url(../../bundles/app/images/bg_menu.jpg);
 }
 
 #header-links li a {
@@ -53,7 +53,7 @@ a:focus {
 }
 
 .navbar-nav li {
-    background: url(../images/side-border.gif) no-repeat center left;
+    background: url(../../bundles/app/images/side-border.gif) no-repeat center left;
 }
 
 .navbar-nav li:first-child {
@@ -163,7 +163,7 @@ a:focus {
 }
 
 .menu li {
-    background: url(../images/border-menu.png) no-repeat center left;
+    background: url(../../bundles/app/images/border-menu.png) no-repeat center left;
 }
 
 .menu li:first-child {
@@ -184,7 +184,7 @@ a:focus {
 }
 
 .body-wrapper {
-    background: url(../images/bg_body.jpg) repeat-x;
+    background: url(../../bundles/app/images/bg_body.jpg) repeat-x;
     background-color: #fff;
 }
 
@@ -248,7 +248,6 @@ a:focus {
     border-top: 1px dashed #999;
     color: #fff;
     padding: 10px 0;
-    margin-top: 20px;
 }
 
 .misc .dropdown-menu {
@@ -288,77 +287,4 @@ a:focus {
 
 .lang {
     line-height: 16px;
-}
-
-.teaser-wrapper {
-    margin-bottom: 30px;
-}
-
-.body-content {
-
-}
-
-.body-content h4 {
-    color: #2f2f2f;
-    font-size: 26px;
-    line-height: 1em;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 9px 0 0 0;
-    margin: 0 0 30px 0;
-    font-style: normal;
-    font-family: Georgia,"Times New Roman",Times,serif;
-    overflow: hidden;
-}
-
-.product-list {
-    list-style: none;
-    padding: 0;
-}
-
-.product {
-    margin-bottom: 31px;
-}
-
-.product .image {
-    position: relative;
-}
-
-.product h5 {
-    padding: 5px 0;
-    min-height: 53px;
-    margin-bottom: 4px;
-}
-
-.product .name {
-    font-size: 17px;
-    color: #2f2f2f;
-    line-height: 21px;
-}
-
-.product .btn-default {
-    font-size: 17px;
-    line-height: 20px;
-    background: #e5e5e5;
-    color: #2f2f2f;
-    border: 0;
-    border-radius: 0;
-}
-
-.product .btn-default:hover {
-    color: #fff !important;
-    background: #333;
-}
-
-.product .price {
-    background: #fea203;
-    display: inline-block;
-    padding: 13px 20px 15px;
-    font-size: 22px;
-    line-height: 18px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    color: #fff;
-    font-weight: normal;
 }

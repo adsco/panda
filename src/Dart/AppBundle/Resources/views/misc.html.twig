@@ -1,0 +1,29 @@
+<ul class="list-inline misc">
+    <li>
+        <span class="dropdown">
+            <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ app.request.locale }}<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#" class="{% if app.request.locale == 'en' %}active{% endif %}">
+                        {% image '@AppBundle/Resources/public/images/flag_en.jpg' %}
+                            <img src="{{ asset_url }}" class="flag" />
+                        {% endimage %}
+                        <span class="lang">English</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="{% if app.request.locale == 'ru' %}active{% endif %}">
+                        {% image '@AppBundle/Resources/public/images/flag_ru.jpg' %}
+                            <img src="{{ asset_url }}" class="flag" />
+                        {% endimage %}
+                        <span class="lang">Russian</span>
+                    </a>
+                </li>
+            </ul>
+        </span>
+    </li>
+    <li><a href="#">$</a></li>
+    <li><a href="#">lock</a></li>
+</ul>

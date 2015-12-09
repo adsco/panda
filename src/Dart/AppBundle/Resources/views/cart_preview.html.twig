@@ -1,0 +1,14 @@
+<div class="content">
+    {% if meals %}
+    <ul class="order-list">
+        {% for meal in meals %}
+        <li>
+            <img src="{{ asset(('/uploads/images/sources' ~ meal.image) | imagine_filter('thumb_small')) }}" />
+            {{ meal.name }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        empty
+    {% endif %}
+</div>

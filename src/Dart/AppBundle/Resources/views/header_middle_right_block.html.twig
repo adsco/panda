@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="pull-right">
+        <div class="call-us">
+            <h2>Call Us:</h2>
+            <h3>235-36-854</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="pull-right">
+        <ul class="list-inline action-bar">
+            <li><a href="#" class="content caption">your account</a></li>
+            <li>
+                <span class="dropdown content">
+                    <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="caption">cart: </span>
+                        <span class="cart-label">empty</span>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu cart">
+                        {% include 'AppBundle::cart_preview.html.twig' %}
+                    </div>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
