@@ -6,7 +6,6 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets 'bundles/app/css/bootstrap.min.css'
-                'bundles/app/css/app-main.css'
                 'bundles/app/css/main.css' filter="cssrewrite" %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}

@@ -4,6 +4,7 @@ namespace Dart\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Cart controller
@@ -23,6 +24,7 @@ class CartController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cartService = $this->container->get('cart');
+        $response = new JsonResponse();
         
         if (!$item = $em->getRepository('AppBundle:Meal')->findOneBy(array('id' => $id))) {
             throw $this->createNotFoundException('Meal with id "' . $id . '" not found');
@@ -30,7 +32,15 @@ class CartController extends Controller
         
         $cartService->addItem($item);
         
-        return new Response('ok', 200);
+        $response->setData(array(
+            'success' => true,
+            'data' => array(
+                'preview' => $this->container->get('preview')->renderCartPreview(true),
+                'totalCount' => count($cartService->getItems())
+            )
+        ));
+        
+        return $response;
     }
     
     /**
@@ -61,6 +71,19 @@ class CartController extends Controller
         return new Response('ok', 200);
     }
     
+    /**
+     * Render cart preview
+     */
+    public function previewAction()
+    {
+        return $this->container->get('preview')->renderCartPreview();
+    }
+    
+    /**
+     * Show expanded cart content
+     * 
+     * @return type
+     */
     public function showAction()
     {
         $cartService = $this->container->get('cart');

@@ -1,14 +1,20 @@
-<div class="content">
-    {% if meals %}
-    <ul class="order-list">
-        {% for meal in meals %}
-        <li>
-            <img src="{{ asset(('/uploads/images/sources' ~ meal.image) | imagine_filter('thumb_small')) }}" />
-            {{ meal.name }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-        empty
-    {% endif %}
+<div>
+    <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+        <span class="caption">cart: </span>
+        <span class="cart-label" id="cart-label">
+            {% if items|length < 1 %}
+                empty
+            {% else %}
+                {{ items|length }}
+            {% endif %}
+        </span>
+        <span class="caret"></span>
+    </a>
+    <div class="dropdown-menu cart">
+        {% if items|length < 1 %}
+            empty
+        {% else %}
+            {% include 'AppBundle::cart_preview_content.html.twig' with items %}
+        {% endif %}
+    </div>
 </div>

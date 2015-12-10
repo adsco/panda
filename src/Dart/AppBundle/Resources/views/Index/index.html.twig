@@ -1,7 +1,12 @@
 {% extends '::base.html.twig' %}
 
-{% block cart %}
-    CART
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@AppBundle/Resources/public/js/cart-controller.js'
+        '@AppBundle/Resources/public/js/product-parser.js'
+        '@AppBundle/Resources/public/js/cart.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block body %}
@@ -11,21 +16,11 @@
     </h4>
     <div class="row body">
         <ul class="row product-list">
+            {% for product in products %}
             <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' %}
+                {% include 'AppBundle::product_block.html.twig' with {'product' : product} only %}
             </li>
-            <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' %}
-            </li>
-            <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' %}
-            </li>
-            <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' %}
-            </li>
-            <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' %}
-            </li>
+            {% endfor %}
         </ul>
     </div>
 {% endblock %}

@@ -1,16 +1,16 @@
 <div class="product">
     <div class="image">
         {% image '@AppBundle/Resources/public/images/product_default.jpg' %}
-            <img src="{{ asset_url }}" />
+            <img src="{{ asset(('/uploads/images/sources/' ~ product.image) | imagine_filter('thumb_small')) }}" />
         {% endimage %}
         <span class="price">
-            122$
+            {{ product.name }} $ / {{ product.weight }} g
         </span>
     </div>
     <h5>
         <span class="name">
-            Dickinsons apricot glazed balsamic salmon
+            {{ product.name }}
         </span>
     </h5>
-    <a href="" class="btn btn-default">Add to cart ></a>
+    <a href="#" class="btn btn-default btn-product" data-product-id="{{ product.id }}">Add to cart ></a>
 </div>

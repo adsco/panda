@@ -8,6 +8,13 @@ services:
     cart.item:
         class: Dart\AppBundle\Service\ItemService
         arguments: []
+    preview:
+        class: Dart\AppBundle\Service\Preview
+        arguments:
+            - @templating
+            - @cart
+            - "AppBundle::cart_preview.html.twig"
     order:
         class: Dart\AppBundle\Service\OrderService
         arguments: [@doctrine.orm.entity_manager, @cart]
+    

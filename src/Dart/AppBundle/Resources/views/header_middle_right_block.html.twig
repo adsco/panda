@@ -11,16 +11,9 @@
         <ul class="list-inline action-bar">
             <li><a href="#" class="content caption">your account</a></li>
             <li>
-                <span class="dropdown content">
-                    <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="caption">cart: </span>
-                        <span class="cart-label">empty</span>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu cart">
-                        {% include 'AppBundle::cart_preview.html.twig' %}
-                    </div>
-                </span>
+                <div class="content dropdown" id="cart-preview-container">
+                    {% render(controller('AppBundle:Cart:preview')) %}
+                </div>
             </li>
         </ul>
     </div>

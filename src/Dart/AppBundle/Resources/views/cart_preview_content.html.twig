@@ -1,0 +1,25 @@
+<div class="cart-preview">
+    <ul class="content">
+    {% for item in items %}
+        {% set product = item.getProduct %}
+        <li>
+            <div class="clearfix">
+                <div class="image">
+                    <img src="{{ asset(('/uploads/images/sources/' ~ product.image) | imagine_filter('thumb_cart')) }}" />
+                </div>
+                <div class="title">
+                    {{ item.count }} x {{ product.name }}
+                </div>
+                <span class="price">
+                    {{ product.price * item.count }} $
+                </span>
+                <div class="remove-link">
+                    <a href="#" class="cart-item-remove" data-product-id="{{ item.id }}">
+                        X
+                    </a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

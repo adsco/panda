@@ -1,33 +1,46 @@
 <div class="row teaser-wrapper">
-    <div class="col-lg-6">
-        {% image '@AppBundle/Resources/public/images/slide_1.jpg' %}
-            <img src="{{ asset_url }}" />
-        {% endimage %}
+    <div class="slider">
+        <a href="#" class="slide">
+            {% image '@AppBundle/Resources/public/images/slide_1.jpg' %}
+                <img src="{{ asset_url }}" />
+            {% endimage %}
+        </a>
     </div>
-    <div class="col-lg-6">
-        <div class="row">
-            <div class="col-lg-6">
-                {% image '@AppBundle/Resources/public/images/teaser_1.jpg' %}
-                    <img src="{{ asset_url }}" />
-                {% endimage %}
+    <ul class="teaser-list clearfix">
+        <li class="">
+            <div class="bg_black">
+                <a href="#" class="teaser-link">
+                    {% image '@AppBundle/Resources/public/images/teaser_1.jpg' %}
+                        <img src="{{ asset_url }}" />
+                    {% endimage %}
+                </a>
             </div>
-            <div class="col-lg-6">
-                {% image '@AppBundle/Resources/public/images/teaser_2.jpg' %}
-                    <img src="{{ asset_url }}" />
-                {% endimage %}
+        <li class="">
+            <div class="bg_black">
+                <a href="#" class="teaser-link">
+                    {% image '@AppBundle/Resources/public/images/teaser_2.jpg' %}
+                        <img src="{{ asset_url }}" />
+                    {% endimage %}
+                </a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                {% image '@AppBundle/Resources/public/images/teaser_3.jpg' %}
-                    <img src="{{ asset_url }}" />
-                {% endimage %}
+        </li>
+        <li class="">
+            <div class="bg_black margin-fix">
+                <a href="#" class="teaser-link margin-fix">
+                    {% image '@AppBundle/Resources/public/images/teaser_3.jpg' %}
+                        <img src="{{ asset_url }}" class="" />
+                    {% endimage %}
+                </a>
             </div>
-            <div class="col-lg-6">
-                {% image '@AppBundle/Resources/public/images/teaser_4.jpg' %}
-                    <img src="{{ asset_url }}" />
-                {% endimage %}
+        </li>
+        <li class="">
+            <div class="bg_black">
+                <a href="#" class="teaser-link margin-fix">
+                    {% image '@AppBundle/Resources/public/images/teaser_4.jpg' %}
+                        <img src="{{ asset_url }}" class="" />
+                    {% endimage %}
+                </a>
             </div>
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>
