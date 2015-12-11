@@ -108,6 +108,10 @@ input.btn-large:hover {
     color: #fda203;
 }
 
+#header-links li a:focus {
+    background: #000;
+}
+
 .no-padding {
     padding: 0 !important;
 }
