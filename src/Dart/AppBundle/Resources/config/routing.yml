@@ -43,12 +43,20 @@ cart_show:
 order_show:
     path:     /order/show
     defaults: { _controller: AppBundle:Order:show }
+    
+order_preview:
+    path:     /order/preview
+    defaults: { _controller: AppBundle:Order:preview }
 
 order_submit:
     path:     /order/submit
     defaults: { _controller: AppBundle:Order:submit }
     
 #profile
+profile_edit:
+    path:     /profile/edit
+    defaults: { _controller: AppBundle:Profile:edit }
+        
 profile_address:
     path:     /profile/address
     defaults: { _controller: AppBundle:Profile:address }

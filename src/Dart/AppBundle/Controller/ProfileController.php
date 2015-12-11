@@ -5,7 +5,9 @@ namespace Dart\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Dart\AppBundle\Form\Type\DeliveryAddressType;
+use Dart\AppBundle\Form\Type\UserProfileType;
 use Dart\AppBundle\Entity\DeliveryAddress;
+use Dart\AppBundle\Entity\UserProfile;
 
 /**
  * Profile controller
@@ -16,6 +18,32 @@ use Dart\AppBundle\Entity\DeliveryAddress;
  */
 class ProfileController extends Controller
 {
+    
+    /**
+     * Edit profile
+     */
+    public function editAction(Request $request)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(new UserProfileType(), $user->getProfile());
+        
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($profile);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('profile');
+        }
+        
+        return $this->render('AppBundle:Profile:edit.html.twig', array(
+           'form' => $form->createView() 
+        ));
+    }
+    
     /**
      * Display address list with form
      */

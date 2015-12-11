@@ -55,7 +55,7 @@ label {
     font-weight: normal;
 }
 
-input.btn-large {
+input.btn-large, a.btn-large {
     display: inline-block;
     padding: 10px 13px;
     background: #e5e5e5;
@@ -81,9 +81,9 @@ input.btn-large {
     transition: all 0.3s ease;
 }
 
-input.btn-large:hover {
+input.btn-large:hover, a.btn-large:hover {
     background: #333;
-    color: #fff;
+    color: #fff !important;
 }
 
 .bg_black {
@@ -549,4 +549,50 @@ input.btn-large:hover {
 .orders-list li {
     padding: 20px 0 10px 0;
     border-bottom: 1px dotted #999;
+}
+
+.order-table {
+    width: 100%;
+}
+
+.order-table img {
+    width: 142px;
+    height: 142px;
+}
+
+.order-table .product-line {
+    border-bottom: 1px dotted #ccc;
+}
+
+.order-table .quantity {
+    border: 1px solid #cccccc;
+    height: 43px;
+    text-align: center;
+    width: 40px;
+    margin: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+}
+
+.order-table .description {
+    padding-left: 20px;
+}
+
+.order-table tbody td {
+    padding-bottom: 15px;
+}
+
+.order-table tbody td:first-child {
+    width: 1%;
+}
+
+.order-table tfoot tr {
+    border-bottom: 1px dotted #ccc;
+}
+
+.order-table tfoot td {
+    padding: 20px 10px;
 }

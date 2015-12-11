@@ -1,19 +1,45 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    Order details:
-    <ul>
-    {% for item in order.getOrderItems %}
-        <li>{{ item.name }} x {{ item.count }}: {{ item.price * item.count }}</li>
-    {% endfor %}
-    </ul>
-
-    total price: {{ order.price }}
+    <h1>Your shopping cart:</h1>
+    <table class="order-table">
+        <tbody>
+            <tr class="product-line">
+                <td>
+                    {% image '@AppBundle/Resources/public/images/product_default.jpg' %}
+                        <img src="{{ asset_url }}" />
+                    {% endimage %}
+                </td>
+                <td class="description">
+                    <h5>Spicy hot chilly</h5>
+                    <div class="unit-price">
+                        500 $
+                    </div>
+                    <div class="quantity-block" id="quantity">
+                        <span>Quantity:</span>
+                        <input type="number" value="2" class="quantity" />
+                    </div>
+                    <span>Total: 1000$</span>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Sub total: 500$</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Delivery: 0</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Grand total: 500$</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
 
     <div>
-        <form action="{{ path('order_submit') }}" method="post">
-            {{ form_widget(form) }}
-            <input type="submit" value="Submit order" />
-        </form>
+        {% include 'AppBundle::order_requisites.html.twig' %}
     </div>
 {% endblock %}

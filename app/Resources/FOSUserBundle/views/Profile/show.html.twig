@@ -1,5 +1,16 @@
 {% extends '::base.html.twig' %}
 
+{% block menu %}
+    {% include 'AppBundle::profile_menu.html.twig' %}
+{% endblock %}
+
 {% block body %}
-    {% include 'FOSUserBundle:Profile:show_content.html.twig' %}
+    <div class="row">
+        <div class="col-lg-6">
+            {% include 'FOSUserBundle:Profile:show_content.html.twig' %}
+        </div>
+        <div class="col-lg-6">
+            <p>Some user info</p>
+        </div>
+    </div>
 {% endblock %}

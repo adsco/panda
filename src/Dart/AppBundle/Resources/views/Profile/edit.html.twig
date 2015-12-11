@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block menu %}
+    {% include 'AppBundle::profile_menu.html.twig' %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-lg-6">
+        {% include 'AppBundle:Profile:edit_form.html.twig' %}
+    </div>
+    <div class="col-lg-6">
+        <p>Some warning message</p>
+    </div>
+</div>
+{% endblock %}

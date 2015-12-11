@@ -4,3 +4,12 @@
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
 </div>
+
+<div class="">
+    <p>Name: {{ user.profile.name }}</p>
+    <p>Name: {{ user.profile.phone }}</p>
+</div>
+
+<div class="">
+    <a href="{{ path('profile_edit') }}" class="btn btn-default btn-large">Edit</a>
+</div>
