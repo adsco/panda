@@ -251,6 +251,10 @@ input.btn-large:hover {
     padding: 15px;
 }
 
+.menu li a.active {
+    color: #fda203;
+}
+
 .body-wrapper {
     background: url(../images/bg_body.jpg) repeat-x;
     background-color: #fff;

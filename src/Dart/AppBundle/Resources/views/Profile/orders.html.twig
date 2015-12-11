@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block menu %}
+    {% include 'AppBundle::profile_menu.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <h1>Orders</h1>
+    <ul class="list-unstyled">
+        <li>order 1</li>
+    </ul>
+    <div class="pagination"></div>
+{% endblock %}

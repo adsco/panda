@@ -41,9 +41,18 @@ cart_show:
 
 #order routes
 order_show:
-    path:    /order/show
+    path:     /order/show
     defaults: { _controller: AppBundle:Order:show }
 
 order_submit:
-    path:    /order/submit
+    path:     /order/submit
     defaults: { _controller: AppBundle:Order:submit }
+    
+#profile
+profile_address:
+    path:     /profile/address
+    defaults: { _controller: AppBundle:Profile:address }
+
+profile_orders:
+    path:     /profile/orders
+    defaults: { _controller: AppBundle:Profile:orders }
