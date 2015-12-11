@@ -25,5 +25,26 @@
         </span>
     </li>
     <li><a href="#">$</a></li>
-    <li><a href="#">lock</a></li>
+    <li>
+        <span class="dropdown">
+            <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="glyphicon glyphicon-log-in"></i>
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ path('fos_user_security_login') }}">
+                        <span class="glyphicon glyphicon-log-in"></span>
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_registration_register') }}">
+                        <span class="glyphicon glyphicon-edit"></span>
+                        Register
+                    </a>
+                </li>
+            </ul>
+        </span>
+    </li>
 </ul>

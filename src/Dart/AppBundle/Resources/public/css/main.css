@@ -26,6 +26,58 @@ a:focus {
     text-decoration: none;
 }
 
+h1 {
+    color: #2f2f2f;
+    font-size: 26px;
+    line-height: 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 9px 0 0 28px;
+    margin: 0 0 30px 0;
+    font-style: normal;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    overflow: hidden;
+}
+
+label {
+    display: inline-block;
+    font-size: 13px;
+    color: #333;
+    cursor: default;
+    font-weight: normal;
+}
+
+input.btn-large {
+    display: inline-block;
+    padding: 10px 13px;
+    background: #e5e5e5;
+    color: #2f2f2f;
+    font-size: 17px;
+    line-height: 20px;
+    margin-bottom: 0;
+    vertical-align: middle;
+    border: none;
+    cursor: pointer;
+    filter: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    white-space: normal;
+    text-align: left;
+    font-style: italic;
+    -webkit-transition: all 0s ease;
+    -moz-transition: all 0s ease;
+    -o-transition: all 0s ease;
+    transition: all 0.3s ease;
+}
+
+input.btn-large:hover {
+    background: #333;
+    color: #fff;
+}
+
 .bg_black {
     background-color: #000;
 }
@@ -93,6 +145,10 @@ a:focus {
     text-decoration: none;
     font-style: normal;
     padding: 15px;
+}
+
+.misc .dropdown-menu li a .glyphicon {
+    margin-right: 10px;
 }
 
 #header-middle {
@@ -194,6 +250,7 @@ a:focus {
 .body-wrapper {
     background: url(../images/bg_body.jpg) repeat-x;
     background-color: #fff;
+    padding-bottom: 30px;
 }
 
 .body-content {
