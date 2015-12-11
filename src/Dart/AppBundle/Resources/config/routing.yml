@@ -52,6 +52,22 @@ order_submit:
 profile_address:
     path:     /profile/address
     defaults: { _controller: AppBundle:Profile:address }
+    
+profile_address_add:
+    path:     /profile/address-add
+    defaults: { _controller: AppBundle:Profile:addressAdd }
+    
+profile_address_edit:
+    path:     /profile/address-edit/{id}
+    defaults: { _controller: AppBundle:Profile:addressEdit }
+    requirements:
+        id: \d+
+
+profile_address_remove:
+    path:     /profile/address-remove/{id}
+    defaults: { _controller: AppBundle:Profile:addressRemove }
+    requirements:
+        id: \d+
 
 profile_orders:
     path:     /profile/orders

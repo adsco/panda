@@ -26,6 +26,14 @@ a:focus {
     text-decoration: none;
 }
 
+.black {
+    color: #000 !important;
+}
+
+.lh-40 {
+    line-height: 30px;
+}
+
 h1 {
     color: #2f2f2f;
     font-size: 26px;
@@ -519,4 +527,26 @@ input.btn-large:hover {
 
 .cart-preview .remove-link a {
     color: #2f2f2f !important;
+}
+
+.border-right {
+    border-right: 1px solid #999;
+}
+
+.address-list {
+    
+}
+
+.address-list li {
+    padding: 20px 0 10px 0;
+    border-bottom: 1px dotted #999;
+}
+
+.orders-list {
+    
+}
+
+.orders-list li {
+    padding: 20px 0 10px 0;
+    border-bottom: 1px dotted #999;
 }

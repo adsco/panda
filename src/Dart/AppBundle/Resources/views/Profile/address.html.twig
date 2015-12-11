@@ -6,11 +6,13 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-lg-6">
-            {% include 'AppBundle::address_form.html.twig' %}
+        <div class="col-lg-6 border-right">
+            <h1>Add new address</h1>
+            {% include 'AppBundle:Profile:address_form.html.twig' with {'form': form} only %}
         </div>
         <div class="col-lg-6">
-            {% include 'AppBundle::address_list.html.twig' %}
+            <h1>Address list</h1>
+            {% include 'AppBundle:Profile:address_list.html.twig' %}
         </div>
     </div>
 {% endblock %}
