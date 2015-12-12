@@ -46,6 +46,12 @@ Dart\AppBundle\Entity\UserAddress:
             nullable: true
             options:
                 comment: "Intercome code"
+        note:
+            type: string
+            length: 256
+            nullable: true
+            options:
+                comment: "Additional delivery address info"
         creation_date:
             type: datetime
             nullable: false

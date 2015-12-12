@@ -1,27 +1,40 @@
-<form method="post" action="{{ path('profile_address_add') }}">
+<div class="errors">
+    {{ form_errors(form.title) }}
+    {{ form_errors(form.street) }}
+    {{ form_errors(form.building) }}
+    {{ form_errors(form.porch) }}
+    {{ form_errors(form.apartment) }}
+    {{ form_errors(form.intercome_code) }}
+</div>
+<form method="post" action="{{ path('profile_address') }}">
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+    </div>
     <div class="form-group">
         {{ form_label(form.street) }}
         {{ form_widget(form.street, {'attr': {'class': 'form-control'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.building) }}
-        {{ form_widget(form.building, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.building, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.porch) }}
-        {{ form_widget(form.porch, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.porch, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.apartment) }}
-        {{ form_widget(form.apartment, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.apartment, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.intercome_code) }}
-        {{ form_widget(form.intercome_code, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.intercome_code, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
     <div class="form-group">
         {{ form_label(form.note) }}
-        {{ form_widget(form.note, {'attr': {'class': 'form-control'}}) }}
+        {{ form_widget(form.note, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
+    {{ form_widget(form._token) }}
     <input type="submit" value="Add" class="btn btn-default btn-large" />
 </form>

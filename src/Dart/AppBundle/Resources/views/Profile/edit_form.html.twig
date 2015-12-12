@@ -1,3 +1,7 @@
+<div class="errors">
+    {{ form_errors(form.name) }}
+    {{ form_errors(form.phone) }}
+</div>
 <form method="post" action="{{ path('profile_edit') }}">
     <div class="form-group">
         {{ form_label(form.name) }}
@@ -7,5 +11,6 @@
         {{ form_label(form.phone) }}
         {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
     </div>
+    {{ form_widget(form._token) }}
     <input type="submit" value="save" class="btn btn-default btn-large" />
 </form>

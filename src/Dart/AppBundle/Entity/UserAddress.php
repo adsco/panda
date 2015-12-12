@@ -2,6 +2,8 @@
 
 namespace Dart\AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * UserAddress
  */
@@ -327,5 +329,34 @@ class UserAddress
     public function preUpdate()
     {
         $this->setModificationDate(new \DateTime());
+    }
+    /**
+     * @var string
+     */
+    private $note;
+
+
+    /**
+     * Set note
+     *
+     * @param string $note
+     *
+     * @return UserAddress
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * Get note
+     *
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
     }
 }

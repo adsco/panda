@@ -61,10 +61,6 @@ profile_address:
     path:     /profile/address
     defaults: { _controller: AppBundle:Profile:address }
     
-profile_address_add:
-    path:     /profile/address-add
-    defaults: { _controller: AppBundle:Profile:addressAdd }
-    
 profile_address_edit:
     path:     /profile/address-edit/{id}
     defaults: { _controller: AppBundle:Profile:addressEdit }

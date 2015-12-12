@@ -4,10 +4,10 @@ namespace Dart\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Dart\AppBundle\Form\Type\DeliveryAddressType;
+use Symfony\Component\Form\FormInterface;
+use Dart\AppBundle\Form\Type\UserAddressType;
 use Dart\AppBundle\Form\Type\UserProfileType;
-use Dart\AppBundle\Entity\DeliveryAddress;
-use Dart\AppBundle\Entity\UserProfile;
+use Dart\AppBundle\Entity\UserAddress;
 
 /**
  * Profile controller
@@ -24,8 +24,8 @@ class ProfileController extends Controller
      */
     public function editAction(Request $request)
     {
-        $user = $this->getUser();
-        $form = $this->createForm(new UserProfileType(), $user->getProfile());
+        $profile = $this->getUser()->getProfile();
+        $form = $this->createForm(new UserProfileType(), $profile);
         
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -34,9 +34,9 @@ class ProfileController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($profile);
                 $em->flush();
+                
+                return $this->redirectToRoute('fos_user_profile_show');
             }
-
-            return $this->redirectToRoute('profile');
         }
         
         return $this->render('AppBundle:Profile:edit.html.twig', array(
@@ -47,33 +47,23 @@ class ProfileController extends Controller
     /**
      * Display address list with form
      */
-    public function addressAction()
+    public function addressAction(Request $request)
     {
-        $deliveryAddress = new DeliveryAddress();
-        $form = $this->createForm(new DeliveryAddressType(), $deliveryAddress);
+        $em = $this->getDoctrine()->getManager();
+        $userAddress = new UserAddress();
+        $form = $this->createForm(new UserAddressType(), $userAddress);
+        
+        $addressList = $em->getRepository('AppBundle:UserAddress')->findBy(array(
+            'user_id' => $this->getUser()->getId()
+        ));
+        
+        //handle address form
+        $this->handleAddressAdd($request, $form, $userAddress);
                 
         return $this->render('AppBundle:Profile:address.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'addresses' => $addressList
         ));
-    }
-    
-    /**
-     * Add new address
-     */
-    public function addressAddAction(Request $request)
-    {
-        $deliveryAddress = new DeliveryAddress();
-        $form = $this->createForm(new DeliveryAddress(), $deliveryAddress);
-        
-        $form->handleRequest($request);
-        
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($deliveryAddress);
-            $em->flush();
-        }
-        
-        return $this->redirectToRoute('profile_address');
     }
     
     /**
@@ -83,7 +73,7 @@ class ProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $profile = $this->getUser()->getProfile();
-        $address = $em->getRepository('AppBundle:DeliveryAddress')->findOneBy(array(
+        $address = $em->getRepository('AppBundle:UserAddress')->findOneBy(array(
             'id' => $id,
             'profile_id' => $profile->getId()
         ));
@@ -104,7 +94,7 @@ class ProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $profile = $this->getUser()->getProfile();
-        $address = $em->getRepository('AppBundle:DeliveryAddress')->findOneBy(array(
+        $address = $em->getRepository('AppBundle:UserAddress')->findOneBy(array(
             'id' => $id,
             'profile_id' => $profile->getId()
         ));
@@ -125,5 +115,30 @@ class ProfileController extends Controller
     public function ordersAction()
     {
         return $this->render('AppBundle:Profile:orders.html.twig');
+    }
+    
+    /**
+     * Handler for address add form
+     * 
+     * @param Request $request
+     * @param FormInterface $form
+     * @param UserAddress $userAddress
+     */
+    private function handleAddressAdd(Request $request, FormInterface $form, UserAddress $userAddress)
+    {
+        if (!$request->isMethod('POST')) {
+            return;
+        }
+        
+        $form->handleRequest($request);
+        
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            
+            $userAddress->setUser($this->getUser());
+
+            $em->persist($userAddress);
+            $em->flush();
+        }
     }
 }

@@ -6,6 +6,11 @@ Dart\AppBundle\Entity\User:
             type: integer
             generator: { strategy: AUTO }
     fields:
+        profile_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "id of user profile"
         creation_date:
             type: datetime
             nullable: false
@@ -19,7 +24,12 @@ Dart\AppBundle\Entity\User:
     oneToOne:
         profile:
             targetEntity: UserProfile
-            mappedBy: user
+            inversedBy: user
+            joinColumn:
+                name: profile_id
+                referencedColumnName: id
+            cascade: ["persist"]
+
     oneToMany:
         addresses:
             targetEntity: UserAddress

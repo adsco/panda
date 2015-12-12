@@ -6,11 +6,6 @@ Dart\AppBundle\Entity\UserProfile:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        user_id:
-            type: integer
-            nullable: false
-            options:
-                comment: "Id of user, profile owner"
         name:
             type: string
             length: 256
@@ -26,7 +21,4 @@ Dart\AppBundle\Entity\UserProfile:
     oneToOne:
         user:
             targetEntity: User
-            inversedBy: profile
-            joinColumn:
-                name: user_id
-                referencedColumnName: id
+            mappedBy: profile

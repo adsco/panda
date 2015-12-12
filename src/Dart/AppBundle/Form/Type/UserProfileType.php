@@ -18,10 +18,12 @@ class UserProfileType extends AbstractType
     {
         $builder
             ->add('name', new TextType(), array(
-                'label' => 'Name'
+                'label' => 'Name',
+                'required' => false
             ))
             ->add('phone', new TextType(), array(
-                'label' => 'Phone'
+                'label' => 'Phone',
+                'required' => false
             ))
         ;
     }

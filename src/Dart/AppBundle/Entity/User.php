@@ -196,4 +196,33 @@ class User extends BaseUser
     {
         return $this->addresses;
     }
+    /**
+     * @var integer
+     */
+    private $profile_id;
+
+
+    /**
+     * Set profileId
+     *
+     * @param integer $profileId
+     *
+     * @return User
+     */
+    public function setProfileId($profileId)
+    {
+        $this->profile_id = $profileId;
+
+        return $this;
+    }
+
+    /**
+     * Get profileId
+     *
+     * @return integer
+     */
+    public function getProfileId()
+    {
+        return $this->profile_id;
+    }
 }

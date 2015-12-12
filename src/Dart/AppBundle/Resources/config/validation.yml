@@ -1,2 +1,42 @@
-## YAML Template.
----
+Dart\AppBundle\Entity\UserProfile:
+    properties:
+        name:
+            - NotBlank:
+                message: "Name cannot be blank"
+            - Length:
+                max: 256
+                maxMessage: "Name length must be less than 256 symbols"
+        phone:
+            - NotBlank:
+                message: "Phone number cannot be blank"
+            - Regex:
+                pattern: '/^\d{10}$/'
+                message: "Phone number must be 10 numbers long (ex. 9261232456)"
+
+Dart\AppBundle\Entity\UserAddress:
+    properties:
+        title:
+            - NotBlank:
+                message: "Title cannot be blank"
+            - Length:
+                max: 256
+                maxMessage: "Length of address title must be less than 256 symbols"
+        street:
+            - NotBlank:
+                message: "Street name cannot be blank"
+            - Length:
+                max: 256
+                maxMessage: "Length of street name must be less than 256 symbols"
+        building:
+            - Length:
+                max: 256
+                maxMessage: "Length of building number must be less than 256 symbols"
+        porch:
+            - Type:
+                type: integer
+                message: "Porch number must be numeric value"
+        apartment:
+            - Length:
+                max: 256
+                maxMessage: "Length of apartment number must be less than 256 symbols"
+        

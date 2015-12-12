@@ -1,44 +1,24 @@
+{% if addresses|length %}
 <ul class="list-unstyled address-list">
+    {% for address in addresses %}
     <li>
         <div class="">
             <div class="pull-right lh-40">
                 <span>
-                    <a href="{{ path('profile_address_edit', {'id': 1}) }}"><i class="glyphicon glyphicon-pencil black" title="edit"></i></a>
+                    <a href="{{ path('profile_address_edit', {'id': address.id}) }}"><i class="glyphicon glyphicon-pencil black" title="edit"></i></a>
                 </span>
                 <span>
-                    <a href="{{ path('profile_address_remove', {'id': 1}) }}"><i class="glyphicon glyphicon-remove black" title="remove"></i></a>
+                    <a href="{{ path('profile_address_remove', {'id': address.id}) }}"><i class="glyphicon glyphicon-remove black" title="remove"></i></a>
                 </span>
             </div>
-            <p>Oborigen street. #16, (01225) 1-37</p>
-            
+            <p>
+                <b>{{ address.title }}:</b>
+                {{ address.street }} {{ address.building }} / {{ address.apartment }}
+            </p>
         </div>
     </li>
-    <li>
-        <div class="">
-            <div class="pull-right lh-40">
-                <span>
-                    <a href="{{ path('profile_address_edit', {'id': 1}) }}"><i class="glyphicon glyphicon-pencil black" title="edit"></i></a>
-                </span>
-                <span>
-                    <a href="{{ path('profile_address_remove', {'id': 1}) }}"><i class="glyphicon glyphicon-remove black" title="remove"></i></a>
-                </span>
-            </div>
-            <p>Oborigen street. #16, (01225) 1-37</p>
-            
-        </div>
-    </li>
-    <li>
-        <div class="">
-            <div class="pull-right lh-40">
-                <span>
-                    <a href="{{ path('profile_address_edit', {'id': 1}) }}"><i class="glyphicon glyphicon-pencil black" title="edit"></i></a>
-                </span>
-                <span>
-                    <a href="{{ path('profile_address_remove', {'id': 1}) }}"><i class="glyphicon glyphicon-remove black" title="remove"></i></a>
-                </span>
-            </div>
-            <p>Oborigen street. #16, (01225) 1-37</p>
-            
-        </div>
-    </li>
+    {% endfor %}
 </ul>
+{% else %}
+    <p>You don't have any address points yet</p>
+{% endif %}
