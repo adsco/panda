@@ -596,3 +596,12 @@ input.btn-large:hover, a.btn-large:hover {
 .order-table tfoot td {
     padding: 20px 10px;
 }
+
+.form-group label .note {
+    font-size: 12px;
+    color: #888;
+}
+
+.errors {
+    color: #c7254e;
+}

@@ -92,6 +92,9 @@ fos_user:
     user_class: Dart\AppBundle\Entity\User
     group:
         group_class: Dart\AppBUndle\Entity\Group
+    registration:
+        form:
+            type: app_user_registration
     
 sonata_block:
     default_context: [cms]

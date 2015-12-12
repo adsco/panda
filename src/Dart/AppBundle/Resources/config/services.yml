@@ -17,4 +17,9 @@ services:
     order:
         class: Dart\AppBundle\Service\OrderService
         arguments: [@doctrine.orm.entity_manager, @cart]
-    
+#fos_forms overrides
+    fos_forms.user_register:
+        class: Dart\AppBundle\Form\Type\RegistrationType
+        arguments: []
+        tags:
+            - { name: form.type, alias: app_user_registration }

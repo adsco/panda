@@ -1,26 +1,53 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-<fieldset>
-    <h2></h2>
-    <div class="form-group">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+<div class="row">
+    <div class="errors">
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.username) }}
+        {{ form_errors(form.plainPassword) }}
+        {{ form_errors(form.profile.name) }}
+        {{ form_errors(form.profile.phone) }}
     </div>
-    <div class="form-group">
-        {{ form_label(form.username) }}
-        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+</div>
+<div class="row">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <div class="col-lg-6">
+        <fieldset>
+            <h4>Account</h4>
+            <div class="form-group">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </fieldset>
     </div>
-    <div class="form-group">
-        {{ form_label(form.plainPassword.first) }}
-        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+    <div class="col-lg-6">
+        <h4>Profile</h4>
+        <div class="form-group">
+            {{ form_label(form.profile.name) }}
+            {{ form_widget(form.profile.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.profile.phone.vars.id }}">
+                {{ form.profile.phone.vars.label }}
+                <span class="note">(ex. 1-254-658-32-658)</span>
+            </label>
+            {{ form_widget(form.profile.phone, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div>
+            <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-default btn-large" />
+        </div>
     </div>
-    <div class="form-group">
-        {{ form_label(form.plainPassword.second) }}
-        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
-    </div>
-</fieldset>
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" class="btn btn-default btn-large" />
-    </div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+</div>
