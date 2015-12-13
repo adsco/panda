@@ -4,24 +4,25 @@
     <h1>Your shopping cart:</h1>
     <table class="order-table">
         <tbody>
+            {% for item in cart.getItems %}
+            {% set product = item.getProduct %}
             <tr class="product-line">
                 <td>
-                    {% image '@AppBundle/Resources/public/images/product_default.jpg' %}
-                        <img src="{{ asset_url }}" />
-                    {% endimage %}
+                    <img src="{{ asset(('/uploads/images/sources/' ~ product.image) | imagine_filter('thumb_normal')) }}" />
                 </td>
                 <td class="description">
-                    <h5>Spicy hot chilly</h5>
+                    <h5>{{ product.name }}</h5>
                     <div class="unit-price">
-                        500 $
+                        {{ product.price }} $
                     </div>
                     <div class="quantity-block" id="quantity">
                         <span>Quantity:</span>
-                        <input type="number" value="2" class="quantity" />
+                        <input type="number" value="{{ item.getCount }}" class="quantity" />
                     </div>
-                    <span>Total: 1000$</span>
+                    <span>Total: {{ product.price * item.getCount }}$</span>
                 </td>
             </tr>
+            {% endfor %}
         </tbody>
         <tfoot>
             <tr>

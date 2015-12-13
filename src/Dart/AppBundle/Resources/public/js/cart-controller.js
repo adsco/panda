@@ -1,3 +1,10 @@
+/**
+ * Bridge between server side cart and frontend cart
+ * 
+ * @package panda
+ * @subpackage cart
+ * @author Valerii Ten <eternitywisher@gmail.com>
+ */
 function CartController(cartContainer)
 {
     /**
@@ -9,6 +16,63 @@ function CartController(cartContainer)
         removeAll: '/cart/remove-all/{id}',
         clear: '/cart/clear'
     };
+    
+    /**
+     * Alien component, should be moved
+     * 
+     * @type Object
+     */
+    var _eventHandler = {
+        /**
+         * List of supported events
+         */
+        _events: [
+            'REQUEST_STARTED',
+            'REQUEST_FINISHED'
+        ],
+        /**
+         * List of subscribers
+         */
+        _subscribers: {
+            
+        },
+        /**
+         * Event trigger
+         * 
+         * @param {string} eventName
+         */
+        trigger: function(eventName)
+        {
+            var handlers = this._subscribers[eventName],
+                i;
+            
+            if (!handlers || 0 === handlers.length) {
+                return;
+            }
+            
+            for (i = 0; i < handlers.length; i++) {
+                handlers[i]();
+            }
+        },
+        /**
+         * Subscribers registration point
+         * 
+         * @param {string} eventName
+         * @param {function} handler
+         */
+        subscribe: function(eventName, handler)
+        {
+            if (-1 === this._events.indexOf(eventName)) {
+                throw new Error('Event "' + eventName + '" is not supported');
+            }
+            
+            if (!this._subscribers.hasOwnProperty(eventName)) {
+                this._subscribers[eventName] = [];
+            }
+            
+            this._subscribers[eventName].push(handler);
+        }
+    };
 
     /**
      * @type {Object}
@@ -19,11 +83,21 @@ function CartController(cartContainer)
      * Constructor
      * 
      * @param {Object} cartContainer - DOM element, cart content
-     * @param {Object} cartLabel - DOM element, cart label
      */
     var construct = function(cartContainer)
     {
         _cartContainer = cartContainer;
+    };
+    
+    /**
+     * _eventHandler.subscribe method proxy
+     * 
+     * @param {string} eventName
+     * @param {function} handler
+     */
+    this.subscribe = function(eventName, handler)
+    {
+        _eventHandler.subscribe(eventName, handler);
     };
 
     /**
@@ -73,8 +147,6 @@ function CartController(cartContainer)
         if (null === _cartContainer) {
             return;
         }
-        
-        console.log(_cartContainer);
 
         _updateCart(data);
     };
@@ -96,6 +168,8 @@ function CartController(cartContainer)
      */
     var _request = function(url)
     {
+        _eventHandler.trigger('REQUEST_STARTED');
+        
         $.ajax({
             url: '/app_dev.php' + url
         }).done(function(response){
@@ -104,10 +178,10 @@ function CartController(cartContainer)
             } else {
                 alert('Sorry, something went wrong');
             }
-            
-            console.log(response);
         }).fail(function(response){
-            console.log(response);
+            
+        }).always(function(){
+            _eventHandler.trigger('REQUEST_FINISHED');
         });
     };
 
