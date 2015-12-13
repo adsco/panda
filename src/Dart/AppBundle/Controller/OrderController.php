@@ -26,11 +26,11 @@ class OrderController extends Controller
      */
     public function showAction()
     {
-        $order = $this->get('order')->getOrder();
+        $cart = $this->get('cart')->getCart();
         $form = $this->createForm(new OrderType(), new Order())->createView();
         
         return $this->render('AppBundle:Order:show.html.twig', array(
-           'order' => $order,
+           'cart' => $cart,
            'form' => $form
         ));
     }

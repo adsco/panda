@@ -50,11 +50,21 @@ class CartController extends Controller
      */
     public function removeAction($id)
     {
+        $response = new JsonResponse();
+        
         $cartService = $this->container->get('cart');
         
         $cartService->removeItem($id);
         
-        return new Response('ok', 200);
+        $response->setData(array(
+            'success' => true,
+            'data' => array(
+                'preview' => $this->container->get('preview')->renderCartPreview(true),
+                'totalCount' => count($cartService->getItems())
+            )
+        ));
+        
+        return $response;
     }
     
     /**
@@ -64,11 +74,21 @@ class CartController extends Controller
      */
     public function removeAllAction($id)
     {
+        $response = new JsonResponse();
+        
         $cartService = $this->container->get('cart');
         
         $cartService->removeItemAll($id);
         
-        return new Response('ok', 200);
+        $response->setData(array(
+            'success' => true,
+            'data' => array(
+                'preview' => $this->container->get('preview')->renderCartPreview(true),
+                'totalCount' => count($cartService->getItems())
+            )
+        ));
+        
+        return $response;
     }
     
     /**
