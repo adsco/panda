@@ -55,6 +55,10 @@ Dart\AppBundle\Entity\Meal:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+    oneToMany:
+        order_product:
+            targetEntity: OrderItem
+            mappedBy: product
     lifecycleCallbacks:
         prePersist: [setCreationDate, setModificationDate, imageUpload]
         preUpdate: [imageUpload]

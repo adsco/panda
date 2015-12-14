@@ -167,4 +167,62 @@ class OrderItem
     {
         return $this->count;
     }
+    /**
+     * @var integer
+     */
+    private $product_id;
+
+    /**
+     * @var \Dart\AppBundle\Entity\Meal
+     */
+    private $product;
+
+
+    /**
+     * Set productId
+     *
+     * @param integer $productId
+     *
+     * @return OrderItem
+     */
+    public function setProductId($productId)
+    {
+        $this->product_id = $productId;
+
+        return $this;
+    }
+
+    /**
+     * Get productId
+     *
+     * @return integer
+     */
+    public function getProductId()
+    {
+        return $this->product_id;
+    }
+
+    /**
+     * Set product
+     *
+     * @param \Dart\AppBundle\Entity\Meal $product
+     *
+     * @return OrderItem
+     */
+    public function setProduct(\Dart\AppBundle\Entity\Meal $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Dart\AppBundle\Entity\Meal
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
 }

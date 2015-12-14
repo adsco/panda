@@ -11,16 +11,11 @@ Dart\AppBundle\Entity\OrderItem:
             nullable: false
             options:
                 comment: "id of order this item attached to"
-        name:
-            type: string
-            nullable: false
-            options:
-                comment: "Name of ordered item"
-        price:
+        product_id:
             type: integer
             nullable: false
             options:
-                comment: "Price of ordered item"
+                comment: "Id of original product ordered"
         count:
             type: integer
             nullable: false
@@ -33,3 +28,10 @@ Dart\AppBundle\Entity\OrderItem:
             joinColumn:
                 name: order_id
                 referencedColumnName: id
+        product:
+            targetEntity: Meal
+            inversedBy: order_product
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+        
