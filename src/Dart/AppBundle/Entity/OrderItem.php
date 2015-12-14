@@ -32,6 +32,7 @@ class OrderItem
      */
     private $order;
 
+    private $image;
 
     /**
      * Get id
@@ -224,5 +225,28 @@ class OrderItem
     public function getProduct()
     {
         return $this->product;
+    }
+    
+    /**
+     * Virtual field image setter
+     * 
+     * @param type $image
+     * @return \Dart\AppBundle\Entity\OrderItem
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        
+        return $this;
+    }
+    
+    /**
+     * Virtual field image getter
+     * 
+     * @return type
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

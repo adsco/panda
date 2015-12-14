@@ -3,6 +3,7 @@
 namespace Dart\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 /**
@@ -22,7 +23,21 @@ class OrderItemType extends AbstractType
         $builder
             ->add('product_id', new IntegerType(), array())
             ->add('count', new IntegerType(), array(
-                'label' => 'Quantity'
+                'label' => 'Quantity',
+                'min' => 1
+            ))
+            //virtual fields
+            ->add('name', new TextType(), array(
+                'label' => 'Name',
+                'virtual' => true
+            ))
+            ->add('image', new TextType(), array(
+                'label' => 'Image',
+                'virtual' => true
+            ))
+            ->add('price', new IntegerType(), array(
+                'label' => 'Price',
+                'virtual' => true
             ))
         ;
     }

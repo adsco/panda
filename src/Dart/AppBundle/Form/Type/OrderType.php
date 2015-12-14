@@ -27,7 +27,8 @@ class OrderType extends AbstractType
     {
         $builder
             ->add('order_items', new CollectionType(), array(
-                'lalel' => 'Products'
+                'label' => 'Products',
+                'allow_delete' => true
             ))
             ->add('change', new TextType(), array(
                 'label' => 'change'

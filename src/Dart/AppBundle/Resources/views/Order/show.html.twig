@@ -1,40 +1,52 @@
 {% extends "::base.html.twig" %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@AppBundle/Resources/public/js/event-manager.js'
+        '@AppBundle/Resources/public/js/order.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
 {% block body %}
     <h1>Your shopping cart:</h1>
     <table class="order-table">
         <tbody>
-            {% for item in cart.getItems %}
-            {% set product = item.getProduct %}
-            <tr class="product-line">
+            {% for item in order.getOrderItems %}
+            <tr class="product-line item-row">
                 <td>
-                    <img src="{{ asset(('/uploads/images/sources/' ~ product.image) | imagine_filter('thumb_normal')) }}" />
+                    <img src="{{ asset(('/uploads/images/sources/' ~ item.image) | imagine_filter('thumb_normal')) }}" />
                 </td>
                 <td class="description">
-                    <h5>{{ product.name }}</h5>
+                    <span class="pull-right"><a href="#" class="item-remove"><i class="glyphicon glyphicon-remove black"></i></a></span>
+                    <h5>{{ item.name }}</h5>
                     <div class="unit-price">
-                        {{ product.price }} $
+                        {{ item.price }} $
                     </div>
-                    <div class="quantity-block" id="quantity">
+                    <div class="quantity-block">
                         <span>Quantity:</span>
-                        <input type="number" value="{{ item.getCount }}" class="quantity" />
+                        <input type="number" value="{{ item.count }}" class="quantity" min="1" />
                     </div>
-                    <span>Total: {{ product.price * item.getCount }}$</span>
+                    <span>
+                        Total: 
+                        <span class="item-total">{{ item.price * item.count }}</span>
+                        $
+                    </span>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
         <tfoot>
             <tr>
-                <td>Sub total: 500$</td>
+                <td>Sub total: <span class="sub-total">0</span>$</td>
                 <td></td>
             </tr>
             <tr>
-                <td>Delivery: 0</td>
+                <td>Delivery: <span class="delivery">0</span></td>
                 <td></td>
             </tr>
             <tr>
-                <td>Grand total: 500$</td>
+                <td>Grand total: <span class="grand-total">0</span>$</td>
                 <td></td>
             </tr>
         </tfoot>

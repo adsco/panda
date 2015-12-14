@@ -132,6 +132,8 @@ class OrderService
         $product = $cartItem->getProduct();
         
         $orderItem->setOrder($order);
+        $orderItem->setProduct($product);
+        $orderItem->setImage($product->getImage());
         $orderItem->setName($product->getName());
         $orderItem->setPrice($product->getPrice());
         $orderItem->setCount($cartItem->getCount());
