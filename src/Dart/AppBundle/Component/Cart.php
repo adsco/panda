@@ -79,4 +79,20 @@ class Cart
     {
         return $this->items;
     }
+    
+    /**
+     * Get total products price
+     * 
+     * @return integer
+     */
+    public function getTotalPrice()
+    {
+        $total = 0;
+        
+        foreach ($this->items as $item) {
+            $total += $item->getPrice() * $item->getCount();
+        }
+        
+        return $total;
+    }
 }

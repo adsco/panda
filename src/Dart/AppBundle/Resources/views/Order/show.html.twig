@@ -10,49 +10,56 @@
 
 {% block body %}
     <h1>Your shopping cart:</h1>
-    <table class="order-table">
-        <tbody>
-            {% for item in order.getOrderItems %}
-            <tr class="product-line item-row">
-                <td>
-                    <img src="{{ asset(('/uploads/images/sources/' ~ item.image) | imagine_filter('thumb_normal')) }}" />
-                </td>
-                <td class="description">
-                    <span class="pull-right"><a href="#" class="item-remove"><i class="glyphicon glyphicon-remove black"></i></a></span>
-                    <h5>{{ item.name }}</h5>
-                    <div class="unit-price">
-                        {{ item.price }} $
-                    </div>
-                    <div class="quantity-block">
-                        <span>Quantity:</span>
-                        <input type="number" value="{{ item.count }}" class="quantity" min="1" />
-                    </div>
-                    <span>
-                        Total: 
-                        <span class="item-total">{{ item.price * item.count }}</span>
-                        $
-                    </span>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <td>Sub total: <span class="sub-total">0</span>$</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Delivery: <span class="delivery">0</span></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Grand total: <span class="grand-total">0</span>$</td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <div>
-        {% include 'AppBundle::order_requisites.html.twig' %}
+    <div class="errors">
+        {{ form_errors(form) }}
     </div>
+    <form method="post" action="{{ path('order_show') }}">
+        <table class="order-table">
+            <tbody>
+                {% for item in form.order_items %}
+                {% set product = item.product %}
+                <tr class="product-line item-row">
+                    <td>
+                        <img src="{{ asset(('/uploads/images/sources/' ~ product.vars.value.image) | imagine_filter('thumb_normal')) }}" />
+                    </td>
+                    <td class="description">
+                        <span class="pull-right"><a href="#" class="item-remove"><i class="glyphicon glyphicon-remove black"></i></a></span>
+                        <h5>{{ product.vars.value.name }}</h5>
+                        <div class="unit-price">
+                            {{ product.vars.value.price }} $
+                        </div>
+                        <div class="quantity-block">
+                            <span>Quantity:</span>
+                            {{ form_widget(item.count, {'attr': {'class': 'quantity', 'min': 1}}) }}
+                        </div>
+                        <span>
+                            Total: 
+                            <span class="item-total">{{ product.vars.value.price * item.vars.value.count }}</span>
+                            $
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>{{ form_label(form.price) }}: <span class="sub-total">{{ form.vars.value.price }}</span>$</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.delivery_price) }}: <span class="delivery">{{ form.vars.value.deliveryPrice }}</span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Grand total: <span class="grand-total">{{ form.vars.value.price + form.vars.value.deliveryPrice }}</span>$</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div>
+            {% include 'AppBundle::order_requisites.html.twig' with {'form': form} only  %}
+        </div>
+        {{ form_widget(form._token) }}
+    </form>
 {% endblock %}

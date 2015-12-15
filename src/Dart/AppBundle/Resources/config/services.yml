@@ -16,7 +16,25 @@ services:
             - "AppBundle::cart_preview.html.twig"
     order:
         class: Dart\AppBundle\Service\OrderService
-        arguments: [@doctrine.orm.entity_manager, @cart]
+        arguments: [@order.item]
+    order.item:
+        class: Dart\AppBundle\Service\OrderItem
+        arguments: []
+    order_manager:
+        class: Dart\AppBundle\Service\OrderManager
+        arguments:
+            - @cart
+            - @order
+            - @order.externals
+    order.externals:
+        class: Dart\AppBundle\Service\OrderExternals
+        arguments:
+            - [@actions.delivery]
+    actions.delivery:
+        class: Dart\AppBundle\Service\DeliveryAction
+        arguments:
+            - %order_actions_delivery_min%
+            - %order_actions_delivery_cost%
 #fos_forms overrides
     fos_forms.user_register:
         class: Dart\AppBundle\Form\Type\RegistrationType

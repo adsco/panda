@@ -53,6 +53,16 @@ class CartItemBase
     }
     
     /**
+     * Proxy get price method
+     * 
+     * @return type
+     */
+    public function getPrice()
+    {
+        return $this->product->getPrice();
+    }
+    
+    /**
      * Set product count
      * 
      * @param integer $count - product count to set

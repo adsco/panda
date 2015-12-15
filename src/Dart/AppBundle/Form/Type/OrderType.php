@@ -6,9 +6,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Dart\AppBundle\Form\Type\DeliveryAddressType;
 use Dart\AppBundle\Form\Type\OrderUserProfileType;
+use Dart\AppBundle\Form\Type\OrderItemType;
 
 
 /**
@@ -26,7 +28,14 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('price', new IntegerType(), array(
+                'label' => 'Subtotal'
+            ))
+            ->add('delivery_price', new IntegerType(), array(
+                'label' => 'Delivery cost'
+            ))
             ->add('order_items', new CollectionType(), array(
+                'type' => new OrderItemType(),
                 'label' => 'Products',
                 'allow_delete' => true
             ))
