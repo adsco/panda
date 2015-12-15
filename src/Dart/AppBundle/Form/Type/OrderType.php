@@ -40,7 +40,7 @@ class OrderType extends AbstractType
                 'allow_delete' => true
             ))
             ->add('change', new TextType(), array(
-                'label' => 'change'
+                'label' => 'Change'
             ))
             ->add('delivery_address', new DeliveryAddressType(), array(
                 'by_reference' => false

@@ -30,7 +30,7 @@ Dart\AppBundle\Entity\OrderItem:
                 referencedColumnName: id
         product:
             targetEntity: Meal
-            inversedBy: order_product
+            inversedBy: order_products
             joinColumn:
                 name: product_id
                 referencedColumnName: id

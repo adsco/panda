@@ -14,7 +14,7 @@ use Dart\AppBundle\Component\CartItemBase;
 class Cart
 {
     /**
-     * @var mixed[]
+     * @var CartItemBase[]
      */
     private $items = array();
     

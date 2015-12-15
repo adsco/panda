@@ -44,6 +44,10 @@ order_show:
     path:     /order/show
     defaults: { _controller: AppBundle:Order:show }
     
+order_success:
+    path:     /order/success
+    defaults: { _controller: AppBundle:Order:success }
+    
 order_preview:
     path:     /order/preview
     defaults: { _controller: AppBundle:Order:preview }

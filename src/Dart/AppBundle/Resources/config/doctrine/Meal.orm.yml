@@ -56,7 +56,7 @@ Dart\AppBundle\Entity\Meal:
                 name: category_id
                 referencedColumnName: id
     oneToMany:
-        order_product:
+        order_products:
             targetEntity: OrderItem
             mappedBy: product
     lifecycleCallbacks:

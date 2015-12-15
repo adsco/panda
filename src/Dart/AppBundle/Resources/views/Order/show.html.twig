@@ -11,15 +11,18 @@
 {% block body %}
     <h1>Your shopping cart:</h1>
     <div class="errors">
-        {{ form_errors(form) }}
+        {{ form_errors(cartForm) }}
     </div>
     <form method="post" action="{{ path('order_show') }}">
         <table class="order-table">
             <tbody>
-                {% for item in form.order_items %}
+                {% for item in cartForm.items %}
                 {% set product = item.product %}
                 <tr class="product-line item-row">
                     <td>
+                        <div class="hidden">
+                            {{ form_widget(product) }}
+                        </div>
                         <img src="{{ asset(('/uploads/images/sources/' ~ product.vars.value.image) | imagine_filter('thumb_normal')) }}" />
                     </td>
                     <td class="description">
@@ -42,6 +45,7 @@
                 {% endfor %}
             </tbody>
             <tfoot>
+                {#
                 <tr>
                     <td>{{ form_label(form.price) }}: <span class="sub-total">{{ form.vars.value.price }}</span>$</td>
                     <td></td>
@@ -54,12 +58,19 @@
                     <td>Grand total: <span class="grand-total">{{ form.vars.value.price + form.vars.value.deliveryPrice }}</span>$</td>
                     <td></td>
                 </tr>
+                #}
             </tfoot>
         </table>
 
-        <div>
-            {% include 'AppBundle::order_requisites.html.twig' with {'form': form} only  %}
+        <div class="row">
+            <div class="col-lg-6">
+                {% include 'AppBundle:Order:address.html.twig' with {'form': addressForm} only  %}
+            </div>
+            <div class="col-lg-6">
+                {% include 'AppBundle:Order:profile.html.twig' with {'form': profileForm} only  %}
+                <input type="submit" value="Submit" class="btn btn-default btn-large" />
+            </div>
         </div>
-        {{ form_widget(form._token) }}
+        {{ form_widget(cartForm._token) }}
     </form>
 {% endblock %}

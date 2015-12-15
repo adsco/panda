@@ -393,4 +393,50 @@ class Meal implements ProductInterface
     {
         return $this->category;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $order_product;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->order_product = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add orderProduct
+     *
+     * @param \Dart\AppBundle\Entity\OrderItem $orderProduct
+     *
+     * @return Meal
+     */
+    public function addOrderProduct(\Dart\AppBundle\Entity\OrderItem $orderProduct)
+    {
+        $this->order_product[] = $orderProduct;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderProduct
+     *
+     * @param \Dart\AppBundle\Entity\OrderItem $orderProduct
+     */
+    public function removeOrderProduct(\Dart\AppBundle\Entity\OrderItem $orderProduct)
+    {
+        $this->order_product->removeElement($orderProduct);
+    }
+
+    /**
+     * Get orderProduct
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderProduct()
+    {
+        return $this->order_product;
+    }
 }

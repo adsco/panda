@@ -314,4 +314,9 @@ class Order
     {
         return $this->order_user_profile;
     }
+    
+    public function removeItem(OrderItem $orderItem)
+    {
+        $this->order_items->removeElement($orderItem);
+    }
 }

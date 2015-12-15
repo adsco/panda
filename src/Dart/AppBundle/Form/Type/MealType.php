@@ -17,6 +17,9 @@ class MealType extends AbstractType
 {
     public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options) {
         $builder
+            ->add('id', new IntegerType(), array(
+                'label' => 'id'
+            ))
             ->add('name', new TextType(), array(
                 'label' => 'Name'
             ))

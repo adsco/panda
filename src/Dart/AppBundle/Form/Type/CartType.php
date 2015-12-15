@@ -5,18 +5,17 @@ namespace Dart\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Dart\AppBundle\Form\Type\MealType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Dart\AppBundle\Form\Type\CartItemType;
 
 /**
- * Order item form type
+ * Cart edit form
  *
  * @package \Dart\AppBundle
  * @subpackage Form\Type
  * @author Valerii Ten <eternitywisher@gmail.com>
  */
-class OrderItemType extends AbstractType
+class CartType extends AbstractType
 {
     /**
      * {@inheritDoc}
@@ -24,12 +23,10 @@ class OrderItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('product', new MealType(), array(
-                'data_class' => 'Dart\AppBundle\Entity\Meal',
-                'disabled' => true
-            ))
-            ->add('count', new IntegerType(), array(
-                'label' => 'Quantity'
+            ->add('items', new CollectionType(), array(
+                'type' => new CartItemType(),
+                'allow_delete' => true,
+                'allow_add' => false
             ))
         ;
     }
@@ -40,7 +37,7 @@ class OrderItemType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Dart\AppBundle\Entity\OrderItem'
+            'data_class' => 'Dart\AppBundle\Component\Cart'
         ));
     }
     
@@ -49,6 +46,6 @@ class OrderItemType extends AbstractType
      */
     public function getName()
     {
-        return 'order_item';
+        return 'cart_form_type';
     }
 }

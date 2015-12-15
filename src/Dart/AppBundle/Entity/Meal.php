@@ -439,4 +439,19 @@ class Meal implements ProductInterface
     {
         return $this->order_product;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $order_products;
+
+
+    /**
+     * Get orderProducts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrderProducts()
+    {
+        return $this->order_products;
+    }
 }
