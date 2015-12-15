@@ -14,16 +14,14 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row">
-                {% block header %}
-                    {% include 'AppBundle::header.html.twig' %}
-                {% endblock %}
-                <div class="row" id="header-strip-bottom">
-                    <div class="container">
-                        {% block menu %}
-                            {% include 'AppBundle::menu.html.twig' %}
-                        {% endblock %}
-                    </div>
+            {% block header %}
+                {% include 'AppBundle::header.html.twig' %}
+            {% endblock %}
+            <div class="row" id="header-strip-bottom">
+                <div class="container">
+                    {% block menu %}
+                        {% include 'AppBundle::menu.html.twig' %}
+                    {% endblock %}
                 </div>
             </div>
             <div class="row body-wrapper">
