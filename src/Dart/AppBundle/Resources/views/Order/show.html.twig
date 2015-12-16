@@ -11,12 +11,12 @@
 {% block body %}
     <h1>Your shopping cart:</h1>
     <div class="errors">
-        {{ form_errors(cartForm) }}
+        {{ form_errors(form) }}
     </div>
     <form method="post" action="{{ path('order_show') }}">
         <table class="order-table">
             <tbody>
-                {% for item in cartForm.items %}
+                {% for item in form.items %}
                 {% set product = item.product %}
                 <tr class="product-line item-row">
                     <td>
@@ -45,32 +45,37 @@
                 {% endfor %}
             </tbody>
             <tfoot>
-                {#
                 <tr>
-                    <td>{{ form_label(form.price) }}: <span class="sub-total">{{ form.vars.value.price }}</span>$</td>
-                    <td></td>
+                    <td colspan="2">
+                        Subtotal: <b class="pull-right"><span class="sub-total">{{ order.price }}</span>$</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(form.delivery_price) }}: <span class="delivery">{{ form.vars.value.deliveryPrice }}</span></td>
-                    <td></td>
+                    <td colspan="2">
+                        Delivery: <b class="pull-right"><span class="delivery">{{ order.deliveryPrice }}</span>$</b>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Grand total: <span class="grand-total">{{ form.vars.value.price + form.vars.value.deliveryPrice }}</span>$</td>
-                    <td></td>
+                    <td colspan="2">
+                        Grand total: <b class="pull-right"><span class="grand-total">{{ order.price + order.deliveryPrice }}</span>$</b>
+                    </td>
                 </tr>
-                #}
             </tfoot>
         </table>
 
         <div class="row">
             <div class="col-lg-6">
-                {% include 'AppBundle:Order:address.html.twig' with {'form': addressForm} only  %}
+                {% include 'AppBundle:Order:address.html.twig' with {'form': form.delivery_address} only  %}
             </div>
             <div class="col-lg-6">
-                {% include 'AppBundle:Order:profile.html.twig' with {'form': profileForm} only  %}
+                {% include 'AppBundle:Order:profile.html.twig' with {'form': form.user_profile} only  %}
+                <div class="form-group">
+                    {{ form_label(form.change) }}
+                    {{ form_widget(form.change, {'attr': {'class': 'form-control', 'min': 0}}) }}
+                </div>
                 <input type="submit" value="Submit" class="btn btn-default btn-large" />
             </div>
         </div>
-        {{ form_widget(cartForm._token) }}
+        {{ form_widget(form._token) }}
     </form>
 {% endblock %}

@@ -593,6 +593,10 @@ input.btn-large:hover, a.btn-large:hover {
     border-bottom: 1px dotted #ccc;
 }
 
+.order-table tfoot tr:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
 .order-table tfoot td {
     padding: 20px 10px;
 }
