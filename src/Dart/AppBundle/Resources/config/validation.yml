@@ -12,7 +12,20 @@ Dart\AppBundle\Entity\UserProfile:
             - Regex:
                 pattern: '/^\d{10}$/'
                 message: "Phone number must be 10 numbers long (ex. 9261232456)"
-
+Dart\AppBundle\Entity\OrderUserProfile:
+    properties:
+        name:
+            - NotBlank:
+                message: "Name cannot be blank"
+            - Length:
+                max: 256
+                maxMessage: "Name length must be less than 256 symbols"
+        phone:
+            - NotBlank:
+                message: "Phone number cannot be blank"
+            - Regex:
+                pattern: '/^\d{10}$/'
+                message: "Phone number must be 10 numbers long (ex. 9261232456)"
 Dart\AppBundle\Entity\UserAddress:
     properties:
         title:

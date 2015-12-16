@@ -4,9 +4,13 @@ namespace Dart\AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Validator\Constraints\Range;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Dart\AppBundle\Form\Type\CartItemType;
+use Dart\AppBundle\Form\Type\DeliveryAddressType;
+use Dart\AppBundle\Form\Type\OrderUserProfileType;
 
 /**
  * Cart edit form
@@ -23,10 +27,29 @@ class CartType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('items', new CollectionType(), array(
+            ->add('items', 'collection', array(
                 'type' => new CartItemType(),
                 'allow_delete' => true,
                 'allow_add' => false
+            ))
+            ->add('delivery_address', new DeliveryAddressType(), array(
+                'label' => 'Delivery address',
+                'mapped' => false,
+                'error_bubbling' => true
+            ))
+            ->add('user_profile', new OrderUserProfileType(), array(
+                'label' => 'Personal info',
+                'mapped' => false,
+                'error_bubbling' => true
+            ))
+            ->add('change', new IntegerType(), array(
+                'label' => 'Change',
+                'data' => 0,
+                'mapped' => false,
+                'constraints' => array(
+                    new NotBlank(array()),
+                    new Range(array('min' => 0))
+                )
             ))
         ;
     }
@@ -37,7 +60,8 @@ class CartType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Dart\AppBundle\Component\Cart'
+            'data_class' => 'Dart\AppBundle\Component\Cart',
+            'cascade_validation' => true
         ));
     }
     

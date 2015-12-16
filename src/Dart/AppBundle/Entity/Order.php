@@ -229,6 +229,11 @@ class Order
     public function setDeliveryAddress(\Dart\AppBundle\Entity\DeliveryAddress $deliveryAddress = null)
     {
         $this->delivery_address = $deliveryAddress;
+        
+        //explicitly set bidirectional relation
+        if (null !== $this->delivery_address) {
+            $this->delivery_address->setOrder($this);
+        }
 
         return $this;
     }
@@ -302,6 +307,11 @@ class Order
     {
         $this->order_user_profile = $orderUserProfile;
 
+        //explicitly set bidirectional relation
+        if (null !== $this->order_user_profile) {
+            $this->order_user_profile->setOrder($this);
+        }
+        
         return $this;
     }
 

@@ -3,15 +3,11 @@
 namespace Dart\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Dart\AppBundle\Entity\Order;
-use Dart\AppBundle\Form\Type\OrderType;
+use Symfony\Component\Form\FormInterface;
 use Dart\AppBundle\Form\Type\CartType;
-use Dart\AppBundle\Form\Type\DeliveryAddressType;
-use Dart\AppBundle\Form\Type\UserProfileType;
-use Dart\AppBundle\Entity\DeliveryAddress;
-use Dart\AppBundle\Entity\UserProfile;
+use Dart\AppBundle\Entity\Order;
+use Dart\AppBundle\Component\Cart;
 
 
 /**
@@ -30,15 +26,26 @@ class OrderController extends Controller
      */
     public function showAction(Request $request)
     {
-        return $this->render('AppBundle:Order:show.html.twig', array(
-            'cartForm' => $this->getCartForm()->createView(),
-            'addressForm' => $this->getAddressForm()->createView(),
-            'profileForm' => $this->getProfileForm()->createView()
-        ));
+        $cart = $this->container->get('cart')->getCart();
+        $form = $this->createCartForm($cart);
         
-//        return $this->render('AppBundle:Order:show.html.twig', array(
-//           'form' => $form->createView()
-//        ));
+        $form->handleRequest($request);
+        
+        //order must be created after cart update
+        $order = $this->container->get('order_manager')->createOrder();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->handleOrderForm($form, $order);
+            
+            $this->container->get('cart')->refresh(true);
+            
+            return $this->redirectToRoute('order_success');
+        }
+        
+        return $this->render('AppBundle:Order:show.html.twig', array(
+            'order' => $order,
+            'form' => $form->createView()
+        ));
     }
     
     /**
@@ -49,20 +56,56 @@ class OrderController extends Controller
         return $this->render('AppBundle:Order:thank_you.html.twig');
     }
     
-    private function getCartForm()
+    /**
+     * Create order preview form
+     * 
+     * @param \Dart\AppBundle\Component\Cart $cart
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function createCartForm(Cart $cart)
     {
-        $form = $this->createForm(new CartType(), $this->container->get('cart')->getCart());
+        $form = $this->createForm(new CartType(), $cart);
         
         return $form;
     }
     
-    private function getAddressForm()
+    /**
+     * Handle order submit
+     * 
+     * @param \Symfony\Component\Form\FormInterface $form
+     * @param \Dart\AppBundle\Entity\Order $order
+     */
+    private function handleOrderForm(FormInterface $form, Order $order)
     {
-        return $this->createForm(new DeliveryAddressType(), new DeliveryAddress());
+        $em = $this->getDoctrine()->getManager();
+        
+        $address = $form['delivery_address']->getData();
+        $profile = $form['user_profile']->getData();
+        $change = $form['change']->getData();
+        
+        $order->setDeliveryAddress($address);
+        $order->setOrderUserProfile($profile);
+        $order->setChange($change);
+        
+        $this->fixProducts($order);
+        
+        $em->persist($order);
+        $em->flush();
     }
     
-    private function getProfileForm()
+    /**
+     * Since product already exists in database, but relation manager
+     * asks to persist it, this method will patch it up
+     * 
+     * @param \Dart\AppBundle\Entity\Order $order
+     */
+    private function fixProducts(Order $order)
     {
-        return $this->createForm(new UserProfileType(), new UserProfile());
+        $em = $this->getDoctrine()->getManager();
+        
+        foreach ($order->getOrderItems() as $item) {
+            $mergedProduct = $em->merge($item->getProduct());
+            $item->setProduct($mergedProduct);
+        }
     }
 }

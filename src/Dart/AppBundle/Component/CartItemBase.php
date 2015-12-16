@@ -74,6 +74,8 @@ class CartItemBase
         }
         
         $this->count = $count;
+        
+        return $this;
     }
     
     /**

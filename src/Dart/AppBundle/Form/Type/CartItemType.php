@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
 use Dart\AppBundle\Form\Type\MealType;
 
 /**
@@ -27,7 +29,13 @@ class CartItemType extends AbstractType
                 'disabled' => true
             ))
             ->add('count', new IntegerType(), array(
-                'label' => 'Quantity'
+                'label' => 'Quantity',
+                'constraints' => array(
+                    new NotBlank(),
+                    new Range(array(
+                        'min' => 1
+                    ))
+                )
             ))
         ;
     }
@@ -36,7 +44,7 @@ class CartItemType extends AbstractType
      * {@inheritDoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
+    {        
         $resolver->setDefaults(array(
             'data_class' => 'Dart\AppBundle\Component\CartItemBase'
         ));
