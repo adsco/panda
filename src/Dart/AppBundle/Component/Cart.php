@@ -31,6 +31,8 @@ class Cart
         }
         
         $this->items[$item->getId()] = $item;
+        
+        return $this;
     }
     
     /**
@@ -62,16 +64,14 @@ class Cart
         $item = $this->getItem($id);
         
         if (!$item) {
-            return false;
+            if ($all || $item->getCount() <= 1) {
+                unset($this->items[$item->getId()]);
+            } else {
+                $item->setCount($item->getCount() - 1);
+            }
         }
         
-        if ($all || $item->getCount() <= 1) {
-            unset($this->items[$item->getId()]);
-        } else {
-            $item->setCount($item->getCount() - 1);
-        }
-        
-        return true;
+        return $this;
     }
     
     /**
@@ -82,6 +82,18 @@ class Cart
     public function getItems()
     {
         return $this->items;
+    }
+    
+    /**
+     * Remove all items from cart
+     * 
+     * @return \Dart\AppBundle\Component\Cart
+     */
+    public function clear()
+    {
+        $this->items = array();
+        
+        return $this;
     }
     
     /**

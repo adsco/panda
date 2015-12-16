@@ -32,6 +32,11 @@ class CartService
     private $itemService;
     
     /**
+     * @var type \Dart\AppBundle\Component\Cart
+     */
+    private $cart;
+    
+    /**
      * Constructor
      * 
      * @param \Symfony\Component\HttpFoundation\Session\Session $session
@@ -41,11 +46,7 @@ class CartService
     {
         $this->session = $session;
         $this->itemService = $itemService;
-        $cart = $this->getCart();
-        
-        if (null === $cart || !$cart instanceof Cart) {
-            $this->session->set($this->name, serialize(new Cart()));
-        }
+        $this->cart = $this->getCart();
     }
     
     /**
@@ -59,7 +60,7 @@ class CartService
         
         $cart->addItem($this->itemService->createItem($product));
         
-        $this->saveCart($cart);
+        $this->saveCart();
     }
     
     /**
@@ -73,7 +74,7 @@ class CartService
         
         $cart->removeItem($id);
         
-        $this->saveCart($cart);
+        $this->saveCart();
     }
     
     /**
@@ -87,7 +88,7 @@ class CartService
         
         $cart->removeItem($id, true);
         
-        $this->saveCart($cart);
+        $this->saveCart();
     }
     
     /**
@@ -109,19 +110,38 @@ class CartService
      */
     public function getCart()
     {
-        return null !== $this->session->get($this->name) ? 
-            unserialize($this->session->get($this->name)) : null;
+        if (null === $this->cart) {
+            $this->cart = null !== $this->session->get($this->name) ? 
+                unserialize($this->session->get($this->name)) : new Cart();
+        }
+        
+        return $this->cart;
     }
     
     /**
+     * Remove all items from cart
+     * 
+     * @param boolean $force save refreshed cart state into session
+     */
+    public function refresh($force = false)
+    {
+        $cart = $this->getCart();
+        
+        $cart->clear();
+        
+        if ($force) {
+            $this->saveCart();
+        }
+    }
+
+    /**
      * Save cart in session
      * 
-     * @param \Dart\AppBundle\Component\Cart $cart
      * @return \Dart\AppBundle\Service\CartService
      */
-    private function saveCart(Cart $cart)
+    private function saveCart()
     {
-        $this->session->set($this->name, serialize($cart));
+        $this->session->set($this->name, serialize($this->getCart()));
         
         return $this;
     }
