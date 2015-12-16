@@ -14,14 +14,14 @@ use Dart\AppBundle\Component\CartItemBase;
 class Cart
 {
     /**
-     * @var CartItemBase[]
+     * @var \Dart\AppBundle\Component\CartItemBase[]
      */
     private $items = array();
     
     /**
      * Add item to cart
      * 
-     * @param CartItemBase $item - item to add
+     * @param \Dart\AppBundle\Component\CartItemBase $item - item to add
      */
     public function addItem(CartItemBase $item)
     {
@@ -36,10 +36,14 @@ class Cart
     /**
      * Get item by $id
      * 
-     * @param integer $id - id of search item
+     * @param \Dart\AppBundle\Component\CartItemBase|integer $item - search item itself or id
      */
-    public function getItem($id)
+    public function getItem($item)
     {
+        if ($item instanceof CartItemBase) {
+            $id = $item->getId();
+        }
+        
         if (!array_key_exists($id, $this->items)) {
             return null;
         }
@@ -50,7 +54,7 @@ class Cart
     /**
      * Remove item with given $id, decrease count by 1
      * 
-     * @param integer $id - id of item to remove
+     * @param \Dart\AppBundle\Component\CartItemBase|integer $id - id of item to remove
      * @param boolean $all - if set to true, all instances of item will be removed
      */
     public function removeItem($id, $all = false)
@@ -62,7 +66,7 @@ class Cart
         }
         
         if ($all || $item->getCount() <= 1) {
-            unset($this->items[$id]);
+            unset($this->items[$item->getId()]);
         } else {
             $item->setCount($item->getCount() - 1);
         }
