@@ -29,7 +29,7 @@
                         <span class="pull-right"><a href="#" class="item-remove"><i class="glyphicon glyphicon-remove black"></i></a></span>
                         <h5>{{ product.vars.value.name }}</h5>
                         <div class="unit-price">
-                            {{ product.vars.value.price }} $
+                            {{ product.vars.value.price }} {{ currency_sign }}
                         </div>
                         <div class="quantity-block">
                             <span>Quantity:</span>
@@ -38,7 +38,7 @@
                         <span>
                             Total: 
                             <span class="item-total">{{ product.vars.value.price * item.vars.value.count }}</span>
-                            $
+                            {{ currency_sign }}
                         </span>
                     </td>
                 </tr>
@@ -47,17 +47,17 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        Subtotal: <b class="pull-right"><span class="sub-total">{{ order.price }}</span>$</b>
+                        Subtotal: <b class="pull-right"><span class="sub-total">{{ order.price }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Delivery: <b class="pull-right"><span class="delivery">{{ order.deliveryPrice }}</span>$</b>
+                        Delivery: <b class="pull-right"><span class="delivery">{{ order.deliveryPrice }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Grand total: <b class="pull-right"><span class="grand-total">{{ order.price + order.deliveryPrice }}</span>$</b>
+                        Grand total: <b class="pull-right"><span class="grand-total">{{ order.price + order.deliveryPrice }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
             </tfoot>

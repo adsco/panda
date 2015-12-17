@@ -4,7 +4,7 @@
             <img src="{{ asset(('/uploads/images/sources/' ~ product.image) | imagine_filter('thumb_small')) }}" />
         {% endimage %}
         <span class="price">
-            {{ product.name }} $ / {{ product.weight }} g
+            {{ product.price }} {{ currency_sign }} / {{ product.weight }} {{ weight_sign }}
         </span>
     </div>
     <h5>

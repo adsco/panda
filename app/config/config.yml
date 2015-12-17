@@ -41,6 +41,9 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     cache: false
+    globals:
+        currency_sign: $
+        weight_sign: g
 
 # Assetic Configuration
 assetic:
