@@ -14,7 +14,7 @@
         {% if items|length < 1 %}
             empty
         {% else %}
-            {% include 'AppBundle::cart_preview_content.html.twig' with items %}
+            {% include 'AppBundle:Misc:cart_preview_content.html.twig' with items %}
         {% endif %}
     </div>
 </div>
