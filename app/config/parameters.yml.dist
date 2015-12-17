@@ -18,8 +18,5 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
-order:
-    actions:
-        delivery:
-            min: 500
-            cost: 250
+    order_actions_delivery_min: 500
+    order_actions_delivery_cost: 250
