@@ -15,12 +15,21 @@
     <body>
         <div class="container-fluid">
             {% block header %}
-                {% include 'AppBundle::header.html.twig' %}
+                <div class="row" id="header-strip-top">
+                    <div class="container">
+                        {% include 'AppBundle:Header:header_top.html.twig' %}
+                    </div>
+                </div>
+                <div class="row" id="header-strip-middle">
+                    <div class="container">
+                        {% include 'AppBundle:Header:header_middle.html.twig' %}
+                    </div>
+                </div>
             {% endblock %}
             <div class="row" id="header-strip-bottom">
                 <div class="container">
                     {% block menu %}
-                        {% include 'AppBundle::menu.html.twig' %}
+                        {% include 'AppBundle:Header:menu.html.twig' %}
                     {% endblock %}
                 </div>
             </div>
@@ -31,7 +40,7 @@
             </div>
             <div class="row">
                 {% block footer %}
-                    {% include 'AppBundle::footer.html.twig' %}
+                    {% include 'AppBundle:Footer:footer.html.twig' %}
                 {% endblock %}
             </div>
         </div>

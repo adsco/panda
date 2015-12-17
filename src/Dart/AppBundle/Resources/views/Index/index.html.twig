@@ -18,7 +18,7 @@
         <ul class="row product-list">
             {% for product in products %}
             <li class="col-md-3">
-                {% include 'AppBundle::product_block.html.twig' with {'product' : product} only %}
+                {% include 'AppBundle:Misc:product_block.html.twig' with {'product' : product} only %}
             </li>
             {% endfor %}
         </ul>

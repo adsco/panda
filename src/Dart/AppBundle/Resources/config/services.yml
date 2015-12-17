@@ -13,7 +13,7 @@ services:
         arguments:
             - @templating
             - @cart
-            - "AppBundle::cart_preview.html.twig"
+            - "AppBundle:Misc:cart_preview.html.twig"
     order:
         class: Dart\AppBundle\Service\OrderService
         arguments: [@order.item]
