@@ -6,7 +6,8 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets 'bundles/app/css/bootstrap.min.css'
-                'bundles/app/css/main.css' filter="cssrewrite" %}
+                'bundles/app/css/main.css'
+                'bundles/app/fancybox/jquery.fancybox.css' filter="cssrewrite" %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
         {% endblock %}
@@ -31,7 +32,7 @@
             <div class="row" id="header-strip-bottom">
                 <div class="container">
                     {% block menu %}
-                        {% include 'AppBundle:Header:menu.html.twig' %}
+                        {{ render(controller('AppBundle:Navigation:menu')) }}
                     {% endblock %}
                 </div>
             </div>
@@ -48,7 +49,9 @@
         </div>
         {% block javascripts %}
             {% javascripts '@AppBundle/Resources/public/js/jquery-1.11.3.min.js'
-                '@AppBundle/Resources/public/js/bootstrap.min.js' %}
+                '@AppBundle/Resources/public/js/bootstrap.min.js'
+                '@AppBundle/Resources/public/fancybox/jquery.fancybox.js'
+                '@AppBundle/Resources/public/js/fancybox.js' %}
                 <script src="{{ asset_url }}"></script>
             {% endjavascripts %}
         {% endblock %}

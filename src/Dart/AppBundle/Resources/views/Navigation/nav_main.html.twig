@@ -1,0 +1,21 @@
+<ul class="list-inline menu">
+    {% for cuisine in cuisines %}
+    <li>
+        <span class="dropdown">
+            <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ cuisine.name }}
+                <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu">
+                <ul class="list-unstyled">
+                    {% for category in cuisine.categories %}
+                        <li>
+                            <a href="{{ path('app_category', {'id': category.id}) }}">{{ category.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </span>
+    </li>
+    {% endfor %}
+</ul>

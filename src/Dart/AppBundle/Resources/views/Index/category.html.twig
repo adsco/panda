@@ -1,8 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    category selected: {{ category.name }}
-    {% for meal in category.meals %}
-        meal: {{ meal.name }}
-    {% endfor %}
+    <h1>{{ category.name }}</h1>
+    <ul class="row product-list">
+        {% for meal in category.meals %}
+            <li class="col-md-3">
+                {% include 'AppBundle:Misc:product_block.html.twig' with {'product': meal} only %}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
