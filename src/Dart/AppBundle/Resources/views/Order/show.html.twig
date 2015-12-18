@@ -8,6 +8,10 @@
     {% endjavascripts %}
 {% endblock %}
 
+{% block header_middle %}
+    {% include 'AppBundle:Header:header_middle.html.twig' with {'account': true} %}
+{% endblock %}
+
 {% block body %}
     <h1>Your shopping cart:</h1>
     <div class="errors">
