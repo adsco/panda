@@ -44,6 +44,8 @@ class Cart
     {
         if ($item instanceof CartItemBase) {
             $id = $item->getId();
+        } else {
+            $id = $item;
         }
         
         if (!array_key_exists($id, $this->items)) {
