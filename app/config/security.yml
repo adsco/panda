@@ -24,7 +24,9 @@ security:
                 check_path: /admin/login_check
                 provider: fos_userbundle
                 csrf_provider: security.csrf.token_manager
-            logout: true
+            logout:
+                path: /admin/logout
+                target: /admin
             anonymous: true
         main:
             pattern: ^/
