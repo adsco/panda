@@ -1,6 +1,6 @@
 <?php
 
-namespace Dart\AppBundle\Admin;
+namespace Dart\AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;

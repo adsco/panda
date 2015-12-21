@@ -5,24 +5,24 @@ parameters:
 
 services:
     admin.user:
-        class: Dart\AppBundle\Admin\UserAdmin
+        class: Dart\AdminBundle\Admin\UserAdmin
         arguments: [~, Dart\AppBundle\Entity\User, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Users }
     admin.meal:
-        class: Dart\AppBundle\Admin\MealAdmin
+        class: Dart\AdminBundle\Admin\MealAdmin
         arguments: [~, Dart\AppBundle\Entity\Meal, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Meals }
         calls:
             - [ setTemplate, [edit, AppBundle:SonataAdmin:Meal/edit.html.twig]]
     admin.cuisine:
-        class: Dart\AppBundle\Admin\CuisineAdmin
+        class: Dart\AdminBundle\Admin\CuisineAdmin
         arguments: [~, Dart\AppBundle\Entity\Cuisine, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Cuisines }
     admin.category:
-        class: Dart\AppBundle\Admin\CategoryAdmin
+        class: Dart\AdminBundle\Admin\CategoryAdmin
         arguments: [~, Dart\AppBundle\Entity\Category, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }

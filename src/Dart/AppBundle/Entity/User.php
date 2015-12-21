@@ -34,7 +34,17 @@ class User extends BaseUser
      * @var \DateTime
      */
     private $modification_date;
-
+    
+    /**
+     * Contructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        
+        //default user role
+        $this->addRole('ROLE_USER');
+    }
 
     /**
      * Set creationDate
