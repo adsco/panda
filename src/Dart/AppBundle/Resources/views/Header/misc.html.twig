@@ -32,6 +32,14 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                {% if app.user %}
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Logout
+                        </a>
+                    </li>
+                {% else %}
                 <li>
                     <a href="{{ path('fos_user_security_login') }}">
                         <span class="glyphicon glyphicon-log-in"></span>
@@ -44,6 +52,7 @@
                         Register
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </span>
     </li>
