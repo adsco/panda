@@ -6,6 +6,11 @@ Dart\AppBundle\Entity\UserProfile:
             type: integer
             generator: { strategy: AUTO }
     fields:
+        user_id:
+            type: integer
+            nullable: false
+            options:
+                comment: "User owner id"
         name:
             type: string
             length: 256
@@ -20,5 +25,8 @@ Dart\AppBundle\Entity\UserProfile:
                 comment: "Phone number of user who made an order"
     oneToOne:
         user:
-            targetEntity: User
-            mappedBy: profile
+            targetEntity: Application\Sonata\UserBundle\Entity\User
+            inversedBy: profile
+            joinColumn:
+                name: user_id
+                referencedColumnName: id

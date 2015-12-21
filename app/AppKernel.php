@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Dart\AdminBundle\AdminBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\UserBundle\SonataUserBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

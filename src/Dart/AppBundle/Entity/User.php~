@@ -2,7 +2,7 @@
 
 namespace Dart\AppBundle\Entity;
 
-use FOS\UserBundle\Model\User as BaseUser;
+use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,7 +34,19 @@ class User extends BaseUser
      * @var \DateTime
      */
     private $modification_date;
-
+    
+    /**
+     * Contructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->setCreatedAt(new \DateTime());
+        $this->setUpdatedAt(new \DateTime());
+        //default user role
+        $this->addRole('ROLE_USER');
+    }
 
     /**
      * Set creationDate

@@ -64,7 +64,7 @@ Dart\AppBundle\Entity\UserAddress:
                 comment: "Address last update date"
     manyToOne:
         user:
-            targetEntity: User
+            targetEntity: Application\Sonata\UserBundle\Entity\User
             inversedBy: addresses
             joinColumn:
                 name: user_id
