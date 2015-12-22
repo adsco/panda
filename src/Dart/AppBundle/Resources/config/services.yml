@@ -41,3 +41,13 @@ services:
         arguments: []
         tags:
             - { name: form.type, alias: app_user_registration }
+    app.locale_listener:
+        class: Dart\AppBundle\EventListener\LocaleListener
+        arguments: [%kernel.default_locale%]
+        tags:
+            - { name: kernel.event_subscriber }
+    app.route_listener:
+        class: Dart\AppBundle\EventListener\RouteListener
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }

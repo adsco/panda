@@ -4,6 +4,7 @@ namespace Dart\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Main controller
@@ -25,6 +26,20 @@ class IndexController extends Controller
         return $this->render('AppBundle:Index:index.html.twig', array(
             'products' => $products
         ));
+    }
+    
+    /**
+     * Change locale
+     */
+    public function localeChangeAction(Request $request)
+    {
+        $referer = $request->headers->get('referer');
+        
+        if (null !== $referer) {
+            return $this->redirect($referer);
+        } else {
+            return $this->redirectToRoute('app_homepage');
+        }
     }
 
     /**

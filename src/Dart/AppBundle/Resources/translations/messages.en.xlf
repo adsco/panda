@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages.ru.yml">
+    <file source-language="en" datatype="plaintext" original="messages.en.yml">
         <body>
             <trans-unit id="1">
                 <source>Welcome!</source>
-                <target>Добро пожаловать</target>
+                <target>Welcome!</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>Home</source>
-                <target>Главная</target>
+                <target>Home</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>Contact</source>
-                <target>Связь</target>
+                <target>Contact</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>Sitemap</source>
-                <target>Карта сайта</target>
+                <target>Sitemap</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>English</source>
@@ -28,63 +28,63 @@
             </trans-unit>
             <trans-unit id="7">
                 <source>Logout</source>
-                <target>Выйти</target>
+                <target>Logout</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>Login</source>
-                <target>Войти</target>
+                <target>Login</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>Register</source>
-                <target>Регистрация</target>
+                <target>Register</target>
             </trans-unit>
             <trans-unit id="10">
                 <source>Call Us:</source>
-                <target>Позвоните нам:</target>
+                <target>Call Us:</target>
             </trans-unit>
             <trans-unit id="11">
                 <source>Your account</source>
-                <target>Аккаунт</target>
+                <target>Your account</target>
             </trans-unit>
             <trans-unit id="12">
                 <source>Information</source>
-                <target>Информация</target>
+                <target>Information</target>
             </trans-unit>
             <trans-unit id="13">
                 <source>Specials</source>
-                <target>Фирменные блюда</target>
+                <target>Specials</target>
             </trans-unit>
             <trans-unit id="14">
                 <source>New products</source>
-                <target>Новые блюда</target>
+                <target>New products</target>
             </trans-unit>
             <trans-unit id="15">
                 <source>Best sellers</source>
-                <target>Популярные</target>
+                <target>Best sellers</target>
             </trans-unit>
             <trans-unit id="16">
                 <source>My account</source>
-                <target>Мой аккаунт</target>
+                <target>My account</target>
             </trans-unit>
             <trans-unit id="17">
                 <source>My orders</source>
-                <target>Мои заказы</target>
+                <target>My orders</target>
             </trans-unit>
             <trans-unit id="18">
                 <source>My addresses</source>
-                <target>Адреса доставки</target>
+                <target>My addresses</target>
             </trans-unit>
             <trans-unit id="19">
                 <source>My personal info</source>
-                <target>Мой профиль</target>
+                <target>My personal info</target>
             </trans-unit>
             <trans-unit id="20">
                 <source>My vouchers</source>
-                <target>Мои купоны</target>
+                <target>My vouchers</target>
             </trans-unit>
             <trans-unit id="21">
                 <source>Follow us</source>
-                <target>Подпишись</target>
+                <target>Follow us</target>
             </trans-unit>
             <trans-unit id="22">
                 <source></source>
@@ -108,99 +108,99 @@
             </trans-unit>
             <trans-unit id="27">
                 <source>Contact us</source>
-                <target>Свяжитесь с нами</target>
+                <target>Contact us</target>
             </trans-unit>
             <trans-unit id="28">
                 <source>4567 Dupinganger st.</source>
-                <target>ул. Дупельгангер. 4567</target>
+                <target>4567 Dupinganger st.</target>
             </trans-unit>
             <trans-unit id="29">
                 <source>Tel: 325-65-963</source>
-                <target>Тел: 325-65-963</target>
+                <target>Tel: 325-65-963</target>
             </trans-unit>
             <trans-unit id="30">
                 <source>Featured products</source>
-                <target>Рекомендуем</target>
+                <target>Featured products</target>
             </trans-unit>
             <trans-unit id="31">
                 <source>empty</source>
-                <target>пусто</target>
+                <target>empty</target>
             </trans-unit>
             <trans-unit id="32">
                 <source>Submit</source>
-                <target>Подтвердить</target>
+                <target>Submit</target>
             </trans-unit>
             <trans-unit id="33">
                 <source>Add to cart ></source>
-                <target>В корзину ></target>
+                <target>Add to cart ></target>
             </trans-unit>
             <trans-unit id="34">
                 <source>Delivery address</source>
-                <target>Адрес доставки</target>
+                <target>Delivery address</target>
             </trans-unit>
             <trans-unit id="35">
                 <source>Personal info</source>
-                <target>Профиль</target>
+                <target>Personal info</target>
             </trans-unit>
             <trans-unit id="36">
                 <source>Your shopping cart:</source>
-                <target>Ваша корзина:</target>
+                <target>Your shopping cart:</target>
             </trans-unit>
             <trans-unit id="37">
                 <source>Quantity:</source>
-                <target>Количество:</target>
+                <target>Quantity:</target>
             </trans-unit>
             <trans-unit id="38">
                 <source>Total:</source>
-                <target>Итого:</target>
+                <target>Total:</target>
             </trans-unit>
             <trans-unit id="39">
                 <source>Subtotal:</source>
-                <target>Всего:</target>
+                <target>Subtotal:</target>
             </trans-unit>
             <trans-unit id="40">
                 <source>Delivery:</source>
-                <target>Доставка:</target>
+                <target>Delivery:</target>
             </trans-unit>
             <trans-unit id="41">
                 <source>Grand total:</source>
-                <target>Итого:</target>
+                <target>Grand total:</target>
             </trans-unit>
             <trans-unit id="42">
                 <source>Thank you, come again!!!</source>
-                <target>Спасибо за заказ, приходите ещё!!!</target>
+                <target>Thank you, come again!!!</target>
             </trans-unit>
             <trans-unit id="43">
                 <source>Add new address</source>
-                <target>Добавить новый адрес</target>
+                <target>Add new address</target>
             </trans-unit>
             <trans-unit id="44">
                 <source>Address list</source>
-                <target>Список адресов</target>
+                <target>Address list</target>
             </trans-unit>
             <trans-unit id="45">
                 <source>You don't have any address points yet</source>
-                <target>Вы пока не добавили адреса доставки</target>
+                <target>You don't have any address points yet</target>
             </trans-unit>
             <trans-unit id="46">
                 <source>Thank you, come again!!!</source>
-                <target>Спасибо за заказ, приходите ещё!!!</target>
+                <target>Thank you, come again!!!</target>
             </trans-unit>
             <trans-unit id="47">
                 <source>Comming soon</source>
-                <target>В разработке</target>
+                <target>Comming soon</target>
             </trans-unit>
             <trans-unit id="48">
                 <source>Profile</source>
-                <target>Профиль</target>
+                <target>Profile</target>
             </trans-unit>
             <trans-unit id="49">
                 <source>Addresses</source>
-                <target>Адреса</target>
+                <target>Addresses</target>
             </trans-unit>
             <trans-unit id="50">
                 <source>Orders</source>
-                <target>Заказы</target>
+                <target>Orders</target>
             </trans-unit>
         </body>
     </file>
