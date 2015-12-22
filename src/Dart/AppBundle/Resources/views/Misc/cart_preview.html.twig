@@ -1,6 +1,6 @@
 <div>
     <a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <span class="caption">cart: </span>
+        <span class="caption">{% trans %}Cart{% endtrans %}: </span>
         <span class="cart-label" id="cart-label">
             {% if items|length < 1 %}
                 {% trans %}empty{% endtrans %}
