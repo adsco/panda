@@ -46,8 +46,3 @@ services:
         arguments: [%kernel.default_locale%]
         tags:
             - { name: kernel.event_subscriber }
-    app.route_listener:
-        class: Dart\AppBundle\EventListener\RouteListener
-        arguments: []
-        tags:
-            - { name: kernel.event_subscriber }
