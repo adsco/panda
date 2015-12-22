@@ -3,7 +3,7 @@
         <span class="caption">cart: </span>
         <span class="cart-label" id="cart-label">
             {% if items|length < 1 %}
-                empty
+                {% trans %}empty{% endtrans %}
             {% else %}
                 {{ items|length }}
             {% endif %}

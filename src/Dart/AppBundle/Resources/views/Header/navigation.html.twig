@@ -1,5 +1,17 @@
 <ul class="nav navbar-nav" id="header-links">
-    <li><a href="{{ path('app_homepage') }}" class="{% if app.request.get('_route') == 'app_homepage' %}active{% endif %}">HOME</a></li>
-    <li><a href="#">CONTACT</a></li>
-    <li><a href="#">SITEMAP</a></li>
+    <li>
+        <a href="{{ path('app_homepage') }}" class="{% if app.request.get('_route') == 'app_homepage' %}active{% endif %}">
+            {% trans %}Home{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            {% trans %}Contact{% endtrans %}
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            {% trans %}Sitemap{% endtrans %}
+        </a>
+    </li>
 </ul>

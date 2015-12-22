@@ -3,21 +3,21 @@
         <a href="{{ path('fos_user_profile_show') }}" 
            class="{% if app.request.get('_route') == 'fos_user_profile_show' %}active{% endif %}"
         >
-            profile
+            {% trans %}Profile{% endtrans %}
         </a>
     </li>
     <li>
         <a href="{{ path('profile_address') }}"
            class="{% if app.request.get('_route') == 'profile_address' %}active{% endif %}"
         >
-            addresses
+            {% trans %}Addresses{% endtrans %}
         </a>
     </li>
     <li>
         <a href="{{ path('profile_orders') }}"
            class="{% if app.request.get('_route') == 'profile_orders' %}active{% endif %}"
         >
-            orders
+            {% trans %}Orders{% endtrans %}
         </a>
     </li>
 </ul>

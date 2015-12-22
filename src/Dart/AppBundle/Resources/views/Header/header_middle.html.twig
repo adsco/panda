@@ -10,7 +10,7 @@
         <div class="row">
             <div class="pull-right">
                 <div class="call-us">
-                    <h2>Call Us:</h2>
+                    <h2>{% trans %}Call Us:{% endtrans %}</h2>
                     <h3>235-36-854</h3>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                             {% if app.user %}
                                 {{ app.user.username }}
                             {% else %}
-                                your account
+                                {% trans %}Your account{% endtrans %}
                             {% endif %}
                         </a>
                     </li>

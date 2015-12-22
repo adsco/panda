@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Your shopping cart:</h1>
+    <h1>
+        {% trans %}Your shopping cart:{% endtrans %}
+    </h1>
     <div class="errors">
         {{ form_errors(form) }}
     </div>
@@ -36,11 +38,11 @@
                             {{ product.vars.value.price }} {{ currency_sign }}
                         </div>
                         <div class="quantity-block">
-                            <span>Quantity:</span>
+                            <span>{% trans %}Quantity:{% endtrans %}</span>
                             {{ form_widget(item.count, {'attr': {'class': 'quantity', 'min': 1}}) }}
                         </div>
                         <span>
-                            Total: 
+                            {% trans %}Total:{% endtrans %} 
                             <span class="item-total">{{ product.vars.value.price * item.vars.value.count }}</span>
                             {{ currency_sign }}
                         </span>
@@ -51,17 +53,17 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        Subtotal: <b class="pull-right"><span class="sub-total">{{ order.price }}</span>{{ currency_sign }}</b>
+                        {% trans %}Subtotal:{% endtrans %} <b class="pull-right"><span class="sub-total">{{ order.price }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Delivery: <b class="pull-right"><span class="delivery">{{ order.deliveryPrice }}</span>{{ currency_sign }}</b>
+                        {% trans %}Delivery:{% endtrans %} <b class="pull-right"><span class="delivery">{{ order.deliveryPrice }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        Grand total: <b class="pull-right"><span class="grand-total">{{ order.price + order.deliveryPrice }}</span>{{ currency_sign }}</b>
+                        {% trans %}Grand total:{% endtrans %} <b class="pull-right"><span class="grand-total">{{ order.price + order.deliveryPrice }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
             </tfoot>

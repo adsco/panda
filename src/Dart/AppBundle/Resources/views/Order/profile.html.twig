@@ -1,4 +1,6 @@
-<h4>Personal info</h4>
+<h4>
+    {% trans %}Personal info{% endtrans %}
+</h4>
 <div class="form-group">
     {{ form_label(form.name) }}
     {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}

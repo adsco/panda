@@ -1,4 +1,6 @@
-<h4>Delivery address</h4>
+<h4>
+    {% trans %}Delivery address{% endtrans %}
+</h4>
 <div class="form-group">
     {{ form_label(form.street) }}
     {{ form_widget(form.street, {'attr': {'class': 'form-control'}}) }}
