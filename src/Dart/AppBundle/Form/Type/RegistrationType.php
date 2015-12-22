@@ -34,7 +34,7 @@ class RegistrationType extends AbstractType
                 'options' => array('translation_domain' => 'messages'),
                 'first_options' => array('label' => 'form.password'),
                 'second_options' => array('label' => 'form.password_confirmation'),
-                'invalid_message' => 'fos_user.password.mismatch',
+                'invalid_message' => 'fos_user.password.mismatch'
             ))
             ->add('profile', new UserProfileType(), array(
                 'by_reference' => false

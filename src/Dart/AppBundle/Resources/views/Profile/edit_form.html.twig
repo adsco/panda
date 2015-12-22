@@ -12,5 +12,5 @@
         {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
     </div>
     {{ form_widget(form._token) }}
-    <input type="submit" value="save" class="btn btn-default btn-large" />
+    <input type="submit" value="{{ 'save'|trans }}" class="btn btn-default btn-large" />
 </form>

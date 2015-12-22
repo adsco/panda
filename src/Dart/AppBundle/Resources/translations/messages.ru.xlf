@@ -290,6 +290,50 @@
                 <source>Account</source>
                 <target>Аккаунт</target>
             </trans-unit>
+            <trans-unit id="73">
+                <source>Bad credentials.</source>
+                <target>Логин и/или пароль не праверный</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>save</source>
+                <target>Сохранить</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>form.address.title</source>
+                <target>Название адреса</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>form.address.street</source>
+                <target>Улица</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>form.address.building</source>
+                <target>Дом</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>form.address.porch</source>
+                <target>Подъезд</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>form.address.apartment</source>
+                <target>Квартира</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>form.address.intercome</source>
+                <target>Домофон</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>form.address.note</source>
+                <target>Примечание</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>form.address.btn_add</source>
+                <target>Добавить</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>profile.title.orders</source>
+                <target>Заказы</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -36,5 +36,5 @@
         {{ form_widget(form.note, {'attr': {'class': 'form-control', 'novalidate': 'novalidate'}}) }}
     </div>
     {{ form_widget(form._token) }}
-    <input type="submit" value="Add" class="btn btn-default btn-large" />
+    <input type="submit" value="{{ 'form.address.btn_add'|trans }}" class="btn btn-default btn-large" />
 </form>

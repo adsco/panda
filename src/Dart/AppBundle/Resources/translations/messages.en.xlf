@@ -290,6 +290,50 @@
                 <source>Account</source>
                 <target>Account</target>
             </trans-unit>
+            <trans-unit id="73">
+                <source>Bad credentials.</source>
+                <target>Login and/or password is not valid</target>
+            </trans-unit>
+            <trans-unit id="74">
+                <source>save</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="75">
+                <source>form.address.title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="76">
+                <source>form.address.street</source>
+                <target>Street</target>
+            </trans-unit>
+            <trans-unit id="77">
+                <source>form.address.building</source>
+                <target>Building</target>
+            </trans-unit>
+            <trans-unit id="78">
+                <source>form.address.porch</source>
+                <target>Porch</target>
+            </trans-unit>
+            <trans-unit id="79">
+                <source>form.address.apartment</source>
+                <target>Apartment</target>
+            </trans-unit>
+            <trans-unit id="80">
+                <source>form.address.intercome</source>
+                <target>Intercome</target>
+            </trans-unit>
+            <trans-unit id="81">
+                <source>form.address.note</source>
+                <target>Note</target>
+            </trans-unit>
+            <trans-unit id="82">
+                <source>form.address.btn_add</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="83">
+                <source>profile.title.orders</source>
+                <target>Orders</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

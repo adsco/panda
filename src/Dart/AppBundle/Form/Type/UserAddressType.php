@@ -23,29 +23,29 @@ class UserAddressType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('title', new TextType(), array(
-                'label' => 'Title'
+                'label' => 'form.address.title'
             ))
             ->add('street', new TextType(), array(
-                'label' => 'Street'
+                'label' => 'form.address.street'
             ))
             ->add('building', new TextType(), array(
-                'label' => 'Building number',
+                'label' => 'form.address.building',
                 'required' => false
             ))
             ->add('porch', new IntegerType(), array(
-                'label' => 'Porch number',
+                'label' => 'form.address.porch',
                 'required' => false
             ))
             ->add('apartment', new TextType(), array(
-                'label' => 'Apartment number',
+                'label' => 'form.address.apartment',
                 'required' => false
             ))
             ->add('intercome_code', new TextType(), array(
-                'label' => 'Intercome code',
+                'label' => 'form.address.intercome',
                 'required' => false
             ))
             ->add('note', new TextareaType(), array(
-                'label' => 'Note',
+                'label' => 'form.address.note',
                 'required' => false
             ))
         ;
