@@ -32,7 +32,7 @@
             </trans-unit>
             <trans-unit id="8">
                 <source>Login</source>
-                <target>Войти</target>
+                <target>Вход</target>
             </trans-unit>
             <trans-unit id="9">
                 <source>Register</source>
@@ -217,6 +217,78 @@
             <trans-unit id="54">
                 <source>Registration</source>
                 <target>Регистрация</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>Name</source>
+                <target>Имя</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Phone</source>
+                <target>Телефон</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Edit</source>
+                <target>Изменить</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>profile.show.username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>profile.show.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>form.username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>form.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>form.password</source>
+                <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>form.password_confirmation</source>
+                <target>Подтвердите пароль</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>profile.form.name</source>
+                <target>Имя</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>profile.form.phone</source>
+                <target>Телефон</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>ex.</source>
+                <target>прим.</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>registration.submit</source>
+                <target>Зарегистрироваться</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>security.login.username</source>
+                <target>Логин</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>security.login.password</source>
+                <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>security.login.remember_me</source>
+                <target>запомнить</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>security.login.submit</source>
+                <target>Войти</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Account</source>
+                <target>Аккаунт</target>
             </trans-unit>
         </body>
     </file>

@@ -20,9 +20,26 @@ class RegistrationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('profile', new UserProfileType(), array(
-            'by_reference' => false
-        ));
+        $builder
+            ->remove('username')
+            ->remove('email')
+            ->remove('plainPassword')
+        ;
+        
+        $builder
+            ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'messages'))
+            ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'messages'))
+            ->add('plainPassword', 'repeated', array(
+                'type' => 'password',
+                'options' => array('translation_domain' => 'messages'),
+                'first_options' => array('label' => 'form.password'),
+                'second_options' => array('label' => 'form.password_confirmation'),
+                'invalid_message' => 'fos_user.password.mismatch',
+            ))
+            ->add('profile', new UserProfileType(), array(
+                'by_reference' => false
+            ))
+        ;
     }
     
     /**

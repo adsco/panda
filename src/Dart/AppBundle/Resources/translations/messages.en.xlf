@@ -218,6 +218,78 @@
                 <source>Registration</source>
                 <target>Registration</target>
             </trans-unit>
+            <trans-unit id="55">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>Phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>profile.show.username</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>profile.show.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>form.username</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>form.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>form.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>form.password_confirmation</source>
+                <target>Re-password</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>profile.form.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>profile.form.phone</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="66">
+                <source>ex.</source>
+                <target>ex.</target>
+            </trans-unit>
+            <trans-unit id="67">
+                <source>registration.submit</source>
+                <target>Register</target>
+            </trans-unit>
+            <trans-unit id="68">
+                <source>security.login.username</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="69">
+                <source>security.login.password</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="70">
+                <source>security.login.remember_me</source>
+                <target>remember me</target>
+            </trans-unit>
+            <trans-unit id="71">
+                <source>security.login.submit</source>
+                <target>Submit</target>
+            </trans-unit>
+            <trans-unit id="72">
+                <source>Account</source>
+                <target>Account</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
