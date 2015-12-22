@@ -206,6 +206,18 @@
                 <source>Cart</source>
                 <target>Cart</target>
             </trans-unit>
+            <trans-unit id="52">
+                <source>Registration complete</source>
+                <target>Registration complete</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>Thank you for registering</source>
+                <target>Thank you for registering</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>Registration</source>
+                <target>Registration</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
