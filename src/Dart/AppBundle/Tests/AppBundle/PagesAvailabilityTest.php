@@ -18,7 +18,9 @@ class PagesAvailabilityTest extends WebTestCase
     private $urls = array(
         '/',
         '/login',
-        '/register/'
+        '/register/',
+        '/order/success',
+        '/order/show',
     );
     
     public function testIndex()
