@@ -118,11 +118,11 @@ class UserProfile
     /**
      * Set user
      *
-     * @param \Dart\AppBundle\Entity\User $user
+     * @param Application\Sonata\UserBundle\Entity\User $user
      *
      * @return UserProfile
      */
-    public function setUser(\Dart\AppBundle\Entity\User $user = null)
+    public function setUser(\Application\Sonata\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -132,7 +132,7 @@ class UserProfile
     /**
      * Get user
      *
-     * @return \Dart\AppBundle\Entity\User
+     * @return Application\Sonata\UserBundle\Entity\User
      */
     public function getUser()
     {

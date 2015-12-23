@@ -7,6 +7,11 @@ namespace Dart\AppBundle\Entity;
  */
 class Order
 {
+    public static $STATUS_NEW = 'new';
+    public static $STATUS_ACCEPTED = 'accepted';
+    public static $STATUS_READY = 'ready';
+    public static $STATUS_COMPLETE = 'complete';
+    
     /**
      * @var integer
      */
@@ -63,6 +68,7 @@ class Order
     public function __construct()
     {
         $this->order_items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->status = self::$STATUS_NEW;
     }
 
     /**
@@ -328,5 +334,34 @@ class Order
     public function removeItem(OrderItem $orderItem)
     {
         $this->order_items->removeElement($orderItem);
+    }
+    /**
+     * @var string
+     */
+    private $status;
+
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Order
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

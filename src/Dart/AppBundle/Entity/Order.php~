@@ -7,6 +7,11 @@ namespace Dart\AppBundle\Entity;
  */
 class Order
 {
+    public static $STATUS_NEW = 'new';
+    public static $STATUS_ACCEPTED = 'accepted';
+    public static $STATUS_READY = 'ready';
+    public static $STATUS_COMPLETE = 'complete';
+    
     /**
      * @var integer
      */
