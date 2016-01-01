@@ -45,15 +45,20 @@ class OrderManager
     {
         $cart = $this->cart->getCart();
         $items = $this->cart->getItems();
-        $order = $this->order->create();
         
-        foreach ($items as $item) {
-            $order->addOrderItem($this->order->createItem($order, $item));
-        }
-        
+        $order = $this->addItems($this->order->create(), $items);
         $order->setPrice($cart->getTotalPrice());
         
         $this->orderExternals->apply($order);
+        
+        return $order;
+    }
+    
+    private function addItems(Order $order, array $items)
+    {
+        foreach ($items as $item) {
+            $order->addOrderItem($this->order->createItem($order, $item));
+        }
         
         return $order;
     }

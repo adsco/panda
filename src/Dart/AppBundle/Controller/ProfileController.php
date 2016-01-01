@@ -47,43 +47,57 @@ class ProfileController extends Controller
     /**
      * Display address list with form
      */
-    public function addressAction(Request $request)
+    public function addressAction(Request $request, $page)
     {
         $em = $this->getDoctrine()->getManager();
+        $resultsPerPage = $this->getParameter('results_per_page');
         $userAddress = new UserAddress();
         $form = $this->createForm(new UserAddressType(), $userAddress);
         
-        $addressList = $em->getRepository('AppBundle:UserAddress')->findBy(array(
-            'user_id' => $this->getUser()->getId()
-        ));
-        
         //handle address form
         $this->handleAddressAdd($request, $form, $userAddress);
-                
+        
+        $addresses = $em->getRepository('AppBundle:UserAddress')
+            ->getUserAddresses(
+                $this->getUser()->getId(),
+                $resultsPerPage * ($page - 1),
+                $resultsPerPage
+            );
+        
         return $this->render('AppBundle:Profile:address.html.twig', array(
+            'page' => $page,
+            'last_page' => ceil($addresses['count'] / $resultsPerPage),
             'form' => $form->createView(),
-            'addresses' => $addressList
+            'addresses' => $addresses['result']
         ));
     }
     
     /**
      * Edit existing address
      */
-    public function addressEditAction($id)
+    public function addressEditAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-        $profile = $this->getUser()->getProfile();
         $address = $em->getRepository('AppBundle:UserAddress')->findOneBy(array(
             'id' => $id,
-            'profile_id' => $profile->getId()
+            'user_id' => $this->getUser()->getId()
         ));
         
         if (!$address) {
             throw $this->createNotFoundException('Address not found');
         }
         
+        $form = $this->createForm(new UserAddressType(), $address);
+        
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $em->persist($address);
+            $em->flush();
+        }
+        
         return $this->render('AppBundle:Profile:address_edit.html.twig', array(
-            'address' => $address
+            'address' => $address,
+            'form' => $form->createView()
         ));
     }
     
@@ -93,10 +107,9 @@ class ProfileController extends Controller
     public function addressRemoveAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $profile = $this->getUser()->getProfile();
         $address = $em->getRepository('AppBundle:UserAddress')->findOneBy(array(
             'id' => $id,
-            'profile_id' => $profile->getId()
+            'user_id' => $this->getUser()->getId()
         ));
         
         if (!$address) {
@@ -132,7 +145,7 @@ class ProfileController extends Controller
         
         $form->handleRequest($request);
         
-        if ($form->isValid()) {
+        if ($form->isValid() && $form->isSubmitted()) {
             $em = $this->getDoctrine()->getManager();
             
             $userAddress->setUser($this->getUser());

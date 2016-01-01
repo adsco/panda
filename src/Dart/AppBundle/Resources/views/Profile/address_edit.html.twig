@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-6 border-right">
             <h1>
-                {% trans %}Add new address{% endtrans %}
+                {% trans %}Edit address{% endtrans %}
             </h1>
             <div class="errors">
                 {{ form_errors(form.title) }}
@@ -18,18 +18,15 @@
                 {{ form_errors(form.apartment) }}
                 {{ form_errors(form.intercome_code) }}
             </div>
-            <form method="post" action="{{ path('profile_address') }}">
+            <form method="post" action="{{ path('profile_address_edit', {'id': address.id}) }}">
                 {% include 'AppBundle:Profile:address_form.html.twig' with {'form': form} only %}
             
                 {{ form_widget(form._token) }}
-                <input type="submit" value="{{ 'form.address.btn_add'|trans }}" class="btn btn-default btn-large" />
+                <input type="submit" value="{{ 'form.address.btn_edit'|trans }}" class="btn btn-default btn-large" />
             </form>
         </div>
         <div class="col-lg-6">
-            <h1>
-                {% trans %}Address list{% endtrans %}
-            </h1>
-            {% include 'AppBundle:Profile:address_list.html.twig' %}
+            
         </div>
     </div>
 {% endblock %}

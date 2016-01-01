@@ -1,3 +1,9 @@
 admin_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AdminBundle:Default:index }
+    path:     /admin/index
+    defaults: { _controller: AdminBundle:Index:index }
+
+admin_order_create:
+    path:     /admin/order/create
+    defaults: { _controller: AdminBundle:Order:create }
+    requirements:
+        method: post

@@ -19,6 +19,11 @@
     </li>
     {% endfor %}
 </ul>
+{% include 'AppBundle:Misc:pagination.html.twig' with {
+    'current_page': page,
+    'last_page': last_page,
+    'path': 'profile_address'
+} only %}
 {% else %}
     <p>{% trans %}You don't have any address points yet{% endtrans %}</p>
 {% endif %}

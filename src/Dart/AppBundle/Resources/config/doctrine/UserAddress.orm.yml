@@ -1,6 +1,7 @@
 Dart\AppBundle\Entity\UserAddress:
     type: entity
     table: user_addresses
+    repositoryClass: Dart\AppBundle\Entity\UserAddressRepository
     id:
         id:
             type: integer

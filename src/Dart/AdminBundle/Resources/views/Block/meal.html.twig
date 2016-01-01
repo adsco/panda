@@ -1,0 +1,16 @@
+<div class="product">
+    <div class="">
+        <input type="checkbox" name="meals[]" value="{{ meal.id }}" id="admin-meal-checkbox-{{ meal.id }}" />
+    </div>
+    <label for="admin-meal-checkbox-{{ meal.id }}">
+        <div class="image">
+            <img src="{{ asset(('/uploads/images/sources/' ~ meal.image) | imagine_filter('thumb_small')) }}" />
+            <div class="price">
+                {{ meal.weight }} / {{ meal.price }}
+            </div>
+        </div>
+        <h5>
+            <div class="name">{{ meal.name }}</div>
+        </h5>
+    </label>
+</div>

@@ -73,16 +73,20 @@ class IndexController extends Controller
     public function categoryAction($id, $page)
     {
         $em = $this->getDoctrine()->getManager();
-        $category = $em->getRepository('AppBundle:Category')->findOneBy(array(
-            'id' => $id
-        ));
+        $resultsPerPage = $this->getParameter('results_per_page');
+        $category = $em->getRepository('AppBundle:Category')->find($id);
         
         if (null === $category) {
             throw $this->createNotFoundException('Category not found');
         }
         
+        $meals = $em->getRepository('AppBundle:Meal')->getByCategoryId($id, $resultsPerPage * ($page - 1), $resultsPerPage);
+        
         return $this->render('AppBundle:Index:category.html.twig', array(
-           'category' => $category 
+            'page' => $page,
+            'last_page' => ceil($meals['count'] / $resultsPerPage),
+            'category' => $category,
+            'meals' => $meals['result']
         ));
     }
 }

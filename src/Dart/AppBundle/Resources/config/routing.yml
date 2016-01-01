@@ -68,8 +68,10 @@ profile_edit:
     defaults: { _controller: AppBundle:Profile:edit }
         
 profile_address:
-    path:     /profile/address
-    defaults: { _controller: AppBundle:Profile:address }
+    path:     /profile/address/{page}
+    defaults: { _controller: AppBundle:Profile:address, page: 1 }
+    requirements:
+        page: \d+
     
 profile_address_edit:
     path:     /profile/address-edit/{id}

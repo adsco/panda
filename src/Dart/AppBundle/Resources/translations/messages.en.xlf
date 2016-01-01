@@ -334,6 +334,14 @@
                 <source>profile.title.orders</source>
                 <target>Orders</target>
             </trans-unit>
+            <trans-unit id="84">
+                <source>Edit address</source>
+                <target>Edit address</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>form.address.btn_edit</source>
+                <target>Edit</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -3,10 +3,18 @@
 {% block body %}
     <h1>{{ category.name }}</h1>
     <ul class="row product-list">
-        {% for meal in category.meals %}
+        {% for meal in meals %}
             <li class="col-md-3">
                 {% include 'AppBundle:Misc:product_block.html.twig' with {'product': meal} only %}
             </li>
         {% endfor %}
     </ul>
+    {% include 'AppBundle:Misc:pagination.html.twig' with {
+        'current_page': page,
+        'last_page': last_page,
+        'path': 'app_category',
+        'params': {
+            'id': category.id
+        }
+    } only %}
 {% endblock %}

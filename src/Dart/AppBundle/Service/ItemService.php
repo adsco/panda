@@ -16,4 +16,19 @@ class ItemService
     {
         return new CartItemBase($item);
     }
+    
+    public function createItems(array $meals)
+    {
+        $items = array();
+        
+        foreach ($meals as $meal) {
+            if (!$meal instanceof ProductInterface) {
+                throw new \Exception('Meal must be instance of ProductInterface');
+            }
+            
+            $items[] = new CartItemBase($meal);
+        }
+        
+        return $items;
+    }
 }

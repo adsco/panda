@@ -334,6 +334,14 @@
                 <source>profile.title.orders</source>
                 <target>Заказы</target>
             </trans-unit>
+            <trans-unit id="84">
+                <source>Edit address</source>
+                <target>Редактировать адрес</target>
+            </trans-unit>
+            <trans-unit id="85">
+                <source>form.address.btn_edit</source>
+                <target>Сохранить</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

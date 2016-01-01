@@ -1,6 +1,7 @@
 Dart\AppBundle\Entity\Cuisine:
     type: entity
     table: cuisines
+    repositoryClass: Dart\AppBundle\Entity\CuisineRepository
     id:
         id:
             type: integer

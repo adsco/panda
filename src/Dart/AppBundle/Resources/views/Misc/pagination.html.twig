@@ -1,0 +1,26 @@
+<nav>
+  <ul class="pagination">
+        {% set spread = 2 %}
+        {# first page #}
+        {% if current_page - spread > 1 %}
+            {% set params = params|merge({page: 1}) %}
+            <li><a href="{{ path(path, params) }}">1</a></li>            
+        {% endif %}
+
+        {% for i in max(current_page - spread, 1)..min(current_page + spread, last_page) %}
+            {# current page #}
+            {% if i == current_page %}
+                <li class="active"><a href="#">{{ current_page }}</a></li>
+            {% else %}
+                {% set params = params|merge({page: i}) %}
+                <li><a href="{{ path(path, params) }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {# last page #}
+        {% if current_page + spread < last_page %}
+            {% set params = params|merge({page: last}) %}
+            <li><a href="{{ path(path, params) }}">{{ last_page }}</a></li>
+        {% endif %}
+    </ul>
+</nav>

@@ -1,0 +1,59 @@
+{% extends 'AdminBundle::standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/app/css/bootstrap.min.css'
+        'bundles/app/css/main.css' filter="cssrewrite" %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@AppBundle/Resources/public/js/bootstrap.min.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block content %}
+    <div class="">
+        <ul class="nav nav-tabs" role="tablist">
+            {% for cuisine in cuisines %}
+            <li>
+                <a href="#cuisine-{{ cuisine.id }}" role="tab" data-toggle="tab">{{ cuisine.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <form action="{{ path('admin_order_create') }}" method="post">
+            <div class="tab-content">
+                {% for cuisine in cuisines %}
+                <div class="tab-pane fade {% if loop.index == 1 %}active in{% endif %}" id="cuisine-{{ cuisine.id }}">
+                    <ul class="nav nav-tabs" rol="tablist">
+                        {% for category in cuisine.categories %}
+                        <li>
+                            <a href="#category-{{ category.id }}" role="tab" data-toggle="tab">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="tab-content">
+                        {% for category in cuisine.categories %}
+                        <div class="tab-pane fade {% if loop.index == 1 %}active in{% endif %}" id="category-{{ category.id }}">
+                            <div class="row body">
+                                <ul class="row product-list">
+                                {% for meal in category.meals %}
+                                    <li class="col-md-3">
+                                        {% include 'AdminBundle:Block:meal.html.twig' with {'meal': meal} %}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <input type="submit" value="admin.order.create.meals.add" />
+        </form>
+    </div>
+{% endblock %}
