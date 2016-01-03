@@ -3,12 +3,12 @@
 namespace Dart\AppBundle\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Dart\AppBundle\Component\ProductInterface;
+use Dart\AppBundle\Cart\ItemInterface;
 
 /**
  * Meal
  */
-class Meal implements ProductInterface
+class Meal implements ItemInterface
 {
     /**
      * @var string
