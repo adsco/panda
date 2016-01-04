@@ -2,7 +2,7 @@
 
 namespace Dart\AppBundle\Cart;
 
-use Dart\AppBundle\Cart\Item;
+use Dart\AppBundle\Cart\CartItem;
 
 /**
  * Cart class
@@ -14,14 +14,15 @@ use Dart\AppBundle\Cart\Item;
 class Cart implements \Serializable
 {
     /**
-     * @var Item[]
+     * @var \Dart\AppBundle\Cart\CartItem[]
      */
     protected $items = array();
     
     /**
-     * Added new item to cart
+     * Add new cart item to cart
      * 
-     * @param CartItem $item
+     * @param \Dart\AppBundle\Cart\CartItem $cartItem
+     * @return \Dart\AppBundle\Cart\Cart
      */
     public function add(CartItem $cartItem)
     {
@@ -35,10 +36,10 @@ class Cart implements \Serializable
     }
     
     /**
-     * Get item in cart by item itself or item's id
+     * Get item in cart by item id
      * 
-     * @param Item $item
-     * @return \Dart\AppBundle\Cart\Cart
+     * @param integer $id
+     * @return \Dart\AppBundle\Cart\Cart|null
      * @throws \Exception
      */
     public function find($id)
@@ -55,7 +56,8 @@ class Cart implements \Serializable
     /**
      * Remove item from cart
      * 
-     * @param type $item
+     * @param integer $id
+     * @param integer $quantity
      * @return \Dart\AppBundle\Cart\Cart
      */
     public function remove($id, $quantity)
@@ -75,23 +77,21 @@ class Cart implements \Serializable
         return $this;
     }
     
-    protected function unsetItem(CartItem $cartItem)
-    {
-        if ($index = array_search($cartItem, $haystack)) {
-            unset($this->items[$index]);
-        }
-    }
-    
     /**
      * Get all items stored in cart
      * 
-     * @return Item[]
+     * @return \Dart\AppBundle\Cart\CartItem[]
      */
     public function getItems()
     {
         return $this->items;
     }
     
+    /**
+     * Get total price of all items in cart
+     * 
+     * @return integer
+     */
     public function getTotal()
     {
         $total = 0;
@@ -129,5 +129,17 @@ class Cart implements \Serializable
     public function unserialize($str)
     {
         $this->items = unserialize($str);
+    }
+    
+    /**
+     * Remove all instances of item from cart
+     * 
+     * @param \Dart\AppBundle\Cart\CartItem $cartItem
+     */
+    protected function unsetItem(CartItem $cartItem)
+    {
+        if ($index = array_search($cartItem, $haystack)) {
+            unset($this->items[$index]);
+        }
     }
 }

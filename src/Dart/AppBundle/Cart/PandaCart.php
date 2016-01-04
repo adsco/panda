@@ -13,8 +13,18 @@ use Dart\AppBundle\Cart\Cart;
  */
 class PandaCart extends Cart implements \Serializable
 {
+    /**
+     * @var integer
+     */
     protected $delivery;
     
+    /**
+     * Set delivery cost
+     * 
+     * @param integer $delivery
+     * @return \Dart\AppBundle\Cart\PandaCart
+     * @throws \Exception
+     */
     public function setDelivery($delivery)
     {
         if (!is_int($delivery)) {
@@ -28,11 +38,21 @@ class PandaCart extends Cart implements \Serializable
         return $this;
     }
     
+    /**
+     * Get cart delivery cost
+     * 
+     * @return integer
+     */
     public function getDelivery()
     {
         return $this->delivery;
     }
     
+    /**
+     * Get total cart cost
+     * 
+     * @return integer
+     */
     public function getTotal()
     {
         $total = parent::getTotal();

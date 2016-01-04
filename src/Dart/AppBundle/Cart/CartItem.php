@@ -13,10 +13,22 @@ use Dart\AppBundle\Cart\ItemInterface;
  */
 class CartItem 
 {
+    /**
+     * @var \Dart\AppBundle\Cart\ItemInterface
+     */
     private $item;
     
+    /**
+     * @var integer
+     */
     private $quantity = 0;
     
+    /**
+     * Constructor
+     * 
+     * @param \Dart\AppBundle\Cart\ItemInterface $item
+     * @param integer $quantity
+     */
     public function __construct(ItemInterface $item, $quantity = 1)
     {
         if (null !== $item) {
@@ -25,6 +37,14 @@ class CartItem
         }
     }
     
+    /**
+     * Set item 
+     * 
+     * @param \Dart\AppBundle\Cart\ItemInterface $item
+     * @param integer $quantity
+     * @return \Dart\AppBundle\Cart\CartItem
+     * @throws \Exception
+     */
     public function setItem(ItemInterface $item, $quantity = 1)
     {
         if ($this->item) {
@@ -39,31 +59,62 @@ class CartItem
         return $this;
     }
     
+    /**
+     * Return item id
+     * 
+     * @return integer
+     */
     public function getId()
     {
         return $this->item->getId();
     }
     
+    /**
+     * Return item
+     * 
+     * @return \Dart\AppBundle\Cart\ItemInterface
+     */
     public function getItem()
     {
         return $this->item;
     }
     
+    /**
+     * Return item price
+     * 
+     * @return integer
+     */
     public function getUnitPrice()
     {
         return $this->item->getPrice();
     }
     
+    /**
+     * Return items price
+     * 
+     * @return integer
+     */
     public function getPrice()
     {
         return $this->item->getPrice() * $this->quantity;
     }
     
+    /**
+     * Return item quantity
+     * 
+     * @return integer
+     */
     public function getQuantity()
     {
         return $this->quantity;
     }
     
+    /**
+     * Set item quantity
+     * 
+     * @param integer $quantity
+     * @throws \Exception
+     */
     public function setQuantity($quantity)
     {
         if (!is_int($quantity)) {

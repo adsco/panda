@@ -11,7 +11,13 @@ namespace Dart\AppBundle\Cart;
  */
 interface ItemInterface
 {
+    /**
+     * return item identifier
+     */
     public function getId();
     
+    /**
+     * return item price
+     */
     public function getPrice();
 }
