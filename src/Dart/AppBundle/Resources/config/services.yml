@@ -12,12 +12,12 @@ services:
     cart:
         class: Dart\AppBundle\Service\Cart
         arguments: [%min%, %penalty%]
-    cart.manager:
-        class: Dart\AppBundle\Service\CartManager
-        arguments: [%cart_factory%, %cart_name%, @session, %cart_item_factory%]
     cart.item:
         class: Dart\AppBundle\Service\CartItem
         arguments: []
+    cart.manager:
+        class: Dart\AppBundle\Service\CartManager
+        arguments: [@cart, %cart_name%, @session, @cart.item]    
     preview:
         class: Dart\AppBundle\Service\Preview
         arguments:
