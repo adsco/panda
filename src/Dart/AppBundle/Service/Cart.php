@@ -2,6 +2,8 @@
 
 namespace Dart\AppBundle\Service;
 
+use Dart\AppBundle\Cart\PandaCart;
+
 /**
  * Cart factory
  *
