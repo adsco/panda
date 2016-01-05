@@ -28,7 +28,14 @@ class PandaCart extends Cart implements \Serializable
      */
     protected $penalty = 0;
     
-    public function __constructor($min, $penalty)
+    /**
+     * Constructor
+     * 
+     * @param integer $min
+     * @param integer $penalty
+     * @throws \Exception
+     */
+    public function __construct($min, $penalty)
     {
         if (!is_int($min) || $min < 0) {
             throw new \Exception('$min must be integer, equal or greater than 0');
