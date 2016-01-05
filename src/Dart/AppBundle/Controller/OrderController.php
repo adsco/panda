@@ -5,10 +5,9 @@ namespace Dart\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
-use Dart\AppBundle\Form\Type\SubmitType;
+use Dart\AppBundle\Form\Type\CartType;
 use Dart\AppBundle\Entity\Order;
 use Dart\AppBundle\Cart\PandaCart;
-
 
 /**
  * Order controller
@@ -32,7 +31,7 @@ class OrderController extends Controller
         $form->handleRequest($request);
         
         //order must be created after cart update
-        $order = $this->container->get('order_manager')->createOrder();
+        //$order = $this->container->get('order_manager')->createOrder();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->handleOrderForm($form, $order);
@@ -43,7 +42,7 @@ class OrderController extends Controller
         }
         
         return $this->render('AppBundle:Order:show.html.twig', array(
-            'order' => $order,
+            //'order' => $order,
             'form' => $form->createView()
         ));
     }
@@ -64,7 +63,7 @@ class OrderController extends Controller
      */
     private function createCartForm(PandaCart $cart)
     {
-        $form = $this->createForm(new SubmitType(), $cart);
+        $form = $this->createForm(new CartType(), $cart);
         
         return $form;
     }

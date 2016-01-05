@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Dart\AppBundle\Form\Type\DeliveryAddressType;
 use Dart\AppBundle\Form\Type\OrderUserProfileType;
-use Dart\AppBundle\Form\Type\OrderItemType;
+use Dart\AppBundle\Form\Type\CartItem;
 
 
 /**
@@ -35,7 +35,7 @@ class OrderType extends AbstractType
                 'label' => 'Delivery cost'
             ))
             ->add('order_items', new CollectionType(), array(
-                'type' => new OrderItemType(),
+                'type' => new CartItem(),
                 'label' => 'Products',
                 'allow_delete' => true
             ))
