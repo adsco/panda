@@ -16,26 +16,30 @@ class PandaCart extends Cart implements \Serializable
     /**
      * @var integer
      */
-    protected $delivery;
+    protected $delivery = 0;
     
     /**
-     * Set delivery cost
-     * 
-     * @param integer $delivery
-     * @return \Dart\AppBundle\Cart\PandaCart
-     * @throws \Exception
+     * @var integer
      */
-    public function setDelivery($delivery)
+    protected $min = 0;
+    
+    /**
+     * @var integer
+     */
+    protected $penalty = 0;
+    
+    public function __constructor($min, $penalty)
     {
-        if (!is_int($delivery)) {
-            throw new \Exception('Delivery cost must be integer value');
-        } elseif ($delivery < 0) {
-            throw new \Exception('Delivery cannot be less than 0');
+        if (!is_int($min) || $min < 0) {
+            throw new \Exception('$min must be integer, equal or greater than 0');
         }
         
-        $this->delivery = $delivery;
+        if (!is_int($penalty) || $penalty < 0) {
+            throw new \Exception('$penalty must be integer, equal or greater than 0');
+        }
         
-        return $this;
+        $this->min = $min;
+        $this->penalty = $penalty;
     }
     
     /**
@@ -45,19 +49,7 @@ class PandaCart extends Cart implements \Serializable
      */
     public function getDelivery()
     {
-        return $this->delivery;
-    }
-    
-    /**
-     * Get total cart cost
-     * 
-     * @return integer
-     */
-    public function getTotal()
-    {
-        $total = parent::getTotal();
-        
-        return $total + $this->delivery;
+        return $this->getTotal() >= $this->min ? 0 : $this->penalty;
     }
     
     /**

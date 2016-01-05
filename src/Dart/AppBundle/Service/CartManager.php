@@ -5,6 +5,7 @@ namespace Dart\AppBundle\Service;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Dart\AppBundle\Cart\PandaCart;
 use Dart\AppBundle\Cart\ItemInterface;
+use Dart\AppBundle\Service\Cart;
 
 /**
  * CartManager that controlls access to cart and cart saving
@@ -33,6 +34,11 @@ class CartManager
     private $cart;
     
     /**
+     * @var \Dart\AppBundle\Service\Cart
+     */
+    private $cartFactory;
+    
+    /**
      * @var string
      */
     private $cartItemFactory;
@@ -44,10 +50,11 @@ class CartManager
      * @param \Symfony\Component\HttpFoundation\Session\Session $session
      * @param string $cartItemFactoryClass
      */
-    public function __construct($name, Session $session, $cartItemFactoryClass)
+    public function __construct(Cart $cartFactory, $name, Session $session, $cartItemFactoryClass)
     {
         $this->name = $name;
         $this->session = $session;
+        $this->cartFactory = $cartFactory;
         $this->cartItemFactory = new $cartItemFactoryClass();
         $this->cart = $this->getCart();
     }
@@ -78,7 +85,7 @@ class CartManager
     public function getCart()
     {
         if (null === $this->cart) {
-            $this->cart = new PandaCart();
+            $this->cart = $this->cartFactory->create();
             
             if ($cartContent = $this->session->get($this->name)) {
                 $this->cart->unserialize($cartContent);
