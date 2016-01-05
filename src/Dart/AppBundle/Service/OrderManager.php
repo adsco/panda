@@ -2,7 +2,7 @@
 
 namespace Dart\AppBundle\Service;
 
-use Dart\AppBundle\Service\CartService;
+use Dart\AppBundle\Service\CartManager;
 use Dart\AppBundle\Service\OrderService;
 use Dart\AppBundle\Service\OrderItem;
 
@@ -26,12 +26,12 @@ class OrderManager
     /**
      * Constructor
      * 
-     * @param CartService $cart
-     * @param OrderService $order
+     * @param \Dart\AppBundle\Service\CartManager $cart
+     * @param \Dart\AppBundle\Service\OrderService $order
      */
-    public function __construct(CartService $cart, OrderService $order, OrderExternals $orderExternals)
+    public function __construct(CartManager $cartManager, OrderService $order, OrderExternals $orderExternals)
     {
-        $this->cart = $cart;
+        $this->cartManager = $cartManager;
         $this->order = $order;
         $this->orderExternals = $orderExternals;
     }
@@ -43,8 +43,8 @@ class OrderManager
      */
     public function createOrder()
     {
-        $cart = $this->cart->getCart();
-        $items = $this->cart->getItems();
+        $cart = $this->cartManager->getCart();
+        $items = $cart->getItems();
         
         $order = $this->addItems($this->order->create(), $items);
         $order->setPrice($cart->getTotalPrice());

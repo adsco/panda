@@ -23,20 +23,23 @@ class CartController extends Controller
     public function addAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $cartService = $this->container->get('cart');
+        $cm = $this->container->get('cart.manager');
+        $cart = $cm->getCart();
         $response = new JsonResponse();
         
-        if (!$item = $em->getRepository('AppBundle:Meal')->findOneBy(array('id' => $id))) {
+        $item = $em->getRepository('AppBundle:Meal')->find($id);
+        if (null === $item) {
             throw $this->createNotFoundException('Meal with id "' . $id . '" not found');
         }
         
-        $cartService->addItem($item);
+        $cm->add($item);
+        $cm->save();
         
         $response->setData(array(
             'success' => true,
             'data' => array(
                 'preview' => $this->container->get('preview')->renderCartPreview(true),
-                'totalCount' => count($cartService->getItems())
+                'totalCount' => count($cart->getItems())
             )
         ));
         
@@ -52,15 +55,17 @@ class CartController extends Controller
     {
         $response = new JsonResponse();
         
-        $cartService = $this->container->get('cart');
+        $cm = $this->container->get('cart.manager');
+        $cart = $cm->getCart();
         
-        $cartService->removeItem($id);
+        $cart->remove($id, 1);
+        $cm->save();
         
         $response->setData(array(
             'success' => true,
             'data' => array(
                 'preview' => $this->container->get('preview')->renderCartPreview(true),
-                'totalCount' => count($cartService->getItems())
+                'totalCount' => count($cart->getItems())
             )
         ));
         
@@ -76,15 +81,17 @@ class CartController extends Controller
     {
         $response = new JsonResponse();
         
-        $cartService = $this->container->get('cart');
+        $cm = $this->container->get('cart.manager');
+        $cart = $cm->getCart();
         
-        $cartService->removeItemAll($id);
+        $cart->remove($id);
+        $cm->save();
         
         $response->setData(array(
             'success' => true,
             'data' => array(
                 'preview' => $this->container->get('preview')->renderCartPreview(true),
-                'totalCount' => count($cartService->getItems())
+                'totalCount' => count($cart->getItems())
             )
         ));
         
@@ -106,10 +113,11 @@ class CartController extends Controller
      */
     public function showAction()
     {
-        $cartService = $this->container->get('cart');
+        $cm = $this->container->get('cart.manager');
+        $cart = $cm->getCart();
         
         return $this->render('AppBundle:Debug:cart.html.twig', array(
-            'items' => $cartService->getItems()
+            'items' => $cart->getItems()
         ));
     }
 }

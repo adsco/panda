@@ -21,19 +21,18 @@ class CartItem
     /**
      * @var integer
      */
-    private $quantity = 0;
+    private $quantity;
     
     /**
      * Constructor
      * 
-     * @param \Dart\AppBundle\Cart\ItemInterface $item
+     * @param \Dart\AppBundle\Cart\ItemInterface|null $item
      * @param integer $quantity
      */
-    public function __construct(ItemInterface $item, $quantity = 1)
+    public function __construct($item = null, $quantity = 1)
     {
         if (null !== $item) {
-            $this->item = $item;
-            $this->quantity = $quantity;
+            $this->setItem($item, $quantity);
         }
     }
     

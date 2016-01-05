@@ -5,9 +5,9 @@ namespace Dart\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
-use Dart\AppBundle\Form\Type\CartType;
+use Dart\AppBundle\Form\Type\SubmitType;
 use Dart\AppBundle\Entity\Order;
-use Dart\AppBundle\Component\Cart;
+use Dart\AppBundle\Cart\PandaCart;
 
 
 /**
@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function showAction(Request $request)
     {
-        $cart = $this->container->get('cart')->getCart();
+        $cart = $this->container->get('cart.manager')->getCart();
         $form = $this->createCartForm($cart);
         
         $form->handleRequest($request);
@@ -37,7 +37,7 @@ class OrderController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->handleOrderForm($form, $order);
             
-            $this->container->get('cart')->refresh(true);
+            $this->container->get('cart.manager')->clear(true);
             
             return $this->redirectToRoute('order_success');
         }
@@ -59,12 +59,12 @@ class OrderController extends Controller
     /**
      * Create order preview form
      * 
-     * @param \Dart\AppBundle\Component\Cart $cart
+     * @param \Dart\AppBundle\Component\PandaCart $cart
      * @return \Symfony\Component\Form\FormInterface
      */
-    private function createCartForm(Cart $cart)
+    private function createCartForm(PandaCart $cart)
     {
-        $form = $this->createForm(new CartType(), $cart);
+        $form = $this->createForm(new SubmitType(), $cart);
         
         return $form;
     }

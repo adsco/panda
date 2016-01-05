@@ -44,6 +44,9 @@ class Cart implements \Serializable
      */
     public function find($id)
     {
+        //fix integer value
+        $id = intval($id);
+        
         foreach ($this->items as $item) {
             if ($item->getId() === $id) {
                 return $item;
@@ -57,21 +60,26 @@ class Cart implements \Serializable
      * Remove item from cart
      * 
      * @param integer $id
-     * @param integer $quantity
+     * @param integer|null $quantity
      * @return \Dart\AppBundle\Cart\Cart
      */
-    public function remove($id, $quantity)
+    public function remove($id, $quantity = null)
     {
         $item = $this->find($id);
         
-        if (!$item) {
+        if (null === $item) {
             return $this;
         }
         
-        if (null !== $quantity) {
-            $this->decreaseQuantity($item, $quantity);
-        } else {
+        //fix negative values
+        if (is_int($quantity)) {
+            $quantity = abs($quantity);
+        }
+        
+        if (null === $quantity || $quantity >= $item->getQuantity()) {
             $this->unsetItem($item);
+        } else {
+            $item->setQuantity($item->getQuantity() - $quantity);
         }
         
         return $this;
@@ -138,7 +146,7 @@ class Cart implements \Serializable
      */
     protected function unsetItem(CartItem $cartItem)
     {
-        if ($index = array_search($cartItem, $haystack)) {
+        if ($index = array_search($cartItem, $this->items)) {
             unset($this->items[$index]);
         }
     }

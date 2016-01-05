@@ -39,11 +39,11 @@
                         </div>
                         <div class="quantity-block">
                             <span>{% trans %}Quantity:{% endtrans %}</span>
-                            {{ form_widget(item.count, {'attr': {'class': 'quantity', 'min': 1}}) }}
+                            {{ form_widget(item.quantity, {'attr': {'class': 'quantity', 'min': 1}}) }}
                         </div>
                         <span>
                             {% trans %}Total:{% endtrans %} 
-                            <span class="item-total">{{ product.vars.value.price * item.vars.value.count }}</span>
+                            <span class="item-total">{{ product.vars.value.price * item.vars.value.quantity }}</span>
                             {{ currency_sign }}
                         </span>
                     </td>

@@ -3,7 +3,7 @@
 namespace Dart\AppBundle\Service;
 
 use Symfony\Component\Templating\EngineInterface;
-use Dart\AppBundle\Service\CartService;
+use Dart\AppBundle\Service\CartManager;
 
 /**
  * Preview service
@@ -20,9 +20,9 @@ class Preview
     private $templating;
     
     /**
-     * @var \Dart\AppBundle\Service\CartService
+     * @var \Dart\AppBundle\Service\CartManager
      */
-    private $cart;
+    private $cartManager;
     
     /**
      * @var string
@@ -36,10 +36,10 @@ class Preview
      * @param \Dart\AppBundle\Service\CartService $cart
      * @param string $template - template name
      */
-    public function __construct(EngineInterface $templating, CartService $cart, $template)
+    public function __construct(EngineInterface $templating, CartManager $cartManager, $template)
     {
         $this->templating = $templating;
-        $this->cart = $cart;
+        $this->cartManager = $cartManager;
         $this->template = $template;
     }
 
@@ -50,7 +50,7 @@ class Preview
      */
     public function renderCartPreview($asString = false)
     {
-        $cart = $this->cart->getCart();
+        $cart = $this->cartManager->getCart();
         $result = null;
         
         if ($asString) {
