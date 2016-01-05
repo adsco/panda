@@ -50,12 +50,12 @@ class CartManager
      * @param \Symfony\Component\HttpFoundation\Session\Session $session
      * @param string $cartItemFactoryClass
      */
-    public function __construct(Cart $cartFactory, $name, Session $session, $cartItemFactoryClass)
+    public function __construct(Cart $cartFactory, $name, Session $session, $cartItemFactory)
     {
         $this->name = $name;
         $this->session = $session;
         $this->cartFactory = $cartFactory;
-        $this->cartItemFactory = new $cartItemFactoryClass();
+        $this->cartItemFactory = $cartItemFactory;
         $this->cart = $this->getCart();
     }
     

@@ -2,11 +2,10 @@
 
 namespace Dart\AppBundle\Service;
 
-use Dart\AppBundle\Cart\CartItem;
-use Dart\AppBundle\Cart\ItemInterface;
+use Dart\AppBundle\Cart\CartItem as Item;
 
 /**
- * Cart item factory
+ * CartItem factory
  *
  * @package \Dart\AppBundle
  * @subpackage Service
@@ -15,14 +14,12 @@ use Dart\AppBundle\Cart\ItemInterface;
 class CartItem
 {
     /**
-     * Cart item factory method
+     * Factory method
      * 
-     * @param \Dart\AppBundle\Cart\ItemInterface $item
-     * @param integer $quantity
      * @return \Dart\AppBundle\Cart\CartItem
      */
-    public function create(ItemInterface $item, $quantity = 1)
+    public function create()
     {
-        return new CartItem($item, $quantity);
+        return new Item();
     }
 }

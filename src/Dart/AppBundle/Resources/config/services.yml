@@ -3,7 +3,7 @@ parameters:
     min: 500
     penalty: 250
     cart_name: 'panda-cart'
-    cart_item_factory_class: '\Dart\AppBundle\Factory\CartItem'
+    cart_item_factory: '\Dart\AppBundle\Service\CartItem'
     
 services:
 #    app.example:
@@ -14,7 +14,7 @@ services:
         arguments: [%min%, %penalty%]
     cart.manager:
         class: Dart\AppBundle\Service\CartManager
-        arguments: [%cart_factory%, %cart_name%, @session, %cart_item_factory_class%]
+        arguments: [%cart_factory%, %cart_name%, @session, %cart_item_factory%]
     cart.item:
         class: Dart\AppBundle\Service\CartItem
         arguments: []
