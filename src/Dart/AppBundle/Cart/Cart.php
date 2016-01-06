@@ -27,7 +27,7 @@ class Cart implements \Serializable
     public function add(CartItem $cartItem)
     {
         if ($item = $this->find($cartItem->getId())) {
-            $item->setCount($item->getCount() + $cartItem->getCount());
+            $item->setQuantity($item->getQuantity() + $cartItem->getQuantity());
         } else {
             $this->items[] = $cartItem;
         }
