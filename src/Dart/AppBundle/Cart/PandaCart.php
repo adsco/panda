@@ -11,13 +11,8 @@ use Dart\AppBundle\Cart\Cart;
  * @subpackage Cart
  * @author Valerii Ten <eternitywisher@gmail.com>
  */
-class PandaCart extends Cart implements \Serializable
+class PandaCart extends Cart
 {
-    /**
-     * @var integer
-     */
-    protected $delivery = 0;
-    
     /**
      * @var integer
      */
@@ -37,6 +32,8 @@ class PandaCart extends Cart implements \Serializable
      */
     public function __construct($min, $penalty)
     {
+        parent::__construct();
+        
         if (!is_int($min) || $min < 0) {
             throw new \Exception('$min must be integer, equal or greater than 0');
         }
@@ -57,27 +54,5 @@ class PandaCart extends Cart implements \Serializable
     public function getDelivery()
     {
         return $this->getTotal() >= $this->min ? 0 : $this->penalty;
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function serialize()
-    {
-        return serialize(array(
-            'items' => $this->items,
-            'delivery' => $this->delivery
-        ));
-    }
-    
-    /**
-     * {@inheritDoc}
-     */
-    public function unserialize($str)
-    {
-        $data = unserialize($str);
-        
-        $this->items = $data['items'];
-        $this->delivery = $data['delivery'];
     }
 }
