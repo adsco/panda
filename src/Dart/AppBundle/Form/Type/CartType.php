@@ -5,6 +5,7 @@ namespace Dart\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Dart\AppBundle\Form\Type\CartItemType;
 
 /**
@@ -27,8 +28,12 @@ class CartType extends AbstractType
                 'allow_delete' => true,
                 'allow_add' => false
             ))
-            ->add('total')
-            ->add('delivery')
+            ->add('total', new IntegerType(), array(
+                'disabled' => true
+            ))
+            ->add('delivery', new IntegerType(), array(
+                'disabled' => true
+            ))
         ;
     }
     

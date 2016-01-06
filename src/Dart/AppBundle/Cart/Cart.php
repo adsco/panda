@@ -16,7 +16,15 @@ class Cart implements \Serializable
     /**
      * @var \Dart\AppBundle\Cart\CartItem[]
      */
-    protected $items = array();
+    protected $items;
+    
+    /**
+     * Construtor
+     */
+    public function __construct()
+    {
+         $this->items = array();
+    }
     
     /**
      * Add new cart item to cart
@@ -75,7 +83,7 @@ class Cart implements \Serializable
         $quantity = abs($quantity);
         
         if ($quantity >= $item->getQuantity()) {
-            $this->unsetItem($item);
+            $this->removeItem($item);
         } else {
             $item->setQuantity($item->getQuantity() - $quantity);
         }
@@ -110,6 +118,23 @@ class Cart implements \Serializable
     public function getItems()
     {
         return $this->items;
+    }
+    
+    /**
+     * Full items update
+     * 
+     * @param array $items
+     * @return \Dart\AppBundle\Cart\Cart
+     */
+    public function setItems(array $items)
+    {
+        $this->clear();
+        
+        foreach ($items as $item) {
+            $this->add($item);
+        }
+        
+        return $this;
     }
     
     /**
@@ -153,7 +178,7 @@ class Cart implements \Serializable
      */
     public function unserialize($str)
     {
-        $this->items = unserialize($str);
+        $this->setItems(unserialize($str));
     }
     
     /**

@@ -22,7 +22,7 @@
     <form method="post" action="{{ path('order_show') }}">
         <table class="order-table">
             <tbody>
-                {% for item in form.items %}
+                {% for item in form.cart.items %}
                 {% set product = item.item %}
                 <tr class="product-line item-row">
                     <td>
@@ -53,23 +53,22 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        {% trans %}Subtotal:{% endtrans %} <b class="pull-right"><span class="sub-total">{{ form.vars.value.total }}</span>{{ currency_sign }}</b>
+                        {% trans %}Subtotal:{% endtrans %} <b class="pull-right"><span class="sub-total">{{ form.vars.value.cart.total }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        {% trans %}Delivery:{% endtrans %} <b class="pull-right"><span class="delivery">{{ form.vars.value.delivery }}</span>{{ currency_sign }}</b>
+                        {% trans %}Delivery:{% endtrans %} <b class="pull-right"><span class="delivery">{{ form.vars.value.cart.delivery }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        {% trans %}Grand total:{% endtrans %} <b class="pull-right"><span class="grand-total">{{ form.vars.value.total + form.vars.value.delivery }}</span>{{ currency_sign }}</b>
+                        {% trans %}Grand total:{% endtrans %} <b class="pull-right"><span class="grand-total">{{ form.vars.value.cart.total + form.vars.value.cart.delivery }}</span>{{ currency_sign }}</b>
                     </td>
                 </tr>
             </tfoot>
         </table>
                     
-        {#
         <div class="row">
             <div class="col-lg-6">
                 {% include 'AppBundle:Order:address.html.twig' with {'form': form.delivery_address} only  %}
@@ -83,7 +82,6 @@
                 <input type="submit" value="Submit" class="btn btn-default btn-large" />
             </div>
         </div>
-        #}
         {{ form_widget(form._token) }}
     </form>
 {% endblock %}

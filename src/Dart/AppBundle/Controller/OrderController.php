@@ -6,8 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
 use Dart\AppBundle\Form\Type\CartType;
+use Dart\AppBundle\Entity\DeliveryAddress;
+use Dart\AppBundle\Entity\OrderUserProfile;
 use Dart\AppBundle\Entity\Order;
 use Dart\AppBundle\Cart\PandaCart;
+use Dart\AppBundle\Form\Type\OrderUserProfileType;
+use Dart\AppBundle\Form\Type\SubmitOrderType;
 
 /**
  * Order controller
@@ -26,19 +30,18 @@ class OrderController extends Controller
     public function showAction(Request $request)
     {
         $cart = $this->container->get('cart.manager')->getCart();
-        $form = $this->createCartForm($cart);
+        $form = $this->createSubmitOrderForm($cart, new DeliveryAddress(), new OrderUserProfile());
         
         $form->handleRequest($request);
-        
         //order must be created after cart update
         //$order = $this->container->get('order_manager')->createOrder();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleOrderForm($form, $order);
+            //$this->handleOrderForm($form, $order);
             
-            $this->container->get('cart.manager')->clear(true);
+            //$this->container->get('cart.manager')->clear(true);
             
-            return $this->redirectToRoute('order_success');
+            //return $this->redirectToRoute('order_success');
         }
         
         return $this->render('AppBundle:Order:show.html.twig', array(
@@ -56,6 +59,25 @@ class OrderController extends Controller
     }
     
     /**
+     * Create submit order form
+     * 
+     * @param mixed[] $data
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function createSubmitOrderForm($cart, $deliveryAddress, $userProfile)
+    {
+        $data = array(
+            'cart' => $cart,
+            'delivery_address' => $deliveryAddress,
+            'user_profile' => $userProfile
+        );
+        
+        $form = $this->createForm(new SubmitOrderType(), $data);
+        
+        return $form;
+    }
+    
+    /**
      * Create order preview form
      * 
      * @param \Dart\AppBundle\Component\PandaCart $cart
@@ -64,6 +86,26 @@ class OrderController extends Controller
     private function createCartForm(PandaCart $cart)
     {
         $form = $this->createForm(new CartType(), $cart);
+        
+        return $form;
+    }
+    
+    /**
+     * Create delivery address form
+     * 
+     * @param \Dart\AppBundle\Entity\DeliveryAddress $deliveryAddress
+     * @return \Symfony\Component\Form\FormInterface
+     */
+    private function createDeliveryAddressForm(DeliveryAddress $deliveryAddress)
+    {
+        $form = $this->createForm(new DeliveryAddressType(), $deliveryAddress);
+        
+        return $form;
+    }
+    
+    private function createProfileForm(OrderUserProfile $orderUserProfile)
+    {
+        $form = $this->createForm(new OrderUserProfileType(), $orderUserProfile);
         
         return $form;
     }
