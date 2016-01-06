@@ -57,29 +57,46 @@ class Cart implements \Serializable
     }
     
     /**
-     * Remove item from cart
+     * Remove item instances from cart
      * 
      * @param integer $id
      * @param integer|null $quantity
      * @return \Dart\AppBundle\Cart\Cart
      */
-    public function remove($id, $quantity = null)
+    public function remove($id, $quantity = 1)
     {
         $item = $this->find($id);
         
-        if (null === $item) {
-            return $this;
-        }
-        
         //fix negative values
-        if (is_int($quantity)) {
-            $quantity = abs($quantity);
+        if (!is_int($quantity)) {
+            throw new \Exception('Quantity must be integer value');
         }
         
-        if (null === $quantity || $quantity >= $item->getQuantity()) {
+        $quantity = abs($quantity);
+        
+        if ($quantity >= $item->getQuantity()) {
             $this->unsetItem($item);
         } else {
             $item->setQuantity($item->getQuantity() - $quantity);
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * Remove item from cart
+     * 
+     * @param integer|\Dart\AppBundle\Cart\CartItem $id id of item to remove
+     * @return \Dart\AppBundle\Cart\PandaCart
+     */
+    public function removeItem($object)
+    {
+        if (!$object instanceof CartItem) {
+            $item = $this->find($object);
+        }
+            
+        if ($item) {
+            $this->unsetItem($item);
         }
         
         return $this;

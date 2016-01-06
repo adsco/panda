@@ -84,7 +84,7 @@ class CartController extends Controller
         $cm = $this->container->get('cart.manager');
         $cart = $cm->getCart();
         
-        $cart->remove($id);
+        $cart->removeItem($id);
         $cm->save();
         
         $response->setData(array(
