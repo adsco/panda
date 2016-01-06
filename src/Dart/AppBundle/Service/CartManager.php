@@ -3,8 +3,8 @@
 namespace Dart\AppBundle\Service;
 
 use Symfony\Component\HttpFoundation\Session\Session;
-use Dart\AppBundle\Cart\PandaCart;
 use Dart\AppBundle\Cart\ItemInterface;
+use Dart\AppBundle\Service\CartItem;
 use Dart\AppBundle\Service\Cart;
 
 /**
@@ -50,7 +50,7 @@ class CartManager
      * @param \Symfony\Component\HttpFoundation\Session\Session $session
      * @param string $cartItemFactoryClass
      */
-    public function __construct(Cart $cartFactory, $name, Session $session, $cartItemFactory)
+    public function __construct(Cart $cartFactory, $name, Session $session, CartItem $cartItemFactory)
     {
         $this->name = $name;
         $this->session = $session;
