@@ -26,6 +26,26 @@ Dart\AppBundle\Entity\OrderUserProfile:
             - Regex:
                 pattern: '/^\d{10}$/'
                 message: "Phone number must be 10 numbers long (ex. 9261232456)"
+Dart\AppBundle\Entity\DeliveryAddress:
+    properties:
+        street:
+            - NotBlank:
+                message: "Street name cannot be blank"
+            - Length:
+                max: 256
+                maxMessage: "Length of a street name must be less than 256 symbols"
+        building:
+            - Length:
+                max: 256
+                maxMessage: "Length of a building number must be less than 256 symbols"
+        porch:
+            - Type:
+                type: integer
+                message: "Porch number must be a numeric value"
+        apartment:
+            - Range:
+                min: 1
+                minMessage: "Apartment must be positive integer value greater than 0"
 Dart\AppBundle\Entity\UserAddress:
     properties:
         title:

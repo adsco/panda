@@ -5,6 +5,7 @@ namespace Dart\AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Validator\Constraints\Range;
 use Dart\AppBundle\Form\Type\CartType;
 use Dart\AppBundle\Form\Type\DeliveryAddressType;
 use Dart\AppBundle\Form\Type\OrderUserProfileType;
@@ -31,14 +32,18 @@ class SubmitOrderType extends AbstractType
                 'label' => 'User Profile'
             ))
             ->add('change', new IntegerType(), array(
-                'label' => 'Change'
+                'label' => 'Change',
+                'constraints' => array(
+                    new Range(array('min' => 0, 'minMessage' => 'Change cannot be less than 0'))
+                )
             ))
         ;
     }
     
     public function setDefaultOptions(\Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver) {
         $resolver->setDefaults(array(
-            'cascade_validation' => true
+            'cascade_validation' => true,
+            'error_bubbling' => true
         ));
     }
     

@@ -23,12 +23,24 @@ class DeliveryAddressType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('street', new TextType())
-            ->add('building', new TextType())
-            ->add('porch', new IntegerType())
-            ->add('apartment', new TextType())
-            ->add('intercome_code', new TextType())
-            ->add('note', new TextareaType())
+            ->add('street', new TextType(), array(
+                'label' => 'Street'
+            ))
+            ->add('building', new TextType(), array(
+                'label' => 'Building'
+            ))
+            ->add('porch', new IntegerType(), array(
+                'label' => 'Porch'
+            ))
+            ->add('apartment', new IntegerType(), array(
+                'label' => 'Apartment'
+            ))
+            ->add('intercome_code', new TextType(), array(
+                'label' => 'Intercome code'
+            ))
+            ->add('note', new TextareaType(), array(
+                'label' => 'Note'
+            ))
         ;
     }
     
