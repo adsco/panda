@@ -53,6 +53,8 @@ class PandaCart extends Cart
      */
     public function getDelivery()
     {
-        return $this->getTotal() >= $this->min ? 0 : $this->penalty;
+        $total = $this->getTotal();
+        
+        return $total >= $this->min || $total == 0 ? 0 : $this->penalty;
     }
 }
