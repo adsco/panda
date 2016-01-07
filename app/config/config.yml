@@ -45,6 +45,10 @@ twig:
     globals:
         currency_sign: $
         weight_sign: g
+    form:
+        resources:
+            - 'AppBundle:Form:form_errors.html.twig'
+            - 'AppBundle:Form:form_label.html.twig'
 
 # Assetic Configuration
 assetic:

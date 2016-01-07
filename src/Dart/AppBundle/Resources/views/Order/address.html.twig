@@ -2,26 +2,26 @@
     {% trans %}Delivery address{% endtrans %}
 </h4>
 <div class="form-group">
-    {{ form_label(form.street) }}
+    {{ form_label(form.street, form.street.vars.label, {'error': form.street.vars.errors.current}) }}
     {{ form_widget(form.street, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.building) }}
+    {{ form_label(form.building, form.building.vars.label, {'error': form.building.vars.errors.current}) }}
     {{ form_widget(form.building, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.porch) }}
+    {{ form_label(form.porch, form.porch.vars.label, {'error': form.porch.vars.errors.current}) }}
     {{ form_widget(form.porch, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.apartment) }}
+    {{ form_label(form.apartment, form.apartment.vars.label, {'error': form.apartment.vars.errors.current}) }}
     {{ form_widget(form.apartment, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.intercome_code) }}
+    {{ form_label(form.intercome_code, form.intercome_code.vars.label, {'error': form.intercome_code.vars.errors.current}) }}
     {{ form_widget(form.intercome_code, {'attr': {'class': 'form-control'}}) }}
 </div>
 <div class="form-group">
-    {{ form_label(form.note) }}
+    {{ form_label(form.note, form.note.vars.label, {'error': form.note.vars.errors.current}) }}
     {{ form_widget(form.note, {'attr': {'class': 'form-control'}}) }}
 </div>

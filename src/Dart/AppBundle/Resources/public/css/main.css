@@ -627,7 +627,7 @@ input.btn-large:hover, a.btn-large:hover {
     color: #888;
 }
 
-.errors {
+.errors, .error {
     color: #c7254e;
 }
 

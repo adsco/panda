@@ -76,7 +76,7 @@
             <div class="col-lg-6">
                 {% include 'AppBundle:Order:profile.html.twig' with {'form': form.user_profile} only  %}
                 <div class="form-group">
-                    {{ form_label(form.change) }}
+                    {{ form_label(form.change, form.change.vars.label, {'error': form.change.vars.errors.current}) }}
                     {{ form_widget(form.change, {'attr': {'class': 'form-control', 'min': 0}}) }}
                 </div>
                 <input type="submit" value="Submit" class="btn btn-default btn-large" />
