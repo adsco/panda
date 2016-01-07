@@ -31,6 +31,12 @@ class OrderController extends Controller
     {
         $cm   = $this->container->get('cart.manager');
         $cart = $cm->getCart();
+        
+        //prevent access if cart is empty
+        if (count($cart->getItems()) == 0) {
+            return $this->redirectToRoute('app_homepage');
+        }
+        
         $form = $this->createSubmitOrderForm($cart, new DeliveryAddress(), new OrderUserProfile());
         
         $form->handleRequest($request);
@@ -38,6 +44,7 @@ class OrderController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->handleSubmitForm($form);
             
+            //order created, no need to persist cart
             $cart->clear();
             $cm->save();
             
@@ -93,7 +100,7 @@ class OrderController extends Controller
         
         $order = $this->createOrder($cart, $deliveryAddress, $userProfile, $change);
         
-        //implicit set order reference
+        //explicit set order reference
         $deliveryAddress->setOrder($order);
         $userProfile->setOrder($order);
         
