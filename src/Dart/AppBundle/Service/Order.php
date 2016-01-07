@@ -13,7 +13,7 @@ use Dart\AppBundle\Component\CartItemBase;
  * @subpackage Service
  * @author Valerii Ten <eternitywisher@gmail.com>
  */
-class OrderService
+class Order
 {
     /**
      * @var \Dart\AppBundle\Service\OrderItem
