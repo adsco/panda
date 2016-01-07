@@ -5,12 +5,12 @@ namespace Dart\AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
-use Dart\AppBundle\Form\Type\CartType;
 use Dart\AppBundle\Entity\DeliveryAddress;
 use Dart\AppBundle\Entity\OrderUserProfile;
 use Dart\AppBundle\Entity\Order;
+use Dart\AppBundle\Entity\OrderItem;
+use Dart\AppBundle\Entity\Meal;
 use Dart\AppBundle\Cart\PandaCart;
-use Dart\AppBundle\Form\Type\OrderUserProfileType;
 use Dart\AppBundle\Form\Type\SubmitOrderType;
 
 /**
@@ -29,23 +29,22 @@ class OrderController extends Controller
      */
     public function showAction(Request $request)
     {
-        $cart = $this->container->get('cart.manager')->getCart();
+        $cm   = $this->container->get('cart.manager');
+        $cart = $cm->getCart();
         $form = $this->createSubmitOrderForm($cart, new DeliveryAddress(), new OrderUserProfile());
         
         $form->handleRequest($request);
-        //order must be created after cart update
-        //$order = $this->container->get('order_manager')->createOrder();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$this->handleOrderForm($form, $order);
+            $this->handleSubmitForm($form);
             
-            //$this->container->get('cart.manager')->clear(true);
+            $cart->clear();
+            $cm->save();
             
-            //return $this->redirectToRoute('order_success');
+            return $this->redirectToRoute('order_success');
         }
         
         return $this->render('AppBundle:Order:show.html.twig', array(
-            //'order' => $order,
             'form' => $form->createView()
         ));
     }
@@ -76,77 +75,75 @@ class OrderController extends Controller
         
         return $form;
     }
-    
-    /**
-     * Create order preview form
-     * 
-     * @param \Dart\AppBundle\Component\PandaCart $cart
-     * @return \Symfony\Component\Form\FormInterface
-     */
-    private function createCartForm(PandaCart $cart)
-    {
-        $form = $this->createForm(new CartType(), $cart);
-        
-        return $form;
-    }
-    
-    /**
-     * Create delivery address form
-     * 
-     * @param \Dart\AppBundle\Entity\DeliveryAddress $deliveryAddress
-     * @return \Symfony\Component\Form\FormInterface
-     */
-    private function createDeliveryAddressForm(DeliveryAddress $deliveryAddress)
-    {
-        $form = $this->createForm(new DeliveryAddressType(), $deliveryAddress);
-        
-        return $form;
-    }
-    
-    private function createProfileForm(OrderUserProfile $orderUserProfile)
-    {
-        $form = $this->createForm(new OrderUserProfileType(), $orderUserProfile);
-        
-        return $form;
-    }
-    
+
     /**
      * Handle order submit
      * 
      * @param \Symfony\Component\Form\FormInterface $form
-     * @param \Dart\AppBundle\Entity\Order $order
      */
-    private function handleOrderForm(FormInterface $form, Order $order)
+    private function handleSubmitForm(FormInterface $form)
     {
-        $em = $this->getDoctrine()->getManager();
-        
-        $address = $form['delivery_address']->getData();
-        $profile = $form['user_profile']->getData();
+        $cart = $form['cart']->getData();
+        $deliveryAddress = $form['delivery_address']->getData();
+        $userProfile = $form['user_profile']->getData();
         $change = $form['change']->getData();
         
-        $order->setDeliveryAddress($address);
-        $order->setOrderUserProfile($profile);
+        //create managed copies of cart items
+        $this->mergeCartProducts($cart);
+        
+        $order = $this->createOrder($cart, $deliveryAddress, $userProfile, $change);
+        
+        //implicit set order reference
+        $deliveryAddress->setOrder($order);
+        $userProfile->setOrder($order);
+        
+        $this->saveOrder($order);
+    }
+    
+    private function createOrder(
+        PandaCart $cart,
+        DeliveryAddress $deliveryAddress,
+        OrderUserProfile $orderUserProfile,
+        $change
+    ) {
+        $order = new Order();
+        
+        $order->setDeliveryAddress($deliveryAddress);
+        $order->setOrderUserProfile($orderUserProfile);
+        $order->setPrice($cart->getTotal());
+        $order->setDeliveryPrice($cart->getDelivery());
         $order->setChange($change);
         
-        $this->fixProducts($order);
+        foreach ($cart->getItems() as $item) {
+            $orderItem = new OrderItem();
+            $orderItem->setProduct($item->getItem());
+            $orderItem->setCount($item->getQuantity());
+            $orderItem->setOrder($order);
+            $order->addOrderItem($orderItem);
+        }
+        
+        return $order;
+    }
+    
+    private function saveOrder(Order $order)
+    {
+        $em = $this->getDoctrine()->getManager();
         
         $em->persist($order);
         $em->flush();
     }
     
-    /**
-     * Since product already exists in database, but relation manager
-     * asks to persist it, this method will patch it up
-     * 
-     * @param \Dart\AppBundle\Entity\Order $order
-     */
-    private function fixProducts(Order $order)
+    private function mergeCartProducts(PandaCart $cart)
+    {
+        foreach ($cart->getItems() as $item) {
+            $item->setItem($this->mergeProduct($item->getItem()), $item->getQuantity());
+        }
+    }
+    
+    private function mergeProduct(Meal $meal)
     {
         $em = $this->getDoctrine()->getManager();
         
-        foreach ($order->getOrderItems() as $item) {
-            $mergedProduct = $em->merge($item->getProduct());
-            $item->setProduct($mergedProduct);
-        }
+        return $em->merge($meal);
     }
 }

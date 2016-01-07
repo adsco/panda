@@ -42,14 +42,9 @@ class CartItem
      * @param \Dart\AppBundle\Cart\ItemInterface $item
      * @param integer $quantity
      * @return \Dart\AppBundle\Cart\CartItem
-     * @throws \Exception
      */
     public function setItem(ItemInterface $item, $quantity = 1)
     {
-        if ($this->item) {
-            throw new \Exception('Item already set');
-        }
-        
         if (null !== $item) {
             $this->item = $item;
             $this->quantity = $quantity;
