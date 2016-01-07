@@ -28,7 +28,12 @@
                             <div class="box-header">
                                 Meals
                             </div>
-                            <div class="box-body">                                
+                            <div class="box-body">
+                                {% if form.current_image is defined %}
+                                    <div>{{ form_label(form.current_image) }}</div>
+                                    <img src="{{ asset((upload_dir ~ form.current_image.vars.value)|imagine_filter('thumb_cart')) }}" />
+                                    {% do form.current_image.setRendered %}
+                                {% endif %}
                                 <div>{{ form_label(form.file) }}</div>
                                 <div>{{ form_widget(form.file) }}</div>
                                 <div>{{ form_errors(form.file) }}</div>
@@ -38,6 +43,7 @@
                                 {{ form_row(form.description) }}
                                 {{ form_row(form.price) }}
                                 {{ form_row(form.weight) }}
+                                {{ form_row(form.featured) }}
                             </div>
                         </div>
                     </div>

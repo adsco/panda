@@ -24,38 +24,48 @@ class MealAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $categories = $this->transformCuisine($this->getCuisines());
+        $meal = $this->getSubject();
+        $fileOptions = array(
+            'label' => 'Image'
+        );
+        
+        if ($meal->getImage()) {
+            $fileOptions['required'] = false;
+            $formMapper->add('current_image', 'text', array(
+                'label' => 'Current image',
+                'mapped' => false,
+                'disabled' => true,
+                'data' => $meal->getImage()
+            ));
+        } else {
+            $fileOptions['required'] = true;
+        }
         
         $formMapper
-            ->tab('Basic data')
-                ->with('Textual data')
-                    ->add('file', 'file', array(
-                        'required' => true,
-                        'label' => 'Image'
-                    ))
-                    ->add('category_id', 'choice', array(
-                        'choices' => $categories,
-                        'label' => 'Category'
-                    ))
-                    ->add('name', 'text', array(
-                        'label' => 'Meal name'
-                    ))
-                    ->add('description', 'textarea', array(
-                        'label' => 'Meal description'
-                    ))
-                ->end()
-            ->end();
+            ->add('file', 'file', $fileOptions)
+            ->add('category_id', 'choice', array(
+                'choices' => $categories,
+                'label' => 'Category'
+            ))
+            ->add('name', 'text', array(
+                'label' => 'Meal name'
+            ))
+            ->add('description', 'textarea', array(
+                'label' => 'Meal description'
+            ))
+            ->add('featured', 'checkbox', array(
+                'label' => 'Show on main page'
+            ))
+        ;
         
         $formMapper
-            ->tab('General data')
-                ->with('Numerical data')
-                    ->add('price', 'integer', array(
-                        'label' => 'Meal price'
-                    ))
-                    ->add('weight', 'integer', array(
-                        'label' => 'Meal weight'
-                    ))
-                ->end()
-            ->end();
+            ->add('price', 'integer', array(
+                'label' => 'Meal price'
+            ))
+            ->add('weight', 'integer', array(
+                'label' => 'Meal weight'
+            ))
+        ;
     }
     
     public function prePersist($object)

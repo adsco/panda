@@ -43,6 +43,7 @@ twig:
     strict_variables: "%kernel.debug%"
     cache: false
     globals:
+        upload_dir: '/uploads/images/sources/'
         currency_sign: $
         weight_sign: g
     form:
