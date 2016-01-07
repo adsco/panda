@@ -49,7 +49,7 @@ Dart\AppBundle\Entity\UserAddress:
                 type: integer
                 message: "Porch number must be numeric value"
         apartment:
-            - Length:
-                max: 256
-                maxMessage: "Length of apartment number must be less than 256 symbols"
+            - Type:
+                type: integer
+                message: "Apartment must be integer value"
         
