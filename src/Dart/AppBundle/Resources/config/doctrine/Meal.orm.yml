@@ -49,6 +49,12 @@ Dart\AppBundle\Entity\Meal:
             nullable: false
             options:
                 comment: "Meal last modification date/time"
+        featured:
+            type: boolean
+            nullable: false
+            options:
+                default: false
+                comment: "Is it needed to display the meal on main page"
     manyToOne:
         category:
             targetEntity: Category

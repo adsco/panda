@@ -21,7 +21,7 @@ class IndexController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $products = $em->getRepository('AppBundle:Meal')->findAll();
+        $products = $em->getRepository('AppBundle:Meal')->findBy(array('featured' => true));
         
         return $this->render('AppBundle:Index:index.html.twig', array(
             'products' => $products

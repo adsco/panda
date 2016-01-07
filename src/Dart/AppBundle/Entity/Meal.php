@@ -454,4 +454,33 @@ class Meal implements ItemInterface
     {
         return $this->order_products;
     }
+    /**
+     * @var boolean
+     */
+    private $featured = false;
+
+
+    /**
+     * Set featured
+     *
+     * @param boolean $featured
+     *
+     * @return Meal
+     */
+    public function setFeatured($featured)
+    {
+        $this->featured = $featured;
+
+        return $this;
+    }
+
+    /**
+     * Get featured
+     *
+     * @return boolean
+     */
+    public function getFeatured()
+    {
+        return $this->featured;
+    }
 }
