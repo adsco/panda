@@ -36,7 +36,7 @@ class UserAddressType extends AbstractType
                 'label' => 'form.address.porch',
                 'required' => false
             ))
-            ->add('apartment', new TextType(), array(
+            ->add('apartment', new IntegerType(), array(
                 'label' => 'form.address.apartment',
                 'required' => false
             ))

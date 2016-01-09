@@ -54,7 +54,8 @@ class MealAdmin extends Admin
                 'label' => 'Meal description'
             ))
             ->add('featured', 'checkbox', array(
-                'label' => 'Show on main page'
+                'label' => 'Show on main page',
+                'required' => false
             ))
         ;
         
